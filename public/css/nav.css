@@ -1,0 +1,219 @@
+#new-airbnb {
+  border-radius: 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#new-airbnb:hover {
+  background-color: rgba(207, 207, 207, 0.352);
+}
+
+#globe {
+  margin: 0 0.75rem;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+#globe:hover {
+  background-color: rgba(207, 207, 207, 0.461);
+}
+
+.nav-side {
+  display: flex;
+  align-items: center;
+}
+
+/* Hide the default checkbox */
+.containers input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.containers {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 0.8em;
+  width: 0.6em;
+}
+
+.checkmark span {
+  width: 1.05rem;
+  height: 2px;
+  color: black;
+  background-color: black;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.checkmark span:nth-child(1) {
+  top: 10%;
+}
+
+.checkmark span:nth-child(2) {
+  top: 50%;
+}
+
+.checkmark span:nth-child(3) {
+  top: 90%;
+}
+
+.containers input:checked + .checkmark span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  -webkit-transform: translateY(-50%) rotate(45deg);
+  -moz-transform: translateY(-50%) rotate(45deg);
+  -ms-transform: translateY(-50%) rotate(45deg);
+  -o-transform: translateY(-50%) rotate(45deg);
+}
+
+.containers input:checked + .checkmark span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+  -moz-transform: translateY(-50%) rotate(-45deg);
+  -ms-transform: translateY(-50%) rotate(-45deg);
+  -o-transform: translateY(-50%) rotate(-45deg);
+}
+
+.containers input:checked + .checkmark span:nth-child(3) {
+  transform: translateX(-50px);
+  -webkit-transform: translateX(-50px);
+  -moz-transform: translateX(-50px);
+  -ms-transform: translateX(-50px);
+  -o-transform: translateX(-50px);
+  opacity: 0;
+}
+
+.user-btn{
+    display: flex;
+    align-items: center;
+    max-width: 6rem;
+    border: 1px solid rgba(128, 128, 128, 0.315);
+    border-radius: 2rem;
+    padding: 1rem 0.75rem;
+    height: 3rem;
+    margin-right: 1.25rem;
+    transition: 0.3s ease-in-out;
+}
+
+.user-btn i{
+    margin-left: 1rem;
+    color: white;
+    border: 1px solid black;
+    height: 1.65rem;
+    width: 1.65rem;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.05rem;
+    border-radius: 50%;
+}
+
+.user-btn:hover{
+    cursor: pointer;
+    box-shadow: 0px 5px 7px #a6a6a6;
+}
+.user-toggle{
+    width: 8rem;
+    height: 10rem;
+    position: absolute;
+    top: 12%;
+    right: 1%;
+    z-index: 10000;
+    border: 1px solid rgba(128, 128, 128, 0.288);
+    border-radius: 2rem;
+    box-shadow: 0px 5px 7px #a6a6a6;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content:space-evenly !important;
+    align-items: center;
+    background-color: white;
+}
+
+.user-toggle a{
+    font-weight: 600;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-toggle a:hover{
+  background-color: #cecccc31;
+}
+
+.user-toggle{
+  display: none;
+}
+
+
+.searchBox {
+  display: flex;
+  max-width: 20rem;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-right: 20rem;
+}
+
+.searchButton {
+  color: white;
+  position: absolute;
+  right: 5px;
+  width: 2rem;
+  height:2rem;
+  border-radius: 50%;
+  border: 0;
+  display: inline-block;
+  background-color: #fe424d;
+}
+
+
+.searchInput {
+  caret-color:rgb(239, 46, 78);
+  background: none;
+  outline: none;
+  color:black;
+  font-size: 1rem;
+  border-radius:3rem;
+  border: 1.5px solid rgba(128, 128, 128, 0.507);
+  padding: 0.7rem 2.5rem;
+  transition: 0.3s ease-in-out;
+
+}
+
+.searchInput:hover{
+  box-shadow: 0px 5px 7px #a6a6a6;
+}
+
+.searchInput::placeholder{
+  font-weight: 500;
+}
