@@ -30,7 +30,7 @@ const categories = [
 categories.forEach(category => {
   router.get(`/${category}`, async (req, res) => {
     let listing = await Listing.find({ category: category });
-    res.render("listings/filter.ejs", { listing });
+    res.render("listings/filter.ejs", { listing ,category });
   });
 });
 
