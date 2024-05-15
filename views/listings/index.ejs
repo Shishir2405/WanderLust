@@ -102,10 +102,10 @@
         <p class="card-text" style="margin-left: 0.25rem">
           <b><%=listing.title %></b> <br />
           <span class="price-without-gst"
-            ><b><%=listing.price.toLocaleString("en-IN")%></b> / night</span
+            ><b> &#x20B9; <%=listing.price.toLocaleString("en-IN")%></b> / night</span
           >
           <span class="price-with-gst" style="display: none"
-            ><b><%= (listing.price * 1.18).toLocaleString("en-IN") %></b>/
+            ><b> &#x20B9; <%= (listing.price * 1.18).toLocaleString("en-IN") %></b>/
             night</span
           >
         </p>
