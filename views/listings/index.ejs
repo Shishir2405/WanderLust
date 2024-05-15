@@ -82,15 +82,15 @@
 <br />
 <div
   class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1"
-  id="listing-container"
->
+  id="listing-container">
+
   <% for(let listing of allListings){ %>
   <a href="/listings/<%=listing._id%>" id="listing-link">
     <div
       class="card listing-card"
       data-title="<%=listing.title.toLowerCase()%>"
       data-listing-id="<%=listing._id%>">
-    >
+    
       <img
         src="<%=listing.image.url%>"
         class="card-img-top"
