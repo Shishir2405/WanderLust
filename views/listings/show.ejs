@@ -123,7 +123,7 @@
         <br />
         <div class="row">
           <% for(let review of listing.reviews){%>
-          <div class="card col-5 mb-3 ms-3">
+          <div class="card mb-3 ms-3">
             <div class="card-body">
               <h5 class="card-title mt-1"><%=review.author.username%></h5>
               <p class="card-text"><%=review.comment%></p>
@@ -140,7 +140,7 @@
               <button class="btn btn-sm btn-outline-dark">Delete</button>
             </form>
           </div>
-          <hr />
+        
           <% } %>
         </div>
         <% } %>
