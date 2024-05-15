@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 <script>
-  const mapToken="<%=process.env.MAP_TOKEN %>";
-  const listing="<%- JSON.stringify(listing) %>";
+  const mapToken = "<%=process.env.MAP_TOKEN %>";
+  const listing=<%- JSON.stringify(listing) %>;
 </script>
 
 <body>
@@ -150,7 +150,6 @@
             <div id="marker">
               <div id="circle"></div>
               <i class="fa-solid fa-location-dot" id="icon-map"></i>
-              
             </div>
           </div>
         </div>

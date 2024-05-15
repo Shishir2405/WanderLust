@@ -2,7 +2,7 @@ mapboxgl.accessToken = mapToken;
 console.log(mapToken);
 const map = new mapboxgl.Map({
   container: "map",
-  center: listing.geometry.coordinates, // starting position [lng, lat]
+  center: listing.geometry.coordinates, 
   zoom: 8,
 });
 
