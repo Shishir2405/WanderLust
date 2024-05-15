@@ -89,6 +89,7 @@
     <div
       class="card listing-card"
       data-title="<%=listing.title.toLowerCase()%>"
+      data-listing-id="<%=listing._id%>">
     >
       <img
         src="<%=listing.image.url%>"
@@ -147,9 +148,10 @@
       });
     });
 
+ 
   let originalOrder = [];
 
-  document.querySelector(".searchInput").addEventListener("input", function () {
+document.querySelector(".searchInput").addEventListener("input", function () {
     let searchValue = this.value.trim().toLowerCase();
     let cards = document.querySelectorAll(".listing-card");
     let container = document.getElementById("listing-container");
@@ -170,13 +172,13 @@
       card.style.display = "none";
     });
 
-    matchedCards.forEach((card) => {
+    matchedCards.forEach((card) => {     
       card.style.display = "block";
       container.insertBefore(card, container.firstChild);
     });
-  });
+});
 
-  document.querySelector(".searchInput").addEventListener("blur", function () {
+document.querySelector(".searchInput").addEventListener("blur", function () {
     if (this.value === "") {
       let container = document.getElementById("listing-container");
       container.innerHTML = "";
@@ -188,5 +190,19 @@
 
       originalOrder = [];
     }
-  });
+});
+
+document.querySelectorAll(".listing-card").forEach((card) => {
+    card.addEventListener("click", function() {
+      
+        let listingId = this.dataset.listingId; 
+        
+      
+        let url = `/listings/${listingId}`;
+        
+       
+        window.location.href = url;
+    });
+});
+
 </script>
