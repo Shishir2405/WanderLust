@@ -4,11 +4,39 @@
   const listing=<%- JSON.stringify(listing) %>;
 </script>
 
+<style>
+  .sahre{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .buttons{
+   border-radius: 0.5rem;
+   display: flex;
+   justify-content: center;
+   cursor: pointer;
+   height: 2rem;
+   width: 5rem;
+  }
+ .buttons:hover{
+   background-color: rgba(161, 158, 158, 0.132);
+ }
+</style>
+
 <body>
   <div class="row">
     <div class="col-8 offset-2">
       <div class="card col-6 offset-3 show-card listing-card">
-        <h3><%=listing.title%></h3>
+        <div class="sahre">
+          <h3><%=listing.title%></h3>
+        <div class="buttons" id="shareBtn">
+          <p id="share" style="margin-right:0.5rem ; font-weight: 300;"><i class="fa-solid fa-arrow-up-from-bracket"></i></p>
+           <p  style="text-decoration: underline;font-size: 1rem; font-weight: 600;">Share</p>
+        </div>
+          
+        </div>
         <div class="container-img">
           <img
             src="<%=listing.image.url%>"
@@ -19,6 +47,8 @@
         <div class="card-body">
           <p class="card-text">
             <strong>Owned By : </strong>
+            
+
             <i><%=listing.owner.username %></i>
           </p>
           <p class="card-text"><%=listing.description %></p>
@@ -123,7 +153,7 @@
         <br />
         <div class="row">
           <% for(let review of listing.reviews){%>
-          <div class="card col-5 mb-3 ms-3">
+          <div class="card mb-3 ms-3">
             <div class="card-body">
               <h5 class="card-title mt-1"><%=review.author.username%></h5>
               <p class="card-text"><%=review.comment%></p>
@@ -140,7 +170,6 @@
               <button class="btn btn-sm btn-outline-dark">Delete</button>
             </form>
           </div>
-          <hr />
           <% } %>
         </div>
         <% } %>
@@ -159,3 +188,23 @@
 </body>
 
 <script src="/JS/map.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  const shareBtn = document.getElementById('shareBtn');
+
+  if (navigator.share) {
+    shareBtn.addEventListener('click', function() {
+      navigator.share({
+        title: 'Example Title', // Title of the shared item
+        text: 'Check out this cool website!', // Text of the shared item
+        url: window.location.href // URL of the shared item
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing:', error));
+    });
+  } else {
+    shareBtn.style.display = 'none'; // Hide the button if Web Share API is not supported
+  }
+});
+
+</script>
