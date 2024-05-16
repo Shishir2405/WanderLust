@@ -215,7 +215,7 @@
   font-weight: 500;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 700px) {
   .navbar-brand {
     display: none;
   }
@@ -228,7 +228,11 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
-  /* Example adjustments */
-  
+@media only screen and (max-width: 800px) {
+  .searchBox{
+    margin-left: auto;
+  }
+  .nav-side{
+    margin-right: auto;
+  }
 }

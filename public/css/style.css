@@ -332,7 +332,7 @@ body::-webkit-scrollbar-thumb {
   color: #fe424d;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 700px) {
   footer {
     display: none;
   }
