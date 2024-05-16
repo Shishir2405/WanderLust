@@ -203,3 +203,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+@media (max-width: 400px) {
+  .container-img {
+    order: -1;
+    border-radius: 0 !important;
+  }
+  .container-img img{
+    border-radius: 0 !important;
+  }
+  #shareBtn{
+    display: none;
+  }
+}

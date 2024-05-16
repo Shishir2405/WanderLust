@@ -8,7 +8,7 @@
 <body>
   <div class="row">
     <div>
-      <div class="card show-card col-8 offset-2 listing-card">
+      <div class="card show-card col-12 col-md-8 offset-md-2 listing-card">
         <div class="sahre">
           <h4><%=listing.title%></h4>
           <div class="buttons" id="shareBtn">
@@ -40,18 +40,18 @@
               <b>Room in <%= listing.location %></b>
             </p>
             <p class="card-text price-text">
-              <b>&#8377; <%= listing.price.toLocaleString("en-IN") %></b>
+              <b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b>
             </p>
           </div>
           <% if (listing.reviews && listing.reviews.length > 0) { %>
           <p class="card-text">
             <b
-              ><i class="fa-solid fa-star"></i> <%= listing.reviews.length %>
+              ><i class="fa-solid fa-star"></i></b><b style="text-decoration: underline;"> <%= listing.reviews.length %>
               reviews</b
             >
           </p>
           <% } else { %>
-          <p class="card-text"><b>No Reviews</b></p>
+          <p class="card-text"><b style="text-decoration: underline;">No Reviews</b></p>
           <% } %>
 
           <hr />
