@@ -2,11 +2,11 @@
 <nav
   class="navbar navbar-expand-md bg-body-light border-bottom sticky-top"
   id="nav"
-  style="display: flex;"
+  style="display: flex; padding-inline:1.5rem;"
 >
-  <div class="container-fluid">
+  <div class="container-fluid" id="nav-contain">
     <a class="navbar-brand" href="/listings"
-      ><i class="fa-regular fa-compass"></i
+      ><i class="fa-regular fa-compass" id="logo"></i
     ></a>
     
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -16,36 +16,38 @@
       
     </div>
 
-    <div class="searchBox">
-      <input class="searchInput" type="text" name="" placeholder="Search Title" />
-      <button class="searchButton" href="#">
-        <script src="https://cdn.lordicon.com/lordicon.js"></script>
-        <lord-icon
-          src="https://cdn.lordicon.com/kkvxgpti.json"
-          trigger="hover"
-          colors="primary:#ffffff"
-          style="width: 1.25rem; height: 1.25rem"
+    <div class="main">
+      <div class="searchBox">
+        <input class="searchInput" type="text" name="" placeholder="Search Title" />
+        <button class="searchButton" href="#">
+          <script src="https://cdn.lordicon.com/lordicon.js"></script>
+          <lord-icon
+            src="https://cdn.lordicon.com/kkvxgpti.json"
+            trigger="hover"
+            colors="primary:#ffffff"
+            style="width: 1.25rem; height: 1.25rem"
+          >
+          </lord-icon>
+        </button>
+      </div>
+  
+      <div class="navbar-nav nav-side">
+        <a class="nav-link" href="/listings/new" id="new-airbnb"
+          >Airbnb your home</a
         >
-        </lord-icon>
-      </button>
-    </div>
-
-    <div class="navbar-nav nav-side">
-      <a class="nav-link" href="/listings/new" id="new-airbnb"
-        >Airbnb your home</a
-      >
-      <span class="material-symbols-outlined" id="globe"> language </span>
-
-      <div class="user-btn">
-        <label class="containers">
-          <input type="checkbox" id="check-div" role="switch" />
-          <div class="checkmark">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </label>
-        <i id="user-initial">S</i>
+        <span class="material-symbols-outlined" id="globe"> language </span>
+  
+        <div class="user-btn">
+          <label class="containers">
+            <input type="checkbox" id="check-div" role="switch" />
+            <div class="checkmark">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </label>
+          <i id="user-initial">S</i>
+        </div>
       </div>
     </div>
   </div>
@@ -57,7 +59,6 @@
   <a class="nav-link" href="/login">Log In</a>
   <%} %> <% if(currUser){%>
   <a class="nav-link" href="/logout">Log Out</a>
-
   <%} %>
 </div>
 

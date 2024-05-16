@@ -56,11 +56,13 @@
     position: sticky;
     top: 0;
   }
+
   #filters::-webkit-scrollbar {
     display: none;
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scroll-button {
     border-radius: 50%;
     height: 2rem;
@@ -68,15 +70,18 @@
     background-color: white;
     border: 0.5px solid rgba(128, 128, 128, 0.276);
   }
+
   .nav-below-b {
     margin: 0;
     padding: 0;
     width: 100%;
   }
+
   .filter a {
     text-decoration: none;
     color: black;
   }
+
   @media only screen and (max-width: 700px) {
     .nav-below-b{
       height: 4rem;
@@ -90,6 +95,18 @@
     }
     .scroll-button{
       display: none;
+    }
+  }
+  @media only screen and (max-width:1050px){
+    .tax-toggle{
+      display: none;
+    }
+    #filters{
+      height: 5rem;
+      width: 100%;
+    }
+    .user-btn{
+      margin-right: 2rem;
     }
   }
 </style>
