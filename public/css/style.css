@@ -265,3 +265,86 @@ body::-webkit-scrollbar-thumb {
   background-color: rgba(211, 211, 211, 0.432);
   transform: scale(1.1, 1.1);
 }
+
+.footer {
+  height: 3.75rem;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000000;
+  width: 100%;
+  display: none;
+  border-top: 1.5px solid rgba(128, 128, 128, 0.489);
+  background-color: white;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.icon-footer {
+  color: rgb(67, 66, 66);
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+#icon-footer {
+  font-size: 1.75rem;
+  color: rgb(67, 66, 66);
+}
+
+.inside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.footer-icon-div p {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.footer-icon-div {
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer-icon-div {
+  transition: color 0.3s ease;
+}
+
+.footer-icon-div:hover .inside,
+.footer-icon-div:hover p,
+.footer-icon-div:hover .material-symbols-outlined,
+.footer-icon-div:hover .icon-footer ,
+.footer-icon-div:hover #icon-footer {
+  color: #fe424d;
+}
+
+@media only screen and (max-width: 400px) {
+  footer {
+    display: none;
+  }
+  .footer {
+    display: flex;
+  }
+  .container-fluid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .searchInput{
+    width: 100%;
+  }
+}

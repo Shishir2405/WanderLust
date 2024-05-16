@@ -1,0 +1,47 @@
+<div class="footer">
+  <a href="/listings">
+    <div class="footer-icon-div">
+      <div class="inside">
+        <i class="fa-solid fa-magnifying-glass icon-footer"></i>
+      </div>
+      <p>Explore</p>
+    </div>
+  </a>
+  <% if(!currUser){%>
+  <a href="/login">
+    <div class="footer-icon-div">
+      <div class="inside">
+        <span class="material-symbols-outlined" id="icon-footer"> login </span>
+      </div>
+      <p>Login</p>
+    </div>
+  </a>
+  <a href="/signup">
+    <div class="footer-icon-div">
+      <div class="inside">
+        <i class="fa-regular fa-user icon-footer"></i>
+      </div>
+      <p>Sign Up</p>
+    </div>
+  </a>
+  <%} %> <% if(currUser){%>
+  <a href="/logout">
+    <div class="footer-icon-div">
+      <div class="inside">
+        <span class="material-symbols-outlined" id="icon-footer"> logout </span>
+      </div>
+      <p>Log Out</p>
+    </div>
+  </a>
+  <a href="/listings/new">
+    <div class="footer-icon-div">
+      <div class="inside">
+        <i class="fa-solid fa-plus icon-footer"></i>
+      </div>
+      <p>Add New</p>
+    </div>
+  </a>
+  <%} %>
+</div>
+
+
