@@ -14,22 +14,36 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.showListing = async (req, res) => {
-  let { id } = req.params;
+  try {
+    const { id } = req.params;
 
-  const listing = await Listing.findById(id)
-    .populate({
-      path: "reviews",
-      populate: {
-        path: "author",
-      },
-    })
-    .populate("owner");
-  if (!listing) {
-    req.flash("error", "Listing You Are Requested Does Not Exists");
-    res.redirect("/listings");
+    const listing = await Listing.findById(id)
+      .populate({
+        path: 'reviews',
+        populate: {
+          path: 'author',
+        },
+      })
+      .populate('owner');
+
+    if (!listing) {
+      req.flash('error', 'The requested listing does not exist.');
+      return res.redirect('/listings');
+    }
+
+    // Calculate average rating
+    let averageRating = 0;
+    if (listing.reviews && listing.reviews.length > 0) {
+      const totalRating = listing.reviews.reduce((acc, review) => acc + review.rating, 0);
+      averageRating = totalRating / listing.reviews.length;
+    }
+
+    res.render('listings/show.ejs', { listing, averageRating });
+  } catch (error) {
+    console.error('Error:', error);
+    req.flash('error', 'An error occurred while fetching the listing.');
+    res.redirect('/listings');
   }
-
-  res.render("listings/show.ejs", { listing });
 };
 
 module.exports.createListing = async (req, res, next) => {
