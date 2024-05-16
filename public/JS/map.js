@@ -4,7 +4,7 @@ const map = new mapboxgl.Map({
   container: "map",
   style:"mapbox://styles/mapbox/streets-v12",
   center: listing.geometry.coordinates, 
-  zoom: 8,
+  zoom: 9,
 });
 
 const markerElement = document.getElementById("marker");
