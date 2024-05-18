@@ -46,7 +46,13 @@
               <span></span>
             </div>
           </label>
-          <i id="user-initial">S</i>
+          <i id="user-initial">
+            <% if (currUser && currUser.username) { %>
+              <%= currUser.username.charAt(0).toUpperCase() %>
+            <% } else { %>
+              <i class="fa-regular fa-user" id="user-icon"></i>
+            <% } %>
+          </i>
         </div>
       </div>
     </div>
