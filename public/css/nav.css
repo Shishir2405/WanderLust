@@ -7,7 +7,16 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-#new-airbnb:hover {
+#explore {
+  border-radius: 1.15rem;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#new-airbnb:hover,
+#explore:hover {
   background-color: rgba(207, 207, 207, 0.352);
 }
 
@@ -214,7 +223,7 @@
 .searchInput::placeholder {
   font-weight: 500;
 }
-#user-icon{
+#user-icon {
   margin-left: 0;
 }
 
@@ -228,11 +237,10 @@
   .searchBox {
     margin: 0 !important;
   }
-
 }
 
 @media only screen and (max-width: 740px) {
-  .nav-side{
+  .nav-side {
     margin-right: 2rem;
   }
 }

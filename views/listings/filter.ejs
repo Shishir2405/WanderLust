@@ -1,12 +1,12 @@
 <% layout("layouts/boilerplate") -%>
 
 <body>
-  <h3><%= category.charAt(0).toUpperCase() + category.slice(1) %></h3>
+  <h3 class="mt-2"><%= category.charAt(0).toUpperCase() + category.slice(1) %></h3>
 
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-2">
     <% for(let listings of listing){ %>
     <a href="/listings/<%=listings._id%>" id="listing-link">
-      <div class="card listing-card">
+      <div class="card listing-card mt-3">
         <img
           src="<%=listings.image.url%>"
           class="card-img-top"
