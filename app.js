@@ -3,7 +3,7 @@ if (process.env.NODE_ENV != "production") {
 }
 
 /**
- * ! Every Thing Related To Main App
+ * ! Every Thing Related To Main Server
  * * Requiring Every Dependencies
  */
 const express = require("express");
