@@ -39,6 +39,7 @@
     margin-left: 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 17%;
     transition: border-color 0.3s, background-color 0.3s;
   }
@@ -49,9 +50,9 @@
   }
 
   .tax-toggle label{
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     margin-right: 0.35rem;
-    font-weight: 700;
+    font-weight: 800;
   }
 
   .filter-img {
@@ -96,7 +97,84 @@
     text-decoration: none;
     color: black;
   }
-  
+
+
+.switch {
+  font-size: 0.8rem;
+  position: relative;
+  display: inline-block;
+  width: 2.75rem;
+  height: 1.5rem;
+  margin-right: 0;
+}
+
+.switch-container{
+  padding-right: 0 !important;
+}
+
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #B0B0B0;
+  border: 1px solid #B0B0B0;
+  transition: .4s;
+  border-radius: 4rem;
+  outline: none;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.35rem;
+  width: 1.35rem;
+  border-radius: 50%;
+  outline: 2px solid #B0B0B0;
+  left: -1px;
+  bottom: 0;
+  background-color: #fff;
+  transition: transform .25s ease-in-out 0s;
+}
+
+.slider-icon {
+  opacity: 0;
+  height: 12px;
+  width: 12px;
+  stroke-width: 8;
+  position: absolute;
+  z-index: 999;
+  stroke: #222222;
+  right: 60%;
+  top: 30%;
+  transition: right ease-in-out .3s, opacity ease-in-out .15s;
+}
+
+input:checked + .slider {
+  background-color: #222222;
+}
+
+input:checked + .slider .slider-icon {
+  opacity: 1;
+  right: 15%;
+  top: 19%;
+}
+
+input:checked + .slider:before {
+  transform: translateX(1.7em);
+  outline-color: #181818;
+}
+
   @media only screen and (max-width: 700px) {
     .nav-below-b{
       height: 4rem;
@@ -182,7 +260,7 @@
     });
 
   document
-    .getElementById("flexSwitchCheckDefault")
+    .getElementById("flexSwitchCheck")
     .addEventListener("click", function () {
       let pricesWithoutGst = document.querySelectorAll(".price-without-gst");
       let pricesWithGst = document.querySelectorAll(".price-with-gst");
