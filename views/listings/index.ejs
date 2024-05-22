@@ -1,10 +1,10 @@
 <% layout("layouts/boilerplate") -%>
 
 <style>
-  .filter {
+.filter {
     text-align: center;
     margin-right: 2.25rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     opacity: 0.7;
     cursor: pointer;
   }
@@ -14,10 +14,12 @@
     align-items: center;
     width: 80%;
     overflow-x: scroll;
+    overflow-y: hidden;
   }
 
   .filter:hover {
     opacity: 1;
+    border-bottom: 3px solid black;
   }
 
   .filter p {
@@ -30,15 +32,28 @@
   }
 
   .tax-toggle {
-    border: 1px solid black;
+    border: 1px solid rgba(128, 128, 128, 0.468);
     border-radius: 1rem;
     height: 3.25rem;
     padding: 0rem 1.5rem;
     margin-left: 2rem;
     display: flex;
     align-items: center;
-    width: 20%;
+    width: 17%;
+    transition: border-color 0.3s, background-color 0.3s;
   }
+
+  .tax-toggle:hover{
+    background-color: rgba(207, 207, 207, 0.272);
+    border: 2px solid black;
+  }
+
+  .tax-toggle label{
+    font-size: 0.8rem;
+    margin-right: 0.35rem;
+    font-weight: 700;
+  }
+
   .filter-img {
     height: 1.65rem;
     margin-bottom: 0.5rem;
@@ -81,7 +96,7 @@
     text-decoration: none;
     color: black;
   }
-
+  
   @media only screen and (max-width: 700px) {
     .nav-below-b{
       height: 4rem;
@@ -109,6 +124,7 @@
       margin-right: 2rem;
     }
   }
+
 </style>
 
 <br />
@@ -237,4 +253,4 @@ document.querySelectorAll(".listing-card").forEach((card) => {
     });
 });
 
-</script>
+</script> 

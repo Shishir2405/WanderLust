@@ -42,7 +42,7 @@
   align-items: center;
 }
 
-/* Hide the default checkbox */
+
 .containers input {
   position: absolute;
   opacity: 0;

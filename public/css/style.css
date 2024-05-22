@@ -149,10 +149,6 @@ body::-webkit-scrollbar-thumb {
   background-color: #fe424d !important;
   margin-bottom: 3rem;
 }
-/* 
-.show-img {
-  height: 30vh;
-} */
 
 .group-btns {
   display: flex;
