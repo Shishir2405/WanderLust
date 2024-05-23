@@ -1,4 +1,4 @@
-<h1 align="center">Wanderlust ✈️</h1>
+<h1 align="center">Wanderlust <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Airplane.png" alt="Airplane" width="35" height="35" /></h1>
 
 <p align="center">
   <b>A Travel Exploration Platform</b>
@@ -16,7 +16,6 @@
 - [Getting Started In Website](#getting-started-web-)
 - [Usage](#usage-)
 - [Contributing](#contributing-)
-- [License](#license-)
 - [Issues](#issues-)
 - [Tech Stack Used](#tech-stack-used-)
 - [Learn More](#learn-more-)
@@ -34,20 +33,11 @@ Wanderlust is your ultimate travel exploration platform, designed to inspire and
 - **Traveler Community**: Connect with like-minded travelers and share your experiences.
 - **Travel Guides**: Access comprehensive travel guides and tips for every destination.
 - **Personalized Recommendations**: Receive personalized recommendations based on your preferences.
+- **Authentication and Authorization**: Securely access personalized features with user registration and login. Define user roles and permissions for enhanced security.
+- **Destination Reviews**: Leave reviews and ratings for destinations to help fellow travelers make informed decisions.
+- **Accommodation Information**: Explore various accommodation options, including homes and hotels, with transparent pricing.
 
 ## Getting Started 🚀
-
-Ready to start your journey with Wanderlust? Follow these simple steps to begin exploring:
-
-1. Sign up for a Wanderlust account on our website.
-
-2. Browse through our collection of destinations and find inspiration for your next adventure.
-
-3. Plan your trip using our trip planning tools, including itinerary creation and accommodation booking.
-
-4. Connect with fellow travelers, share your experiences, and discover new destinations together.
-
-## Getting Started Web 🚀
 
 1. Clone the Wanderlust repository to your local machine:
 ```sh
@@ -70,6 +60,18 @@ npm install
 node app.js
 ```
 
+## Getting Started Web 🚀
+
+
+Ready to start your journey with Wanderlust? Follow these simple steps to begin exploring:
+
+1. Sign up for a Wanderlust account on our website.
+
+2. Browse through our collection of destinations and find inspiration for your next adventure.
+
+3. Plan your trip using our trip planning tools, including itinerary creation and accommodation booking.
+
+4. Connect with fellow travelers, share your experiences, and discover new destinations together.
 
 ## Usage 📊
 
@@ -83,9 +85,6 @@ node app.js
 
 We welcome contributions from the travel community to help improve Wanderlust and make it an even better platform for travelers worldwide. Whether you're a seasoned traveler, a travel enthusiast, or a developer passionate about travel, we'd love to hear from you!
 
-## License 📜
-
-Wanderlust is licensed under the [MIT License](LICENSE).
 
 ## Issues 🐛
 
