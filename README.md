@@ -46,7 +46,7 @@ git clone https://github.com/your-username/wanderlust.git
 
 2. Navigate to the Wanderlust directory:
 ```sh
-cd wanderlust
+cd Wanderlust
 ```
 
 3. Install the project dependencies:
