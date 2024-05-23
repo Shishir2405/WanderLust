@@ -13,7 +13,7 @@
 - [Introduction](#introduction-)
 - [Features](#features-)
 - [Getting Started In Localhost](#getting-started-)
-- [Getting Started In Website](#getting-started-web)
+- [Getting Started In Website](#getting-started-web-)
 - [Usage](#usage-)
 - [Contributing](#contributing-)
 - [License](#license-)
@@ -47,7 +47,8 @@ Ready to start your journey with Wanderlust? Follow these simple steps to begin 
 
 4. Connect with fellow travelers, share your experiences, and discover new destinations together.
 
-## Getting started Web 🚀
+## Getting Started Web 🚀
+
 1. Clone the Wanderlust repository to your local machine:
 ```sh
 git clone https://github.com/your-username/wanderlust.git
