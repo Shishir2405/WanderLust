@@ -12,7 +12,8 @@
 
 - [Introduction](#introduction-)
 - [Features](#features-)
-- [Getting Started](#getting-started-)
+- [Getting Started In Localhost](#getting-started-)
+- [Getting Started In Website](#getting-started-web)
 - [Usage](#usage-)
 - [Contributing](#contributing-)
 - [License](#license-)
@@ -45,6 +46,29 @@ Ready to start your journey with Wanderlust? Follow these simple steps to begin 
 3. Plan your trip using our trip planning tools, including itinerary creation and accommodation booking.
 
 4. Connect with fellow travelers, share your experiences, and discover new destinations together.
+
+## Getting started Web 🚀
+1. Clone the Wanderlust repository to your local machine:
+```sh
+git clone https://github.com/your-username/wanderlust.git
+```
+
+2. Navigate to the Wanderlust directory:
+```sh
+cd wanderlust
+```
+
+3. Install the project dependencies:
+```sh
+npm install
+```
+
+4. Start the development server with hot-reloading:
+  
+```sh
+node app.js
+```
+
 
 ## Usage 📊
 
@@ -82,7 +106,7 @@ If you encounter any issues or have suggestions for improvement, please feel fre
 
 To learn more about Wanderlust, visit our [website](https://wanderlust-1-88ni.onrender.com/listings) and start planning your next adventure today!
 
-## Deploy on Vercel ✅
+## Deploy on Render ✅
 
 Deploy your own Wanderlust instance on [Render](https://render.com/).
 
