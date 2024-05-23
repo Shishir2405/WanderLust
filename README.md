@@ -19,7 +19,7 @@
 - [Issues](#issues-)
 - [Tech Stack Used](#tech-stack-used-)
 - [Learn More](#learn-more-)
-- [Deploy on Vercel](#deploy-on-vercel-)
+- [Deploy on Renderl](#deploy-on-render-)
 - [Acknowledgments](#acknowledgments-)
 
 ## Introduction 📝
