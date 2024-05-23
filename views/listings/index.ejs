@@ -1,222 +1,23 @@
 <% layout("layouts/boilerplate") -%>
-
-<style>
-.filter {
-    text-align: center;
-    margin-right: 2.25rem;
-    margin-top: 0.5rem;
-    opacity: 0.7;
-    cursor: pointer;
-  }
-
-  #filters {
-    display: flex;
-    align-items: center;
-    width: 80%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-  }
-
-  .filter:hover {
-    opacity: 1;
-    border-bottom: 3px solid black;
-  }
-
-  .filter p {
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-
-  .tax-info {
-    display: none;
-  }
-
-  .tax-toggle {
-    border: 1px solid rgba(128, 128, 128, 0.468);
-    border-radius: 1rem;
-    height: 3.25rem;
-    padding: 0rem 1.5rem;
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 17%;
-    transition: border-color 0.3s, background-color 0.3s;
-  }
-
-  .tax-toggle:hover{
-    background-color: rgba(207, 207, 207, 0.272);
-    border: 2px solid black;
-  }
-
-  .tax-toggle label{
-    font-size: 0.75rem;
-    margin-right: 0.35rem;
-    font-weight: 800;
-  }
-
-  .filter-img {
-    height: 1.65rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .nav-below {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 3px 5px #a6a6a6bb;
-    width: 100%;
-    padding: 0.05rem 1rem;
-    box-sizing: border-box;
-    background-color: #fff;
-    position: sticky;
-    top: 0;
-  }
-
-  #filters::-webkit-scrollbar {
-    display: none;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .scroll-button {
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-    background-color: white;
-    border: 0.5px solid rgba(128, 128, 128, 0.276);
-  }
-
-  .nav-below-b {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-
-  .filter a {
-    text-decoration: none;
-    color: black;
-  }
-
-
-.switch {
-  font-size: 0.8rem;
-  position: relative;
-  display: inline-block;
-  width: 2.75rem;
-  height: 1.5rem;
-  margin-right: 0;
-}
-
-.switch-container{
-  padding-right: 0 !important;
-}
-
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #B0B0B0;
-  border: 1px solid #B0B0B0;
-  transition: .4s;
-  border-radius: 4rem;
-  outline: none;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 1.35rem;
-  width: 1.35rem;
-  border-radius: 50%;
-  outline: 2px solid #B0B0B0;
-  left: -1px;
-  bottom: 0;
-  background-color: #fff;
-  transition: transform .25s ease-in-out 0s;
-}
-
-.slider-icon {
-  opacity: 0;
-  height: 12px;
-  width: 12px;
-  stroke-width: 8;
-  position: absolute;
-  z-index: 999;
-  stroke: #222222;
-  right: 60%;
-  top: 30%;
-  transition: right ease-in-out .3s, opacity ease-in-out .15s;
-}
-
-input:checked + .slider {
-  background-color: #222222;
-}
-
-input:checked + .slider .slider-icon {
-  opacity: 1;
-  right: 15%;
-  top: 19%;
-}
-
-input:checked + .slider:before {
-  transform: translateX(1.7em);
-  outline-color: #181818;
-}
-
-  @media only screen and (max-width: 700px) {
-    .nav-below-b{
-      height: 4rem;
-    }
-    #filters{
-      height: 5rem;
-      width: 100%;
-    }
-    .tax-toggle {
-      display: none;
-    }
-    .scroll-button{
-      display: none;
-    }
-  }
-  @media only screen and (max-width:1050px){
-    .tax-toggle{
-      display: none;
-    }
-    #filters{
-      height: 5rem;
-      width: 100%;
-    }
-    .user-btn{
-      margin-right: 2rem;
-    }
-  }
-
-</style>
+<link
+  rel="stylesheet"
+  href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+/>
+<link rel="stylesheet" href="/css/index.css" />
 
 <br />
+
 <div
   class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1"
-  id="listing-container">
-
+  id="listing-container"
+>
   <% for(let listing of allListings){ %>
   <a href="/listings/<%=listing._id%>" id="listing-link">
     <div
       class="card listing-card"
       data-title="<%=listing.title.toLowerCase()%>"
-      data-listing-id="<%=listing._id%>">
-    
+      data-listing-id="<%=listing._id%>"
+    >
       <img
         src="<%=listing.image.url%>"
         class="card-img-top"
@@ -229,11 +30,13 @@ input:checked + .slider:before {
         <p class="card-text" style="margin-left: 0.25rem">
           <b><%=listing.title %></b> <br />
           <span class="price-without-gst"
-            ><b> &#x20B9; <%=listing.price.toLocaleString("en-IN")%></b> / night</span
+            ><b> &#x20B9; <%=listing.price.toLocaleString("en-IN")%></b> /
+            night</span
           >
           <span class="price-with-gst" style="display: none"
-            ><b> &#x20B9; <%= (listing.price * 1.18).toLocaleString("en-IN") %></b>/
-            night</span
+            ><b>
+              &#x20B9; <%= (listing.price * 1.18).toLocaleString("en-IN") %></b
+            >/ night</span
           >
         </p>
       </div>
@@ -241,94 +44,6 @@ input:checked + .slider:before {
   </a>
   <% } %>
 </div>
-
-<script>
-  document.getElementById("scroll-left").addEventListener("click", function () {
-    document.getElementById("filters").scrollBy({
-      left: -300,
-      behavior: "smooth",
-    });
-  });
-
-  document
-    .getElementById("scroll-right")
-    .addEventListener("click", function () {
-      document.getElementById("filters").scrollBy({
-        left: 300,
-        behavior: "smooth",
-      });
-    });
-
-  document
-    .getElementById("flexSwitchCheck")
-    .addEventListener("click", function () {
-      let pricesWithoutGst = document.querySelectorAll(".price-without-gst");
-      let pricesWithGst = document.querySelectorAll(".price-with-gst");
-
-      pricesWithoutGst.forEach((item) => {
-        item.style.display = item.style.display === "none" ? "inline" : "none";
-      });
-
-      pricesWithGst.forEach((item) => {
-        item.style.display = item.style.display === "none" ? "inline" : "none";
-      });
-    });
-
- 
-  let originalOrder = [];
-
-document.querySelector(".searchInput").addEventListener("input", function () {
-    let searchValue = this.value.trim().toLowerCase();
-    let cards = document.querySelectorAll(".listing-card");
-    let container = document.getElementById("listing-container");
-    let matchedCards = [];
-
-    if (originalOrder.length === 0) {
-      originalOrder = Array.from(cards);
-    }
-
-    cards.forEach((card) => {
-      let title = card.dataset.title;
-      if (title.includes(searchValue)) {
-        matchedCards.push(card);
-      }
-    });
-
-    cards.forEach((card) => {
-      card.style.display = "none";
-    });
-
-    matchedCards.forEach((card) => {     
-      card.style.display = "block";
-      container.insertBefore(card, container.firstChild);
-    });
-});
-
-document.querySelector(".searchInput").addEventListener("blur", function () {
-    if (this.value === "") {
-      let container = document.getElementById("listing-container");
-      container.innerHTML = "";
-
-      originalOrder.forEach((card) => {
-        container.appendChild(card);
-        card.style.display = "block";
-      });
-
-      originalOrder = [];
-    }
-});
-
-document.querySelectorAll(".listing-card").forEach((card) => {
-    card.addEventListener("click", function() {
-      
-        let listingId = this.dataset.listingId; 
-        
-      
-        let url = `/listings/${listingId}`;
-        
-       
-        window.location.href = url;
-    });
-});
-
-</script> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/JS/index.js"></script>

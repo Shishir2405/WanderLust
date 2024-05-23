@@ -49,12 +49,13 @@
         </div>
          </div>
         </div>
-        <div class="container-img">
+        <div class="container-img position-relative">
           <img
             src="<%=listing.image.url%>"
             alt="listing-image"
             class="card-img-top show-img image-contain"
           />
+          <button class="position-absolute top-0 end-0" id="shareImage"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
         </div>
 
         <div class="card-body">
@@ -255,23 +256,5 @@
 </body>
 
 <script src="/JS/map.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const shareBtn = document.getElementById("shareBtn");
+<script src="/JS/share.js"></script>
 
-    if (navigator.share) {
-      shareBtn.addEventListener("click", function () {
-        navigator
-          .share({
-            title: "Example Title", // Title of the shared item
-            text: "Check out this cool website!", // Text of the shared item
-            url: window.location.href, // URL of the shared item
-          })
-          .then(() => console.log("Successful share"))
-          .catch((error) => console.log("Error sharing:", error));
-      });
-    } else {
-      shareBtn.style.display = "none"; // Hide the button if Web Share API is not supported
-    }
-  });
-</script>

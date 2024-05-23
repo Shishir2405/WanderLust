@@ -59,7 +59,6 @@ body::-webkit-scrollbar-thumb {
   background-color: white;
 }
 
-
 /**
 * ! Footer Css
 */
@@ -185,8 +184,6 @@ body::-webkit-scrollbar-thumb {
   border-radius: 1rem !important;
 }
 
-
-
 #password-container {
   display: flex;
   align-items: center;
@@ -272,17 +269,17 @@ body::-webkit-scrollbar-thumb {
 .footer-icon-div:hover .inside,
 .footer-icon-div:hover p,
 .footer-icon-div:hover .material-symbols-outlined,
-.footer-icon-div:hover .icon-footer ,
+.footer-icon-div:hover .icon-footer,
 .footer-icon-div:hover #icon-footer {
   color: #fe424d;
 }
 
-.nav-side{
+.nav-side {
   display: flex !important;
   align-items: center !important;
 }
 
-.main{
+.main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,12 +291,33 @@ body::-webkit-scrollbar-thumb {
   .footer {
     display: flex;
   }
-  .container-fluid{
+  .container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .searchInput{
+  .searchInput {
     width: 100%;
+  }
+}
+
+#shareImage {
+  border-radius: 50%;
+  border: 1px solid rgba(128, 128, 128, 0.224);
+  background-color: rgba(255, 255, 255, 0.687);
+  margin-right: 0.25rem;
+  margin-top: 0.25rem;
+  display: none;
+  transition: scale 0.5s ease-in-out;
+}
+
+#shareImage:hover {
+  background-color: white;
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 470px) {
+  #shareImage {
+    display: inline;
   }
 }
