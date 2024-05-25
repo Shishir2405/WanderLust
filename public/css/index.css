@@ -170,6 +170,19 @@ input:checked + .slider:before {
   transform: translateX(1.7em);
   outline-color: #181818;
 }
+.toggler{
+display: none;
+}
+
+
+@media only screen and (max-width: 450px){
+.toggler{
+  display: inline-flex !important;
+  width: 90%;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+}
 
 @media only screen and (max-width: 700px) {
   .nav-below-b {

@@ -79,3 +79,19 @@ document.querySelectorAll(".listing-card").forEach((card) => {
     window.location.href = url;
   });
 });
+
+
+document
+  .getElementById("flexSwitch")
+  .addEventListener("click", function () {
+    let pricesWithoutGst = document.querySelectorAll(".price-without-gst");
+    let pricesWithGst = document.querySelectorAll(".price-with-gst");
+
+    pricesWithoutGst.forEach((item) => {
+      item.style.display = item.style.display === "none" ? "inline" : "none";
+    });
+
+    pricesWithGst.forEach((item) => {
+      item.style.display = item.style.display === "none" ? "inline" : "none";
+    });
+  });
