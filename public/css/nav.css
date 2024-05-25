@@ -205,7 +205,7 @@
 }
 
 .searchInput {
-  caret-color: rgb(239, 46, 78);
+  caret-color:transparent;
   background: none;
   outline: none;
   color: black;
@@ -221,8 +221,10 @@
 }
 
 .searchInput::placeholder {
-  font-weight: 500;
+  font-weight: 600;
 }
+
+
 #user-icon {
   margin-left: 0;
 }
@@ -270,4 +272,35 @@
   .nav-side {
     margin-right: auto !important;
   }
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
+.searchInput:focus {
+  caret-color: #fe424d; 
+}
+
+.typing-effect {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid black;
+  animation: typing 3s steps(40, end) infinite, blink-caret .75s step-end infinite;
 }

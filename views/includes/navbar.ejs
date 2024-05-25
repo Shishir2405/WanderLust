@@ -150,4 +150,49 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
       toggleDiv.style.display = "none";
     }
   });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.querySelector('.searchInput');
+    const placeholderTexts = ["Search Title", "Enter Hotel", "Type to Search"];
+    let currentIndex = 0;
+    
+    function typeEffect(text, callback) {
+      let i = 0;
+      searchInput.placeholder = "";
+      const typingInterval = setInterval(() => {
+        if (i < text.length) {
+          searchInput.placeholder += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          setTimeout(callback, 1000); // Wait before erasing
+        }
+      }, 100); // Adjust typing speed here
+    }
+    
+    function eraseEffect(callback) {
+      let text = searchInput.placeholder;
+      const erasingInterval = setInterval(() => {
+        if (text.length > 0) {
+          text = text.substring(0, text.length - 1);
+          searchInput.placeholder = text;
+        } else {
+          clearInterval(erasingInterval);
+          callback();
+        }
+      }, 50); // Adjust erasing speed here
+    }
+    
+    function loopPlaceholders() {
+      typeEffect(placeholderTexts[currentIndex], () => {
+        eraseEffect(() => {
+          currentIndex = (currentIndex + 1) % placeholderTexts.length;
+          loopPlaceholders();
+        });
+      });
+    }
+    
+    loopPlaceholders();
+  });
 </script>
+
