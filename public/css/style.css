@@ -315,6 +315,13 @@ body::-webkit-scrollbar-thumb {
   background-color: white;
   transform: scale(1.1);
 }
+
+.extra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .extra a {
   color: #fe424d;
   text-decoration: none;
@@ -324,7 +331,6 @@ body::-webkit-scrollbar-thumb {
   color: #fe424d;
   text-decoration: underline;
 }
-
 
 @media only screen and (max-width: 470px) {
   #shareImage {
