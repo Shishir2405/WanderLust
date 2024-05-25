@@ -315,6 +315,16 @@ body::-webkit-scrollbar-thumb {
   background-color: white;
   transform: scale(1.1);
 }
+.extra a {
+  color: #fe424d;
+  text-decoration: none;
+}
+
+.extra a:hover {
+  color: #fe424d;
+  text-decoration: underline;
+}
+
 
 @media only screen and (max-width: 470px) {
   #shareImage {
