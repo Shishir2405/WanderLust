@@ -322,6 +322,10 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
 }
 
+.extra button{
+  margin-bottom: 0;
+}
+
 .extra a {
   color: #fe424d;
   text-decoration: none;
