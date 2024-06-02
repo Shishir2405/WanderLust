@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/index.css" />
 
 <body>
-  <div class="tax-toggle toggler" style="margin-top: 1rem;">
+  <div class="tax-toggle toggler" style="margin-top: 1rem">
     <label class="form-check-label" for="flexSwitchCheckDefault"
       >Display total after taxes</label
     >
@@ -40,11 +40,16 @@
         <div class="card-body">
           <p class="card-text">
             <b><%=listings.title %></b> <br />
-            <span class="price-without-gst"
+            <span
+              class="price-without-gst"
+              data-original-price="<%=listing.price%>"
               ><b> &#x20B9; <%=listings.price.toLocaleString("en-IN")%></b> /
               night</span
             >
-            <span class="price-with-gst" style="display: none"
+            <span
+              class="price-with-gst"
+              data-original-price="<%=listing.price%>"
+              style="display: none"
               ><b>
                 &#x20B9; <%= (listings.price * 1.18).toLocaleString("en-IN")
                 %></b
