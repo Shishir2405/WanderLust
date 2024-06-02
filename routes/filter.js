@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 
@@ -24,13 +23,17 @@ const categories = [
   "ski",
   "chef",
   "disabled",
-  "play"
+  "play",
 ];
 
-categories.forEach(category => {
+categories.forEach((category) => {
   router.get(`/${category}`, async (req, res) => {
     let listing = await Listing.find({ category: category });
-    res.render("listings/filter.ejs", { listing ,category });
+    res.render("listings/filter.ejs", {
+      listing,
+      category,
+      includeNavBelow: true,
+    });
   });
 });
 

@@ -1,10 +1,14 @@
+<link rel="stylesheet" href="/css/index.css" />
+
+
+
 <nav class="navbar mb-4 navbar-expand-md nav-below-b">
   <div class="nav-below col-12">
     <button id="scroll-left" class="scroll-button">
       <i class="fa-solid fa-angle-left"></i>
     </button>
     <div id="filters">
-      <div class="filter">
+      <div class="filter <%= currPage === '/filter/trending' ? 'below-nav' : '' %>">
         <a href="/filter/trending">
           <div><img src="/Assets/fire.png" alt="" class="filter-img" /></div>
           <p>Trending</p>
@@ -164,3 +168,22 @@
     </div>
   </div>
 </nav>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const filters = document.querySelectorAll('.filter');
+  const currentPath = window.location.pathname;
+  console.log('Current Path:', currentPath);
+
+  filters.forEach(filter => {
+    const link = filter.querySelector('a');
+    console.log('Filter Link:', link.getAttribute('href'));
+    if (link.getAttribute('href') === currentPath) {
+      filter.classList.add('below-nav');
+      console.log('Active filter:', filter);
+    }
+  });
+});
+
+</script>
