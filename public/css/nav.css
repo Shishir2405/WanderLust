@@ -37,11 +37,11 @@
   background-color: rgba(207, 207, 207, 0.461);
 }
 
+
 .nav-side {
   display: flex;
   align-items: center;
 }
-
 
 .containers input {
   position: absolute;
@@ -205,7 +205,7 @@
 }
 
 .searchInput {
-  caret-color:transparent;
+  caret-color: transparent;
   background: none;
   outline: none;
   color: black;
@@ -223,7 +223,6 @@
 .searchInput::placeholder {
   font-weight: 600;
 }
-
 
 #user-icon {
   margin-left: 0;
@@ -274,27 +273,45 @@
   }
 }
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: black; }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: black; }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
 }
 
 .searchInput:focus {
-  caret-color: #fe424d; 
+  caret-color: #fe424d;
 }
 
 .typing-effect {
@@ -302,5 +319,6 @@
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid black;
-  animation: typing 3s steps(40, end) infinite, blink-caret .75s step-end infinite;
+  animation: typing 3s steps(40, end) infinite,
+    blink-caret 0.75s step-end infinite;
 }
