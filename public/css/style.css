@@ -267,7 +267,6 @@ body::-webkit-scrollbar-thumb {
   transition: color 0.3s ease;
 }
 
-
 .nav-side {
   display: flex !important;
   align-items: center !important;
@@ -335,4 +334,13 @@ body::-webkit-scrollbar-thumb {
   #shareImage {
     display: inline;
   }
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="file"],
+textarea {
+  border: 1.5px solid #22222276 !important;
 }

@@ -211,7 +211,7 @@
   color: black;
   font-size: 1rem;
   border-radius: 3rem;
-  border: 1.5px solid rgba(128, 128, 128, 0.507);
+  border: 1.5px solid rgba(128, 128, 128, 0.507) !important;
   padding: 0.7rem 2.5rem;
   transition: 0.3s ease-in-out;
 }

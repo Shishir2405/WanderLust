@@ -1,10 +1,11 @@
 #select-styling {
-  border: 0.05px solid rgba(119, 136, 153, 0.315);
+  border: 1.5px solid #22222276;
   width: 100%;
   height: 2.5rem;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
   color: gray;
+  background-color: inherit;
 }
 
 .select-label {
