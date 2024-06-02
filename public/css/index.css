@@ -26,6 +26,7 @@
 
 .filter.below-nav {
   border-bottom: 3px solid black;
+  opacity: 1;
 }
 
 .tax-info {
