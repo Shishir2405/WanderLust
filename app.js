@@ -121,6 +121,7 @@ app.use((req, res, next) => {
   res.locals.errorMsg = req.flash("error");
   res.locals.updateMsg = req.flash("update");
   res.locals.currUser = req.user;
+  res.locals.currPage = req.path;
   next();
 });
 
