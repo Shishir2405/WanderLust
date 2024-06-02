@@ -23,6 +23,7 @@ body {
 
 body::-webkit-scrollbar {
   width: var(--sb-size);
+  height: 20px;
 }
 
 body::-webkit-scrollbar-track {

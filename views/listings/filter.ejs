@@ -1,9 +1,31 @@
 <% layout("layouts/boilerplate") -%>
 
-<body>
-  <h3 class="mt-2"><%= category.charAt(0).toUpperCase() + category.slice(1) %></h3>
+<link rel="stylesheet" href="/css/index.css" />
 
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-2">
+<body>
+  <div class="tax-toggle toggler" style="margin-top: 1rem;">
+    <label class="form-check-label" for="flexSwitchCheckDefault"
+      >Display total after taxes</label
+    >
+    <div class="form-check-reverse form-switch switch-container">
+      <label class="switch">
+        <input type="checkbox" role="switch" id="flexSwitch" />
+        <span class="slider">
+          <svg
+            class="slider-icon"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            role="presentation"
+          >
+            <path fill="none" d="m4 16.5 8 8 16-16"></path>
+          </svg>
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1">
     <% for(let listings of listing){ %>
     <a href="/listings/<%=listings._id%>" id="listing-link">
       <div class="card listing-card mt-3">
@@ -18,7 +40,16 @@
         <div class="card-body">
           <p class="card-text">
             <b><%=listings.title %></b> <br />
-            &#8377; <%=listings.price.toLocaleString("en-IN")%> / night
+            <span class="price-without-gst"
+              ><b> &#x20B9; <%=listings.price.toLocaleString("en-IN")%></b> /
+              night</span
+            >
+            <span class="price-with-gst" style="display: none"
+              ><b>
+                &#x20B9; <%= (listings.price * 1.18).toLocaleString("en-IN")
+                %></b
+              >/ night</span
+            >
           </p>
         </div>
       </div>
@@ -26,3 +57,5 @@
     <% } %>
   </div>
 </body>
+
+<script src="/JS/index.js"></script>
