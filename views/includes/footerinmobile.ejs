@@ -71,13 +71,10 @@
   document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.footer a');
   const currentPath = window.location.pathname;
-  console.log('Current Path:', currentPath);
 
   links.forEach(link => {
-    console.log('Link Href:', link.getAttribute('href'));
     if (link.getAttribute('href') === currentPath) {
       link.classList.add('active');
-      console.log('Active link:', link);
     }
   });
 });
