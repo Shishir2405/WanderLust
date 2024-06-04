@@ -1,11 +1,13 @@
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/show.css" />
+<link rel="stylesheet" href="/css/index.css" />
 <script>
   const mapToken = "<%=process.env.MAP_TOKEN %>";
   const listing=<%- JSON.stringify(listing) %>;
 </script>
 
 <body>
+  <%- include("../includes/currency.ejs") %>
   <div class="row">
     <div>
       <div class="card show-card col-12 col-md-8 offset-md-2 listing-card">
@@ -57,13 +59,13 @@
           />
           <button class="position-absolute top-0 end-0" id="shareImage"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
         </div>
-
+        
         <div class="card-body">
           <div class="location-price">
             <p class="card-text" id="location-text">
               <b>Room in <%= listing.location %></b>
             </p>
-            <p class="card-text price-text">
+            <p class="card-text price-text price-without-gst" data-original-price="<%=listing.price%>">
               <b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b>
             </p>
           </div>
@@ -257,4 +259,5 @@
 
 <script src="/JS/map.js"></script>
 <script src="/JS/share.js"></script>
+<script src="/JS/currency.js"></script>
 
