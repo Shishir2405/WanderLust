@@ -42,7 +42,7 @@ const app = express();
 const port = 8080;
 // const mongoUrl = process.env.ATLASDB_URL;
 //const dbUrl = process.env.ATLASDB_URL;
-//const dbUrl = https://wanderlust-1-88ni.onrender.com/listings;
+const dbUrl = "https://wanderlust-1-88ni.onrender.com/listings";
 
 
 /**
