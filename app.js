@@ -43,7 +43,6 @@ const port = 8080;
 // const mongoUrl = process.env.ATLASDB_URL;
 const dbUrl = process.env.ATLASDB_URL;
 
-
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
  */
@@ -140,6 +139,14 @@ app.use("/filter", filterRouter);
  */
 app.listen(port, () => {
   console.log("Started Listening!!!");
+});
+
+app.get("/privacy", (req, res) => {
+  res.render("users/privacy.ejs");
+});
+
+app.get("/terms", (req, res) => {
+  res.render("users/terms.ejs");
 });
 
 /**
