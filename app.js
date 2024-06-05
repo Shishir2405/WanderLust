@@ -41,7 +41,9 @@ const app = express();
  */
 const port = 8080;
 // const mongoUrl = process.env.ATLASDB_URL;
-const dbUrl = process.env.ATLASDB_URL;
+//const dbUrl = process.env.ATLASDB_URL;
+//const dbUrl = https://wanderlust-1-88ni.onrender.com/listings;
+
 
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
