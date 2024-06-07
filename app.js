@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
@@ -149,8 +149,7 @@ passport.use(
     }
   )
 );
-console.log('GOOGLE_ID:', process.env.GOOGLE_CLIENT_ID);
-console.log('GOOGLE_SECRET:', process.env.GOOGLE_CLIENT_SECRET);
+
 
 /**
  * * Flash message middleware
