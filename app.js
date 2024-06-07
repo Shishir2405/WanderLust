@@ -2,7 +2,6 @@ if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
-
 /**
  * ! Every Thing Related To Main Server
  * * Requiring Every Dependencies
@@ -110,45 +109,10 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
 
-passport.serializeUser((user, done) => {
-  done(null, user.id); // Serialize the user ID
-});
 
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id); // Find the user by ID
-    done(null, user);
-  } catch (err) {
-    done(err, null);
-  }
-});
-
-/**
- * * Google
- */
-
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://wanderlust-1-88ni.onrender.com/auth/google/callback",
-      passReqToCallback: true,
-    },
-    function (request, accessToken, refreshToken, profile, done) {
-      // Extract and print username and email ID from profile
-      const username = profile.displayName;
-      const email = profile.emails[0].value;
-      console.log('Username:', username);
-      console.log('Email ID:', email);
-
-      // Pass the profile object to done callback
-      done(null, profile);
-    }
-  )
-);
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 /**
@@ -188,31 +152,6 @@ app.get("/terms", (req, res) => {
   res.render("users/terms.ejs");
 });
 
-function isLoggedIn(req, res, next) {
-  req.user ? next() : res.sendStatus(401);
-}
-
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/auth/google/success",
-    failureRedirect: "/auth/google/failure",
-  })
-);
-
-app.get("/auth/google/success", isLoggedIn, (req, res) => {
-  req.flash("success", "Welcome To WanderLust");
-  res.send("Google authentication successful");
-});
-
-app.get("/auth/google/failure", (req, res) => {
-  res.send("Google authentication failed");
-});
 
 /**
  * * Standard Route
@@ -229,3 +168,4 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = "---ERROR---" } = err;
   res.status(statusCode).render("listings/error.ejs", { err });
 });
+
