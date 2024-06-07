@@ -30,7 +30,6 @@ const filterRouter = require("./routes/filter.js");
 const User = require("./models/user.js");
 const wrapAsyn = require("./utils/wrapAsyn.js");
 const Listing = require("./models/listing.js");
-const { func } = require("joi");
 
 /**
  * * Calling Express For Making App
@@ -42,7 +41,8 @@ const app = express();
  */
 const port = 8080;
 // const mongoUrl = process.env.ATLASDB_URL;
-const dbUrl = process.env.ATLASDB_URL;
+//const dbUrl = process.env.ATLASDB_URL;
+const dbUrl = "mongodb://localhost:27017/eanderlust";
 
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
@@ -110,10 +110,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 /**
  * * Flash message middleware
@@ -152,7 +150,6 @@ app.get("/terms", (req, res) => {
   res.render("users/terms.ejs");
 });
 
-
 /**
  * * Standard Route
  * ? If not matched from above it will displayed
@@ -168,4 +165,3 @@ app.use((err, req, res, next) => {
   let { statusCode = 500, message = "---ERROR---" } = err;
   res.status(statusCode).render("listings/error.ejs", { err });
 });
-
