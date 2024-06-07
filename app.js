@@ -1,6 +1,7 @@
-if (process.env.NODE_ENV != "production") {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
+
 
 /**
  * ! Every Thing Related To Main Server
@@ -30,6 +31,7 @@ const filterRouter = require("./routes/filter.js");
 const User = require("./models/user.js");
 const wrapAsyn = require("./utils/wrapAsyn.js");
 const Listing = require("./models/listing.js");
+const { func } = require("joi");
 
 /**
  * * Calling Express For Making App
@@ -41,8 +43,7 @@ const app = express();
  */
 const port = 8080;
 // const mongoUrl = process.env.ATLASDB_URL;
-//const dbUrl = process.env.ATLASDB_URL;
-const dbUrl = "mongodb://localhost:27017/eanderlust";
+const dbUrl = process.env.ATLASDB_URL;
 
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
@@ -109,9 +110,47 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+const GoogleStrategy = require("passport-google-oauth2").Strategy;
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser((user, done) => {
+  done(null, user.id); // Serialize the user ID
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id); // Find the user by ID
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
+});
+
+/**
+ * * Google
+ */
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "https://wanderlust-1-88ni.onrender.com/auth/google/callback",
+      passReqToCallback: true,
+    },
+    function (request, accessToken, refreshToken, profile, done) {
+      // Extract and print username and email ID from profile
+      const username = profile.displayName;
+      const email = profile.emails[0].value;
+      console.log('Username:', username);
+      console.log('Email ID:', email);
+
+      // Pass the profile object to done callback
+      done(null, profile);
+    }
+  )
+);
+console.log('GOOGLE_ID:', process.env.GOOGLE_CLIENT_ID);
+console.log('GOOGLE_SECRET:', process.env.GOOGLE_CLIENT_SECRET);
 
 /**
  * * Flash message middleware
@@ -148,6 +187,32 @@ app.get("/privacy", (req, res) => {
 
 app.get("/terms", (req, res) => {
   res.render("users/terms.ejs");
+});
+
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.sendStatus(401);
+}
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/auth/google/success",
+    failureRedirect: "/auth/google/failure",
+  })
+);
+
+app.get("/auth/google/success", isLoggedIn, (req, res) => {
+  req.flash("success", "Welcome To WanderLust");
+  res.send("Google authentication successful");
+});
+
+app.get("/auth/google/failure", (req, res) => {
+  res.send("Google authentication failed");
 });
 
 /**
