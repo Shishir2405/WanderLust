@@ -2,6 +2,38 @@
 
 <link rel="stylesheet" href="/css/index.css" />
 
+<style>
+  .favorite-tag {
+  position: absolute;
+  top: 10px; /* Adjust as necessary */
+  left: 10px; /* Adjust as necessary */
+  background-color: white;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 1.5rem;
+  z-index: 1; /* Ensure it's above the image */
+}
+
+#submit-btn {
+  position: absolute;
+  top: 10px; /* Adjust as necessary */
+  right: 10px; /* Adjust as necessary */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.25rem;
+  z-index: 100;
+  transition: 0.9s scale ease-in;
+}
+
+#submit-btn:hover {
+ transform: scale(1.2);
+}
+
+</style>
+
 <br />
 <div class="tax-toggle toggler">
   <label class="form-check-label" for="flexSwitchCheckDefault"
@@ -38,13 +70,34 @@
       data-title="<%=listing.title.toLowerCase()%>"
       data-listing-id="<%=listing._id%>"
     >
+
+    <% if (currUser && currUser.favoriteListings.includes(listing._id) && listing.averageRating > 4) { %>
+      <div class="favorite-tag">
+        Guest favourite
+      </div>
+    <% } %>
+
       <img
         src="<%=listing.image.url%>"
         class="card-img-top"
         alt="Listing Image"
         style="height: 20rem"
       />
-
+     
+      <form action="/wishlists/add" method="POST">
+        <input type="hidden" name="userId" value="<%= currUser._id %>" />
+        <input type="hidden" name="listingId" value="<%= listing._id %>" />
+        <button type="submit" id="submit-btn" style="background: none; border: none; padding: 0;">
+          <p style="margin-right: 0.5rem; font-weight: 300;">
+            <% if (currUser && currUser.favoriteListings.includes(listing._id)) { %>
+              <i class="fa-solid fa-heart" style="color: #FF385C;"></i> <!-- Filled heart -->
+            <% } else { %>
+              <i class="fa-solid fa-heart" style="color: rgb(64, 64, 64);"></i> <!-- Empty heart -->
+            <% } %>
+          </p>
+        </button>
+      </form>
+      
       <div class="card-img-overlay"></div>
       <div class="card-body">
         <p class="card-text" style="margin-left: 0.25rem">

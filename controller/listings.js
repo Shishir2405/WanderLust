@@ -4,9 +4,19 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({});
+  const allListings = await Listing.find({}).populate('reviews');
+    
+    
+    allListings.forEach(listing => {
+      if (listing.reviews.length > 0) {
+        const totalRating = listing.reviews.reduce((acc, review) => acc + review.rating, 0);
+        listing.averageRating = totalRating / listing.reviews.length;
+      } else {
+        listing.averageRating = 0; 
+      }
+    });
 
-  res.render("listings/index.ejs",{ allListings, includeNavBelow: true });
+    res.render("listings/index.ejs",{ allListings, includeNavBelow: true });
 };
 
 module.exports.renderNewForm = (req, res) => {
