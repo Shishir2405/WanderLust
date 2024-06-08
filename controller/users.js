@@ -42,17 +42,15 @@ module.exports.logout = (req, res, next) => {
   });
 };
 
-
 module.exports.renderWishlist = async (req, res) => {
   try {
-    // Retrieve the currently logged-in user
-    const user = await User.findById(req.user._id).populate('favoriteListings');
+    const user = await User.findById(req.user._id).populate("favoriteListings");
 
     res.render("users/wishlists", { currUser: user });
   } catch (err) {
     console.error(err);
     req.flash("error", "Error rendering wishlist.");
-    res.redirect("/"); // Redirect to the home page or another appropriate page
+    res.redirect("/");
   }
 };
 
@@ -64,16 +62,20 @@ module.exports.addToWishlist = async (req, res, next) => {
       if (!user.favoriteListings.includes(listingId)) {
         user.favoriteListings.push(listingId);
         await user.save();
-        res.status(200).send('Listing added to wishlist successfully.');
+        req.flash("success", "Listing added to wishlist successfully.");
+        res.redirect("/listings/" + listingId);
       } else {
-        res.status(400).send('Listing already exists in wishlist.');
+        req.flash("error", "Listing already exists in wishlist.");
+        res.redirect("/listings/" + listingId);
       }
     } else {
-      res.status(404).send('User not found.');
+      req.flash("error", "User not found.");
+      res.redirect("/listings/" + listingId);
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal server error.');
+    req.flash("error", "Internal server error.");
+    res.redirect("/listings/" + listingId);
   }
 };
 
@@ -82,14 +84,18 @@ module.exports.removeFromWishlist = async (req, res, next) => {
     const { userId, listingId } = req.body;
     const user = await User.findById(userId);
     if (user) {
-      user.favoriteListings = user.favoriteListings.filter(id => id !== listingId);
-      await user.save();
-      res.status(200).send('Listing removed from wishlist successfully.');
+      await User.findByIdAndUpdate(userId, {
+        $pull: { favoriteListings: listingId },
+      });
+      req.flash("success", "Listing removed from wishlist successfully.");
+      res.redirect("/wishlists");
     } else {
-      res.status(404).send('User not found.');
+      req.flash("error", "User not found.");
+      res.redirect("/");
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal server error.');
+    req.flash("error", "Internal server error.");
+    res.redirect(`/listings/${listingId}`);
   }
 };

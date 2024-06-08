@@ -176,8 +176,8 @@ input:checked + .slider:before {
   outline-color: #181818;
 }
 
-.toggler{
-display: none;
+.toggler {
+  display: none;
 }
 
 .modal {
@@ -249,19 +249,54 @@ display: none;
   border-bottom: 1px solid rgba(128, 128, 128, 0.589);
 }
 
-.currency-tab .symbol{
- font-size: 0.85rem;
- font-size: 400;
- color: rgb(66, 65, 65);
+.currency-tab .symbol {
+  font-size: 0.85rem;
+  font-size: 400;
+  color: rgb(66, 65, 65);
 }
 
-@media only screen and (max-width: 450px){
-.toggler{
-  display: inline-flex !important;
-  width: 90%;
-  margin-top: 0;
-  margin-bottom: 0.75rem;
+.remove-button-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  margin-left: 0.25rem;
+  margin-top: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
+
+.listing-card:hover .remove-button-container {
+  opacity: 1;
+}
+
+.remove-button {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 50%;
+  line-height: 1;
+  background-color: white;
+  margin-left: 0.15rem;
+  border: none;
+  font-weight: 800;
+}
+
+#wish {
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-block: 1.5rem;
+}
+
+@media only screen and (max-width: 450px) {
+  .toggler {
+    display: inline-flex !important;
+    width: 90%;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+  .remove-button-container {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -278,7 +313,7 @@ display: none;
   .scroll-button {
     display: none;
   }
-  #currency-modal{
+  #currency-modal {
     display: none !important;
   }
 }
@@ -294,4 +329,3 @@ display: none;
     margin-right: 2rem;
   }
 }
-

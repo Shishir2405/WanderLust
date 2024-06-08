@@ -41,8 +41,8 @@ const app = express();
  */
 const port = 8080;
 // const mongoUrl = process.env.ATLASDB_URL;
-//const dbUrl = process.env.ATLASDB_URL;
-const dbUrl = "mongodb://localhost:27017/eanderlust";
+const dbUrl = process.env.ATLASDB_URL;
+//const dbUrl = "mongodb://localhost:27017/eanderlust";
 
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
@@ -150,51 +150,6 @@ app.get("/terms", (req, res) => {
   res.render("users/terms.ejs");
 });
 
-// POST route to add to wishlist
-app.post("/wishlist/add", async (req, res) => {
-  try {
-    const { userId, listingId } = req.body;
-    const user = await User.findById(userId);
-    if (user) {
-      if (!user.favoriteListings.includes(listingId)) {
-        user.favoriteListings.push(listingId);
-        await user.save();
-        req.flash("success", "Listing added to wishlist successfully.");
-        res.redirect("/listings/" + listingId); // Redirect to the listing page
-      } else {
-        req.flash("error", "Listing already exists in wishlist.");
-        res.redirect("/listings/" + listingId); // Redirect to the listing page
-      }
-    } else {
-      req.flash("error", "User not found.");
-      res.redirect("/listings/" + listingId); // Redirect to the listing page
-    }
-  } catch (err) {
-    console.error(err);
-    req.flash("error", "Internal server error.");
-    res.redirect("/listings/" + listingId); // Redirect to the listing page
-  }
-});
-
-// POST route to remove from wishlist
-app.post("/wishlist/remove", async (req, res) => {
-  try {
-    const { userId, listingId } = req.body;
-    const user = await User.findById(userId);
-    if (user) {
-      await User.findByIdAndUpdate(userId, { $pull: { favoriteListings: listingId } });
-      req.flash("success", "Listing removed from wishlist successfully.");
-      res.redirect("/wishlists"); // Redirect to the wishlist page
-    } else {
-      req.flash("error", "User not found.");
-      res.redirect("/"); // Redirect to the home page or another appropriate page
-    }
-  } catch (err) {
-    console.error(err);
-    req.flash("error", "Internal server error.");
-    res.redirect(`/listings/${listingId}`); // Redirect to the listing page or another appropriate page
-  }
-});
 
 /**
  * * Standard Route

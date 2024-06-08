@@ -1,24 +1,52 @@
 <% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/index.css" />
 
-<h2>Wishlists</h2>
+<p id="wish">Wishlists</p>
 
-<% if (currUser && currUser.favoriteListings && currUser.favoriteListings.length > 0) { %>
+<% if (currUser && currUser.favoriteListings && currUser.favoriteListings.length
+> 0) { %>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1">
   <% currUser.favoriteListings.forEach((listingId) => { %>
-    <div class="col mb-4">
-      <div class="card">
-        <img src="<%= listingId.image.url %>" class="card-img-top" alt="Listing Image" style="height: 20rem" />
-        <div class="card-body">
-          <h5 class="card-title"><%= listingId.title %></h5>
-          <p class="card-text"><%= listingId.description %></p>
-          <form action="/wishlist/remove" method="POST">
-            <input type="hidden" name="userId" value="<%= currUser._id %>" />
-            <input type="hidden" name="listingId" value="<%= listingId._id %>" />
-            <button type="submit" class="btn btn-primary">Remove from Wishlist</button>
-          </form>
-        </div>
+  <div class="col mb-4">
+    <div class="card listing-card">
+      <div class="remove-button-container">
+        <form action="/wishlists/remove" method="POST">
+          <input type="hidden" name="userId" value="<%= currUser._id %>" />
+          <input type="hidden" name="listingId" value="<%= listingId._id %>" />
+          <button type="submit" class="remove-button">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </form>
+      </div>
+      <img
+        src="<%= listingId.image.url %>"
+        class="card-img-top"
+        alt="Listing Image"
+        style="height: 20rem"
+        id="listing-container"
+      />
+      <div class="card-img-overlay"></div>
+      <div class="card-body">
+        <p class="card-text" style="margin-left: 0.25rem">
+          <b><%=listingId.title %></b> <br />
+          <span
+            class="price-without-gst"
+            data-original-price="<%=listingId.price%>"
+            ><b> &#x20B9; <%=listingId.price.toLocaleString("en-IN")%></b> /
+            night
+          </span>
+          <span
+            class="price-with-gst"
+            style="display: none"
+            data-original-price="<%=listingId.price%>"
+            ><b>
+              &#x20B9; <%= (listingId.price * 1.18).toLocaleString("en-IN") %> </b
+            >/ night
+          </span>
+        </p>
       </div>
     </div>
+  </div>
   <% }); %>
 </div>
 <% } else { %>
