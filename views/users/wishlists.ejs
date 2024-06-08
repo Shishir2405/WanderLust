@@ -5,7 +5,7 @@
 
 <% if (currUser && currUser.favoriteListings && currUser.favoriteListings.length
 > 0) { %>
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1">
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
   <% currUser.favoriteListings.forEach((listingId) => { %>
   <div class="col mb-4">
     <div class="card listing-card">
@@ -22,7 +22,7 @@
         src="<%= listingId.image.url %>"
         class="card-img-top"
         alt="Listing Image"
-        style="height: 20rem"
+        style="height: 17rem"
         id="listing-container"
       />
       <div class="card-img-overlay"></div>
