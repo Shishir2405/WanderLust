@@ -47,12 +47,14 @@
   </a>
   <% } %> 
   <% if (currUser) { %>
-  <a href="/logout" class="<%= currPage === '/logout' ? 'active' : '' %>">
+  
+  
+  <a href="/wishlists" class="<%= currPage === '/wishlists' ? 'active' : '' %>">
     <div class="footer-icon-div">
       <div class="inside">
-        <span class="material-symbols-outlined" id="icon-footer"> logout </span>
+        <i class="fa-regular fa-heart icon-footer"></i>
       </div>
-      <p>Log Out</p>
+      <p>Wishlists</p>
     </div>
   </a>
   <a href="/listings/new" class="<%= currPage === '/listings/new' ? 'active' : '' %>">
@@ -61,6 +63,14 @@
         <i class="fa-solid fa-plus icon-footer"></i>
       </div>
       <p>Add New</p>
+    </div>
+  </a>
+  <a href="/logout" class="<%= currPage === '/logout' ? 'active' : '' %>">
+    <div class="footer-icon-div">
+      <div class="inside">
+        <span class="material-symbols-outlined" id="icon-footer"> logout </span>
+      </div>
+      <p>Log Out</p>
     </div>
   </a>
   <% } %>

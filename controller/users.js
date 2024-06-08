@@ -41,3 +41,55 @@ module.exports.logout = (req, res, next) => {
     res.redirect("/listings");
   });
 };
+
+
+module.exports.renderWishlist = async (req, res) => {
+  try {
+    // Retrieve the currently logged-in user
+    const user = await User.findById(req.user._id).populate('favoriteListings');
+
+    res.render("users/wishlists", { currUser: user });
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "Error rendering wishlist.");
+    res.redirect("/"); // Redirect to the home page or another appropriate page
+  }
+};
+
+module.exports.addToWishlist = async (req, res, next) => {
+  try {
+    const { userId, listingId } = req.body;
+    const user = await User.findById(userId);
+    if (user) {
+      if (!user.favoriteListings.includes(listingId)) {
+        user.favoriteListings.push(listingId);
+        await user.save();
+        res.status(200).send('Listing added to wishlist successfully.');
+      } else {
+        res.status(400).send('Listing already exists in wishlist.');
+      }
+    } else {
+      res.status(404).send('User not found.');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error.');
+  }
+};
+
+module.exports.removeFromWishlist = async (req, res, next) => {
+  try {
+    const { userId, listingId } = req.body;
+    const user = await User.findById(userId);
+    if (user) {
+      user.favoriteListings = user.favoriteListings.filter(id => id !== listingId);
+      await user.save();
+      res.status(200).send('Listing removed from wishlist successfully.');
+    } else {
+      res.status(404).send('User not found.');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error.');
+  }
+};

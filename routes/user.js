@@ -46,4 +46,9 @@ router
  */
 router.get("/logout", userController.logout);
 
+router.get("/wishlists", userController.renderWishlist);
+router.post("/add",userController.addToWishlist);
+router.post("/remove", userController.removeFromWishlist);
+
+
 module.exports = router;

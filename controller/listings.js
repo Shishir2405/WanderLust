@@ -38,7 +38,8 @@ module.exports.showListing = async (req, res) => {
       averageRating = totalRating / listing.reviews.length;
     }
 
-    res.render('listings/show.ejs', { listing, averageRating });
+    res.render('listings/show.ejs', { listing, averageRating, currentUser: req.user });
+
   } catch (error) {
     console.error('Error:', error);
     req.flash('error', 'An error occurred while fetching the listing.');
