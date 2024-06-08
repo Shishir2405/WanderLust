@@ -1,14 +1,19 @@
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/index.css" />
-
+<style>
+  a{
+    text-decoration: none;
+  }
+</style>
 <p id="wish">Wishlists</p>
 
 <% if (currUser && currUser.favoriteListings && currUser.favoriteListings.length
 > 0) { %>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
   <% currUser.favoriteListings.forEach((listingId) => { %>
-  <div class="col mb-4">
-    <div class="card listing-card">
+  
+    <a href="/listings/<%=listingId._id%>">
+      <div class="card listing-card">
       <div class="remove-button-container">
         <form action="/wishlists/remove" method="POST">
           <input type="hidden" name="userId" value="<%= currUser._id %>" />
@@ -25,7 +30,6 @@
         style="height: 17rem"
         id="listing-container"
       />
-      <div class="card-img-overlay"></div>
       <div class="card-body">
         <p class="card-text" style="margin-left: 0.25rem">
           <b><%=listingId.title %></b> <br />
@@ -45,8 +49,8 @@
           </span>
         </p>
       </div>
-    </div>
-  </div>
+    </div></a>
+  
   <% }); %>
 </div>
 <% } else { %>
