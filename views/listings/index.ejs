@@ -74,7 +74,7 @@ include("../includes/filters.ejs") %>
       data-accessibility="<%= listing.locked %>"
       data-type="<%= listing.typeOfPlace %>"
     >
-      <% if (listing.averageRating >= 4.75) { %>
+      <% if (listing.averageRating === 5) { %>
       <div class="favorite-tag">Guest favourite</div>
       <% } %>
 
@@ -86,6 +86,7 @@ include("../includes/filters.ejs") %>
       />
 
       <form action="/wishlists/add" method="POST">
+        <% if(currUser){ %>
         <input type="hidden" name="userId" value="<%= currUser._id %>" />
         <input type="hidden" name="listingId" value="<%= listing._id %>" />
         <button
@@ -93,6 +94,7 @@ include("../includes/filters.ejs") %>
           id="submit-btn"
           style="background: none; border: none; padding: 0"
         >
+          
           <p style="margin-right: 0.5rem; font-weight: 300">
             <% if (currUser && currUser.favoriteListings.includes(listing._id))
             { %>
@@ -104,6 +106,7 @@ include("../includes/filters.ejs") %>
             <% } %>
           </p>
         </button>
+        <% } %>
       </form>
 
       <div class="card-img-overlay"></div>
