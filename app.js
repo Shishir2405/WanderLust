@@ -163,6 +163,5 @@ app.all("*", (req, res, next) => {
  */
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "---ERROR---" } = err;
-  console.log(err);
   res.status(statusCode).render("listings/error.ejs", { err });
 });
