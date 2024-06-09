@@ -340,7 +340,6 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
-input[type="file"],
 textarea {
-  border: 1.5px solid #22222276 !important;
+  border: 1.5px solid #8f8d8d !important;
 }

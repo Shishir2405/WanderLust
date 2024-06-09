@@ -41,8 +41,8 @@ const app = express();
  */
 const port = 8080;
 // const mongoUrl = process.env.ATLASDB_URL;
-//const dbUrl = process.env.ATLASDB_URL;
-const dbUrl = "mongodb://localhost:27017/eanderlust";
+const dbUrl = process.env.ATLASDB_URL;
+//const dbUrl = "mongodb://localhost:27017/eanderlust";
 
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
@@ -150,7 +150,6 @@ app.get("/terms", (req, res) => {
   res.render("users/terms.ejs");
 });
 
-
 /**
  * * Standard Route
  * ? If not matched from above it will displayed
@@ -164,5 +163,6 @@ app.all("*", (req, res, next) => {
  */
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "---ERROR---" } = err;
+  console.log(err);
   res.status(statusCode).render("listings/error.ejs", { err });
 });

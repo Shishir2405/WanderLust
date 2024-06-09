@@ -1,0 +1,300 @@
+<style>
+  #main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .main-nav {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background-color: white;
+    border: 1px solid gray;
+  }
+  .main-nav:nth-child(3) {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+  .main-nav:nth-child(1) {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  .main-nav:hover {
+    background-color: #d3d3d396;
+    border: 1px solid black;
+  }
+  .main-nav:focus {
+    background-color: #131313;
+    color: white;
+  }
+  .head-to-indicate {
+    font-size: 1.35rem;
+    font-weight: 800;
+  }
+  .extra {
+    color: #717171;
+    font-size: 0.95rem;
+  }
+  #typeOfPlace {
+    padding: 1rem;
+  }
+  .btn-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .btn-container button {
+    width: 4rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.25rem;
+    border: 1px solid #717171;
+    background-color: white;
+    font-weight: 700;
+  }
+  .btn-container button:focus {
+    color: white;
+    background-color: #131313;
+  }
+  .btn-container button:hover {
+    background-color: #d3d3d396;
+    border: 1px solid black;
+  }
+  .btn-container2 {
+    display: flex;
+    width: 20%;
+    justify-content: space-around;
+    padding: 0.35rem 1rem;
+  }
+  .btn-container2 button {
+    width: 4rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.25rem;
+    border: 1px solid #717171;
+    background-color: white;
+    font-weight: 700;
+  }
+  .btn-container2 button:focus {
+    color: white;
+    background-color: #131313;
+  }
+  .btn-container2 button:hover {
+    background-color: #d3d3d396;
+    border: 1px solid black;
+  }
+  .footer-filter {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #717171;
+  }
+  #show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 7rem;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    border-radius: 1rem;
+  }
+  #clear-all {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+  #clear-all:hover {
+    background-color: #d3d3d3;
+  }
+</style>
+
+<div id="modal" class="modal filters">
+  <div class="modal-content">
+    <div style="width: 100%">
+      <span class="close" id="close">
+        <lord-icon
+          src="https://cdn.lordicon.com/nqtddedc.json"
+          trigger="hover"
+          state="hover-cross-3"
+        >
+        </lord-icon>
+      </span>
+      <p id="curr-head">Filters</p>
+    </div>
+    <div id="typeOfPlace">
+      <h4 class="head-to-indicate">Type of place</h4>
+      <p class="extra">Search rooms, entire homes or any type of place</p>
+      <div id="main">
+        <button class="main-nav filter-typeOfPlace" data-value="entire-place">
+          Entire Place
+        </button>
+        <button class="main-nav filter-typeOfPlace" data-value="room">
+          Room
+        </button>
+        <button class="main-nav filter-typeOfPlace" data-value="shared-room">
+          Shared Room
+        </button>
+      </div>
+    </div>
+    <hr />
+    <div id="typeOfPlace">
+      <h4 class="head-to-indicate">Rooms & Bedrooms</h4>
+      <br />
+      <p><strong>Bedrooms :</strong></p>
+      <div class="btn-container btn-bedrooms">
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button data-value="7">7</button>
+        <button data-value="8">8+</button>
+      </div>
+      <p><strong>Beds :</strong></p>
+      <div class="btn-container btn-beds">
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button data-value="7">7</button>
+        <button data-value="8">8+</button>
+      </div>
+    </div>
+    <hr />
+    <div id="typeOfPlace">
+      <h4 class="head-to-indicate">Rooms Accessibility</h4>
+      <br />
+
+      <div class="btn-container2 btn-accessibility">
+        <button data-value="yes">Yes</button>
+        <button data-value="no">No</button>
+      </div>
+    </div>
+    <div class="footer-filter">
+      <span id="clear-all">Clear</span>
+      <button id="show">Show</button>
+    </div>
+  </div>
+</div>
+<script>
+  let selectedFilters = {
+    typeOfPlace: [],
+    bedrooms: [],
+    beds: [],
+    accessibility: [],
+  };
+
+  function toggleSelection(filterType, value) {
+    const index = selectedFilters[filterType].indexOf(value);
+    if (index > -1) {
+      selectedFilters[filterType].splice(index, 1);
+    } else {
+      selectedFilters[filterType].push(value);
+    }
+  }
+
+  document.querySelectorAll(".filter-typeOfPlace").forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleSelection("typeOfPlace", button.getAttribute("data-value"));
+    });
+  });
+
+  document.querySelectorAll(".btn-bedrooms button").forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleSelection("bedrooms", button.getAttribute("data-value"));
+    });
+  });
+
+  document.querySelectorAll(".btn-beds button").forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleSelection("beds", button.getAttribute("data-value"));
+    });
+  });
+
+  document.querySelectorAll(".btn-accessibility button").forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleSelection("accessibility", button.getAttribute("data-value"));
+    });
+  });
+
+  document
+    .querySelector(".footer-filter button")
+    .addEventListener("click", () => {
+      console.log(selectedFilters); // Check the selected filters
+      const listings = document.querySelectorAll(".listing-card");
+      listings.forEach((listing) => {
+        const matchesType =
+          !selectedFilters.typeOfPlace.length ||
+          selectedFilters.typeOfPlace.includes(
+            listing.getAttribute("data-type")
+          );
+        const matchesBedrooms =
+          !selectedFilters.bedrooms.length ||
+          selectedFilters.bedrooms.includes(
+            listing.getAttribute("data-bedrooms")
+          );
+        const matchesBeds =
+          !selectedFilters.beds.length ||
+          selectedFilters.beds.includes(listing.getAttribute("data-beds"));
+        const matchesAccessibility =
+          !selectedFilters.accessibility.length ||
+          selectedFilters.accessibility.includes(
+            listing.getAttribute("data-accessibility")
+          );
+
+        const matches =
+          matchesType && matchesBedrooms && matchesBeds && matchesAccessibility;
+        listing.style.display = matches ? "block" : "none";
+      });
+
+      // Reposition matched listing cards
+      const container = document.getElementById("listing-container");
+      container.innerHTML = ""; // Clear the container
+      listings.forEach((listing) => {
+        if (listing.style.display === "block") {
+          container.appendChild(listing);
+        }
+      });
+
+      document.getElementById("modal").style.display = "none";
+    });
+
+  document
+    .querySelector(".footer-filter span")
+    .addEventListener("click", () => {
+      selectedFilters = {
+        typeOfPlace: [],
+        bedrooms: [],
+        beds: [],
+        accessibility: [],
+      };
+      document.querySelectorAll(".listing-card").forEach((listing) => {
+        listing.style.display = "block";
+      });
+      document.getElementById("modal").style.display = "none";
+    });
+
+  document.querySelector("#close").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+  });
+</script>

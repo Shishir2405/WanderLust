@@ -69,6 +69,26 @@ const listingSchema = Schema({
       "play",
     ],
   },
+  typeOfPlace: {
+    type: String,
+    enum: ["entire-place", "room", "shared-room"],
+  },
+  bedrooms: {
+    type: Number,
+    max: 8,
+  },
+  beds: {
+    type: Number,
+    max: 8,
+  },
+  locked: {
+    type: String,
+    enum: ["yes", "no"],
+  },
+  other: {
+    type: String,
+    enum: ["no", "me", "family", "other-guests"],
+  },
 });
 
 listingSchema.post("findOneAndDelete", async (listing) => {

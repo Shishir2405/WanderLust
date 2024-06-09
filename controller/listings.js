@@ -4,19 +4,21 @@ const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({}).populate('reviews');
-    
-    
-    allListings.forEach(listing => {
-      if (listing.reviews.length > 0) {
-        const totalRating = listing.reviews.reduce((acc, review) => acc + review.rating, 0);
-        listing.averageRating = totalRating / listing.reviews.length;
-      } else {
-        listing.averageRating = 0; 
-      }
-    });
+  const allListings = await Listing.find({}).populate("reviews");
 
-    res.render("listings/index.ejs",{ allListings, includeNavBelow: true });
+  allListings.forEach((listing) => {
+    if (listing.reviews.length > 0) {
+      const totalRating = listing.reviews.reduce(
+        (acc, review) => acc + review.rating,
+        0
+      );
+      listing.averageRating = totalRating / listing.reviews.length;
+    } else {
+      listing.averageRating = 0;
+    }
+  });
+
+  res.render("listings/index.ejs", { allListings, includeNavBelow: true });
 };
 
 module.exports.renderNewForm = (req, res) => {
@@ -29,31 +31,37 @@ module.exports.showListing = async (req, res) => {
 
     const listing = await Listing.findById(id)
       .populate({
-        path: 'reviews',
+        path: "reviews",
         populate: {
-          path: 'author',
+          path: "author",
         },
       })
-      .populate('owner');
+      .populate("owner");
 
     if (!listing) {
-      req.flash('error', 'The requested listing does not exist.');
-      return res.redirect('/listings');
+      req.flash("error", "The requested listing does not exist.");
+      return res.redirect("/listings");
     }
 
     // Calculate average rating
     let averageRating = 0;
     if (listing.reviews && listing.reviews.length > 0) {
-      const totalRating = listing.reviews.reduce((acc, review) => acc + review.rating, 0);
+      const totalRating = listing.reviews.reduce(
+        (acc, review) => acc + review.rating,
+        0
+      );
       averageRating = totalRating / listing.reviews.length;
     }
 
-    res.render('listings/show.ejs', { listing, averageRating, currentUser: req.user });
-
+    res.render("listings/show.ejs", {
+      listing,
+      averageRating,
+      currentUser: req.user,
+    });
   } catch (error) {
-    console.error('Error:', error);
-    req.flash('error', 'An error occurred while fetching the listing.');
-    res.redirect('/listings');
+    console.error("Error:", error);
+    req.flash("error", "An error occurred while fetching the listing.");
+    res.redirect("/listings");
   }
 };
 
@@ -67,16 +75,22 @@ module.exports.createListing = async (req, res, next) => {
 
   let url = req.file.path;
   let filename = req.file.filename;
-  
+
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
 
   newListing.geometry = response.body.features[0].geometry;
   newListing.category = req.body.listing.category;
+  newListing.typeOfPlace = req.body.listing.typeOfPlace;
+  newListing.bedrooms = req.body.listing.bedrooms;
+  newListing.beds = req.body.listing.beds;
+  newListing.locked = req.body.listing.locked;
+  newListing.other = req.body.listing.other;
   let savedListing = await newListing.save();
   console.log(req.body.category);
   console.log(savedListing);
+
   req.flash("success", "New Listing Created!!!");
 
   res.redirect("/listings");

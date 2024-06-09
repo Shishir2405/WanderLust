@@ -4,34 +4,33 @@
 
 <style>
   .favorite-tag {
-  position: absolute;
-  top: 10px; /* Adjust as necessary */
-  left: 10px; /* Adjust as necessary */
-  background-color: white;
-  padding: 0.15rem 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  border-radius: 1.5rem;
-  z-index: 1; /* Ensure it's above the image */
-}
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: white;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 1.5rem;
+    z-index: 1;
+  }
 
-#submit-btn {
-  position: absolute;
-  top: 10px; /* Adjust as necessary */
-  right: 10px; /* Adjust as necessary */
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-size: 1.25rem;
-  z-index: 100;
-  transition: 0.9s scale ease-in;
-}
+  #submit-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 1.25rem;
+    z-index: 100;
+    transition: 0.9s scale ease-in;
+  }
 
-#submit-btn:hover {
- transform: scale(1.2);
-}
-
+  #submit-btn:hover {
+    transform: scale(1.2);
+  }
 </style>
 
 <br />
@@ -57,10 +56,11 @@
   </div>
 </div>
 
-<%- include("../includes/currency.ejs") %>
+<%- include("../includes/currency.ejs") %> <%-
+include("../includes/filters.ejs") %>
 
 <div
-  class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1"
+  class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4"
   id="listing-container"
 >
   <% for(let listing of allListings){ %>
@@ -69,13 +69,14 @@
       class="card listing-card"
       data-title="<%=listing.title.toLowerCase()%>"
       data-listing-id="<%=listing._id%>"
+      data-bedrooms="<%= listing.bedrooms %>"
+      data-beds="<%= listing.beds %>"
+      data-accessibility="<%= listing.locked %>"
+      data-type="<%= listing.typeOfPlace %>"
     >
-
-    <% if (currUser && currUser.favoriteListings.includes(listing._id) && listing.averageRating > 4) { %>
-      <div class="favorite-tag">
-        Guest favourite
-      </div>
-    <% } %>
+      <% if (listing.averageRating >= 4.75) { %>
+      <div class="favorite-tag">Guest favourite</div>
+      <% } %>
 
       <img
         src="<%=listing.image.url%>"
@@ -83,21 +84,28 @@
         alt="Listing Image"
         style="height: 20rem"
       />
-     
+
       <form action="/wishlists/add" method="POST">
         <input type="hidden" name="userId" value="<%= currUser._id %>" />
         <input type="hidden" name="listingId" value="<%= listing._id %>" />
-        <button type="submit" id="submit-btn" style="background: none; border: none; padding: 0;">
-          <p style="margin-right: 0.5rem; font-weight: 300;">
-            <% if (currUser && currUser.favoriteListings.includes(listing._id)) { %>
-              <i class="fa-solid fa-heart" style="color: #FF385C;"></i> <!-- Filled heart -->
+        <button
+          type="submit"
+          id="submit-btn"
+          style="background: none; border: none; padding: 0"
+        >
+          <p style="margin-right: 0.5rem; font-weight: 300">
+            <% if (currUser && currUser.favoriteListings.includes(listing._id))
+            { %>
+            <i class="fa-solid fa-heart" style="color: #ff385c"></i>
+            <!-- Filled heart -->
             <% } else { %>
-              <i class="fa-solid fa-heart" style="color: rgb(64, 64, 64);"></i> <!-- Empty heart -->
+            <i class="fa-solid fa-heart" style="color: rgb(64, 64, 64)"></i>
+            <!-- Empty heart -->
             <% } %>
           </p>
         </button>
       </form>
-      
+
       <div class="card-img-overlay"></div>
       <div class="card-body">
         <p class="card-text" style="margin-left: 0.25rem">
@@ -113,15 +121,15 @@
             style="display: none"
             data-original-price="<%=listing.price%>"
             ><b>
-              &#x20B9; <%= (listing.price * 1.18).toLocaleString("en-IN") %></b
-            >/ night</span
-          >
+              &#x20B9; <%= (listing.price * 1.18).toLocaleString("en-IN") %> </b
+            >/ night
+          </span>
         </p>
       </div>
     </div>
   </a>
   <% } %>
 </div>
-<script src="/JS/index.js"></script>
 
+<script src="/JS/index.js"></script>
 <script src="/JS/currency.js"></script>
