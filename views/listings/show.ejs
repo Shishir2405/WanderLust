@@ -81,6 +81,51 @@
 
           <hr />
 
+          <% if (averageRating === 5) { %>
+            <div class="guest-favourite">
+              <div class="leaf-icon">
+                <img src="/Assets/leaf-left.png" alt="Leaf Icon">
+                <span class="title">
+                  Guest favourite
+                </span>
+                  <img src="/Assets/leaf-right.png" alt="Leaf Icon">
+                  
+              </div>
+              <div class="text-section">
+                  <div class="subtitle">One of the most loved homes on Airbnb, according to guests</div>
+              </div>
+              <div class="rating-section">
+               <div class="rating">
+                <p class="card-text" style="text-align: center;">
+                  <% if (averageRating) { %>
+                    <span
+                      ><b style="font-size: 1.45rem;"><%= averageRating.toFixed(2) %></b></span
+                    >
+                    <% }%>
+                  <b style="text-wrap: nowrap;"> <% for(let i=1;i<=5;i++) {%>
+                    <i class="fa-solid fa-star"></i>
+                    <% } %>
+                  </b>
+                </p>
+               </div>
+  
+                  <div class="reviews">
+                      <div class="rating">
+                        <% if (listing.reviews && listing.reviews.length > 0) { %>
+                          <p class="card-text" style="text-align: center;">
+                            <b style="font-size: 1.45rem;"> <%= listing.reviews.length %></b>
+                            <b style="text-decoration: underline; font-size: 0.85rem; font-weight: 500;">Reviews</b>
+                          </p>
+                          <% } %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <hr>
+          <% } %>
+        
+
+
           <div class="owner-card">
             <div class="owner-avatar">
               <span class="avatar-circle"

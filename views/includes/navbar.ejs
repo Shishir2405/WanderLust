@@ -174,9 +174,9 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
           i++;
         } else {
           clearInterval(typingInterval);
-          setTimeout(callback, 1000); // Wait before erasing
+          setTimeout(callback, 1000); 
         }
-      }, 100); // Adjust typing speed here
+      }, 100); 
     }
 
     function eraseEffect(callback) {
@@ -189,7 +189,7 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
           clearInterval(erasingInterval);
           callback();
         }
-      }, 50); // Adjust erasing speed here
+      }, 50); 
     }
 
     function loopPlaceholders() {

@@ -223,6 +223,8 @@
 .like-share {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 20%;
 }
 
 #submit-btn {
@@ -239,4 +241,91 @@
 
 #submit-btn:hover{
   background-color: rgba(161, 158, 158, 0.132);
+}
+
+
+.guest-favourite {
+  background-color: white;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.leaf-icon{
+ height: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.leaf-icon img{
+  width: 2.75rem;
+  height: 3.25rem;
+}
+
+.text-section {
+  flex-grow: 1;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 1.15rem;
+ text-align: center;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #010203;
+  margin-top: 5px;
+  text-wrap: wrap;
+  font-weight: 600;
+}
+
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rating-value {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+.reviews {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.review-count {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
+@media (max-width: 600px) {
+  .guest-favourite {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .rating-section {
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+  }
 }

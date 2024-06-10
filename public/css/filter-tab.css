@@ -1,0 +1,144 @@
+#main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.main-nav {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.main-nav:nth-child(3) {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.main-nav:nth-child(1) {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.main-nav:hover {
+  background-color: #d3d3d396;
+  border: 1px solid black;
+}
+
+.main-nav:focus {
+  background-color: #131313;
+  color: white;
+}
+
+.head-to-indicate {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.extra {
+  color: #717171;
+  font-size: 0.95rem;
+}
+
+#typeOfPlace {
+  padding: 1rem;
+}
+
+.btn-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btn-container button {
+  width: 4rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.25rem;
+  border: 1px solid #717171;
+  background-color: white;
+  font-weight: 700;
+}
+
+.btn-container button:focus {
+  color: white;
+  background-color: #131313;
+}
+
+.btn-container button:hover {
+  background-color: #d3d3d396;
+  border: 1px solid black;
+}
+
+.btn-container2 {
+  display: flex;
+  width: 20%;
+  justify-content: space-around;
+  padding: 0.35rem 1rem;
+}
+
+.btn-container2 button {
+  width: 4rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.25rem;
+  border: 1px solid #717171;
+  background-color: white;
+  font-weight: 700;
+}
+
+.btn-container2 button:focus {
+  color: white;
+  background-color: #131313;
+}
+
+.btn-container2 button:hover {
+  background-color: #d3d3d396;
+  border: 1px solid black;
+}
+
+.footer-filter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #717171;
+}
+
+#show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  width: 7rem;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  border-radius: 1rem;
+}
+
+#clear-all {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+
+#clear-all:hover {
+  background-color: #d3d3d3;
+}

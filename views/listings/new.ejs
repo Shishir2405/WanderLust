@@ -44,7 +44,7 @@
             <div class="text">
                <span>Click to upload image</span>
                </div>
-               <input type="file" id="file" name="listing[image]" >
+               <input type="file" id="file" name="listing[image]">
             </label>
             
         </div>
@@ -66,11 +66,11 @@
           <div class="mb-2 col-md-4">
             <label for="select-styling" id="label">Catogery :</label>
           <select
-            class="custom-select"
+            class="custom-select form-select"
             id="select-styling"
             placeholder="Choose"
             name="listing[category]"
-            class="form-control"
+            required
           >
           <option value="trending">Trending</option>
               <option value="beach">Beach</option>
@@ -140,7 +140,7 @@
         <div class="col-md-4">
           <label for="select-styling" id="label">Type Of Place :</label>
         <select
-          class="custom-select"
+          class="custom-select form-select"
           id="select-styling"
           placeholder="Choose"
           name="listing[typeOfPlace]"
@@ -157,7 +157,7 @@
         <div class="col-md-4">
           <label for="room-locked" id="label">Room Locked :</label>
         <select
-          class="custom-select"
+          class="custom-select form-select"
           id="room-locked"
           placeholder="Choose"
           name="listing[locked]"
@@ -172,7 +172,7 @@
       <div class="col-md-4">
         <label for="someone" id="label">Is There Someone Else :</label>
         <select
-          class="custom-select"
+          class="custom-select form-select"
           id="someone"
           placeholder="Choose"
           name="listing[other]"
