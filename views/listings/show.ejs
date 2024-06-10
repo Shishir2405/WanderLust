@@ -68,16 +68,18 @@
               <b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b>
             </p>
           </div>
-          <% if (listing.reviews && listing.reviews.length > 0) { %>
-          <p class="card-text">
-            <b
-              ><i class="fa-solid fa-star"></i></b><b style="text-decoration: underline;"> <%= listing.reviews.length %>
-              reviews</b
-            >
-          </p>
-          <% } else { %>
-          <p class="card-text"><b style="text-decoration: underline;">No Reviews</b></p>
-          <% } %>
+          <% if(averageRating !== 5) {%>
+            <% if (listing.reviews && listing.reviews.length > 0) { %>
+              <p class="card-text">
+                <b
+                  ><i class="fa-solid fa-star"></i></b><b style="text-decoration: underline;"> <%= listing.reviews.length %>
+                  reviews</b
+                >
+              </p>
+              <% } else { %>
+              <p class="card-text"><b style="text-decoration: underline;">No Reviews</b></p>
+              <% } %>
+            <% } %>
 
           <hr />
 
@@ -114,7 +116,7 @@
                         <% if (listing.reviews && listing.reviews.length > 0) { %>
                           <p class="card-text" style="text-align: center;">
                             <b style="font-size: 1.45rem;"> <%= listing.reviews.length %></b>
-                            <b style="text-decoration: underline; font-size: 0.85rem; font-weight: 500;">Reviews</b>
+                            <b style="color:black; font-size:0.85rem; font-weight: 500;"><a href="#review-div" style="color: black;">Review</a></b>
                           </p>
                           <% } %>
                       </div>
@@ -251,7 +253,7 @@
         </h4>
         <% } %>
         <br />
-        <div class="row">
+        <div class="row" id="review-div">
           <% for (let review of listing.reviews) { %>
           <div class="col-lg-6 col-md-12 mb-3 d-flex">
             <div class="review-card">
