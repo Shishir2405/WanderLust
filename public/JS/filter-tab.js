@@ -46,8 +46,12 @@ document.querySelectorAll(".btn-accessibility button").forEach((button) => {
 });
 
 // Function to filter listings based on selected filters
+// Function to filter listings based on selected filters
 function filterListings() {
-  const listings = document.querySelectorAll(".listing-card");
+  const listingsContainer = document.querySelector(".listings-container"); // Adjust this selector to your listings container
+  const listings = Array.from(document.querySelectorAll(".listing-card"));
+  listingsContainer.innerHTML = ''; // Clear the container
+
   listings.forEach((listing) => {
     const matchesType =
       !selectedFilters.typeOfPlace.length ||
@@ -66,9 +70,16 @@ function filterListings() {
 
     const matches =
       matchesType && matchesBedrooms && matchesBeds && matchesAccessibility;
-    listing.style.display = matches ? "block" : "none";
+    
+    if (matches) {
+      listingsContainer.appendChild(listing); // Re-append matched listing to the container
+      listing.style.display = "block"; // Ensure matched listing is visible
+    } else {
+      listing.style.display = "none"; // Hide unmatched listing
+    }
   });
 }
+
 
 // Event listener for "Show" button to hide modal
 document.querySelector("#show").addEventListener("click", () => {
