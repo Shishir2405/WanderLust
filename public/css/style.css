@@ -334,6 +334,9 @@ body::-webkit-scrollbar-thumb {
   #shareImage {
     display: inline;
   }
+ #footer {
+    display: none !important;
+  }
 }
 
 input[type="text"],
@@ -344,11 +347,10 @@ textarea {
   border: 1.5px solid #8f8d8d !important;
 }
 
-
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="number"]:focus,
-textarea:focus{
+textarea:focus {
   border: 1.5px solid #000000 !important;
 }
