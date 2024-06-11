@@ -21,6 +21,7 @@ document.querySelectorAll(".filter-typeOfPlace").forEach((button) => {
   button.addEventListener("click", () => {
     toggleSelection("typeOfPlace", button.getAttribute("data-value"));
     filterListings(); // Call function to filter listings
+    arrangeFilteredCards(); // Arrange filtered cards
   });
 });
 
@@ -28,6 +29,7 @@ document.querySelectorAll(".btn-bedrooms button").forEach((button) => {
   button.addEventListener("click", () => {
     toggleSelection("bedrooms", button.getAttribute("data-value"));
     filterListings();
+    arrangeFilteredCards();
   });
 });
 
@@ -35,6 +37,7 @@ document.querySelectorAll(".btn-beds button").forEach((button) => {
   button.addEventListener("click", () => {
     toggleSelection("beds", button.getAttribute("data-value"));
     filterListings();
+    arrangeFilteredCards();
   });
 });
 
@@ -42,16 +45,13 @@ document.querySelectorAll(".btn-accessibility button").forEach((button) => {
   button.addEventListener("click", () => {
     toggleSelection("accessibility", button.getAttribute("data-value"));
     filterListings();
+    arrangeFilteredCards();
   });
 });
 
 // Function to filter listings based on selected filters
-// Function to filter listings based on selected filters
 function filterListings() {
-  const listingsContainer = document.querySelector(".listings-container"); // Adjust this selector to your listings container
-  const listings = Array.from(document.querySelectorAll(".listing-card"));
-  listingsContainer.innerHTML = ''; // Clear the container
-
+  const listings = document.querySelectorAll(".listing-card");
   listings.forEach((listing) => {
     const matchesType =
       !selectedFilters.typeOfPlace.length ||
@@ -70,16 +70,28 @@ function filterListings() {
 
     const matches =
       matchesType && matchesBedrooms && matchesBeds && matchesAccessibility;
-    
-    if (matches) {
-      listingsContainer.appendChild(listing); // Re-append matched listing to the container
-      listing.style.display = "block"; // Ensure matched listing is visible
-    } else {
-      listing.style.display = "none"; // Hide unmatched listing
-    }
+    listing.style.display = matches ? "block" : "none";
   });
 }
 
+// Function to arrange filtered cards
+function arrangeFilteredCards() {
+  const container = document.getElementById("listing-container");
+  const listings = container.querySelectorAll(".listing-card");
+  const sortedListings = Array.from(listings).sort((a, b) => {
+    // Custom sorting logic here if needed
+    // This example sorts by listing title
+    const titleA = a.dataset.title.toUpperCase();
+    const titleB = b.dataset.title.toUpperCase();
+    if (titleA < titleB) return -1;
+    if (titleA > titleB) return 1;
+    return 0;
+  });
+  container.innerHTML = ""; // Clear container
+  sortedListings.forEach((listing) => {
+    container.appendChild(listing); // Re-append sorted listings
+  });
+}
 
 // Event listener for "Show" button to hide modal
 document.querySelector("#show").addEventListener("click", () => {
