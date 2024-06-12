@@ -8,7 +8,7 @@ select {
   background-color: inherit;
 }
 
-select:focus{
+select:focus {
   border: 1.5px solid #000000 !important;
 }
 
@@ -22,10 +22,9 @@ select:focus{
   margin-bottom: 0.45rem;
 }
 
-.row{
+.row {
   margin-right: 0;
 }
-
 
 .custum-file-upload {
   height: 100%;
@@ -41,7 +40,7 @@ select:focus{
   background-color: rgba(255, 255, 255, 1);
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0px 48px 35px -48px rgba(0,0,0,0.1);
+  box-shadow: 0px 48px 35px -48px rgba(0, 0, 0, 0.1);
 }
 
 .custum-file-upload .icon {

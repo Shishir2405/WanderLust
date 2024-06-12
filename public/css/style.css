@@ -313,7 +313,7 @@ body::-webkit-scrollbar-thumb {
     padding: 0.65rem;
     margin-inline: 0.25rem;
     cursor: pointer;
-    color:black;
+    color: black;
   }
   #filter-near_search i {
     font-weight: 900;

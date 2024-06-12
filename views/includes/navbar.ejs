@@ -150,7 +150,7 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
   <a class="nav-link" href="/login">Log In</a>
   <%} %> <% if(currUser){%>
   <a class="nav-link" href="/logout">Log Out</a>
- 
+
   <a class="nav-link" href="/wishlists">Wishlist</a>
   <%} %>
 </div>
@@ -180,9 +180,9 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
           i++;
         } else {
           clearInterval(typingInterval);
-          setTimeout(callback, 1000); 
+          setTimeout(callback, 1000);
         }
-      }, 100); 
+      }, 100);
     }
 
     function eraseEffect(callback) {
@@ -195,7 +195,7 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
           clearInterval(erasingInterval);
           callback();
         }
-      }, 50); 
+      }, 50);
     }
 
     function loopPlaceholders() {
@@ -210,7 +210,9 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
     loopPlaceholders();
   });
 
-  document.querySelector("#filter-near_search").addEventListener("click",()=>{
-    document.getElementById('modal').style.display = 'block';
-  })
+  document
+    .querySelector("#filter-near_search")
+    .addEventListener("click", () => {
+      document.getElementById("modal").style.display = "block";
+    });
 </script>

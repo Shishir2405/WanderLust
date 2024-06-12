@@ -239,10 +239,9 @@
   margin-left: 1rem;
 }
 
-#submit-btn:hover{
+#submit-btn:hover {
   background-color: rgba(161, 158, 158, 0.132);
 }
-
 
 .guest-favourite {
   background-color: white;
@@ -257,14 +256,14 @@
   box-sizing: border-box;
 }
 
-.leaf-icon{
- height: 100%;
- display: flex;
- justify-content: center;
- align-items: center;
+.leaf-icon {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.leaf-icon img{
+.leaf-icon img {
   width: 2.75rem;
   height: 3.25rem;
 }
@@ -276,7 +275,7 @@
 .title {
   font-weight: 800;
   font-size: 1.15rem;
- text-align: center;
+  text-align: center;
 }
 
 .subtitle {
@@ -304,7 +303,6 @@
   font-size: 18px;
 }
 
-
 .reviews {
   display: flex;
   align-items: center;
@@ -316,16 +314,15 @@
   font-size: 16px;
 }
 
-
 @media (max-width: 600px) {
   .guest-favourite {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .rating-section {
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 10px;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
   }
 }

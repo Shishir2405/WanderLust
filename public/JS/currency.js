@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const currencyTabs = document.querySelectorAll(".currency-tab");
   const currencyText = document.querySelector("#currency-text");
 
-
   globeIcon.onclick = function () {
     modal.style.display = "block";
   };

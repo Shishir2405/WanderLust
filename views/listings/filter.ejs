@@ -2,10 +2,9 @@
 
 <link rel="stylesheet" href="/css/index.css" />
 
-
 <body>
   <% include("../includes/currency.ejs") %> <%-
-include("../includes/filters.ejs") %>
+  include("../includes/filters.ejs") %>
 
   <div class="tax-toggle toggler" style="margin-top: 1rem">
     <label class="form-check-label" for="flexSwitchCheckDefault"
@@ -30,12 +29,14 @@ include("../includes/filters.ejs") %>
   </div>
 
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1">
-    <% for(let listing of listings){ %> <!-- changed 'listings' to 'listing' -->
-    <a href="/listings/<%=listing._id%>" id="listing-link"> <!-- changed 'listings' to 'listing' -->
+    <% for(let listing of listings){ %>
+    <!-- changed 'listings' to 'listing' -->
+    <a href="/listings/<%=listing._id%>" id="listing-link">
+      <!-- changed 'listings' to 'listing' -->
       <div
         class="card listing-card mt-3"
-        data-title="<%=listing.title.toLowerCase()%>" 
-        data-listing-id="<%=listing._id%>" 
+        data-title="<%=listing.title.toLowerCase()%>"
+        data-listing-id="<%=listing._id%>"
         data-bedrooms="<%= listing.bedrooms %>"
         data-beds="<%= listing.beds %>"
         data-accessibility="<%= listing.locked %>"
@@ -58,10 +59,9 @@ include("../includes/filters.ejs") %>
             id="submit-heart"
             style="background: none; border: none; padding: 0"
           >
-            
             <p style="margin-right: 0.5rem; font-weight: 300">
-              <% if (currUser && currUser.favoriteListings.includes(listing._id))
-              { %>
+              <% if (currUser &&
+              currUser.favoriteListings.includes(listing._id)) { %>
               <i class="fa-solid fa-heart" style="color: #ff385c"></i>
               <!-- Filled heart -->
               <% } else { %>
@@ -102,4 +102,3 @@ include("../includes/filters.ejs") %>
 
 <script src="/JS/index.js"></script>
 <script src="/JS/currency.js"></script>
-

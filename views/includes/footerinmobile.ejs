@@ -1,23 +1,21 @@
 <style>
   .footer a {
-  color: gray;
-  text-decoration: none;
-}
+    color: gray;
+    text-decoration: none;
+  }
 
-.footer a.active {
-  color: #fe424d !important;
-}
+  .footer a.active {
+    color: #fe424d !important;
+  }
 
-.footer a.active .footer-icon-div .inside,
-.footer a.active p,
-.footer a.active .material-symbols-outlined,
-.footer a.active .icon-footer,
-.footer a.active #icon-footer{
-  color: #fe424d
-}
-
+  .footer a.active .footer-icon-div .inside,
+  .footer a.active p,
+  .footer a.active .material-symbols-outlined,
+  .footer a.active .icon-footer,
+  .footer a.active #icon-footer {
+    color: #fe424d;
+  }
 </style>
-
 
 <div class="footer">
   <a href="/listings" class="<%= currPage === '/listings' ? 'active' : '' %>">
@@ -45,10 +43,8 @@
       <p>Sign Up</p>
     </div>
   </a>
-  <% } %> 
-  <% if (currUser) { %>
-  
-  
+  <% } %> <% if (currUser) { %>
+
   <a href="/wishlists" class="<%= currPage === '/wishlists' ? 'active' : '' %>">
     <div class="footer-icon-div">
       <div class="inside">
@@ -57,7 +53,10 @@
       <p>Wishlists</p>
     </div>
   </a>
-  <a href="/listings/new" class="<%= currPage === '/listings/new' ? 'active' : '' %>">
+  <a
+    href="/listings/new"
+    class="<%= currPage === '/listings/new' ? 'active' : '' %>"
+  >
     <div class="footer-icon-div">
       <div class="inside">
         <i class="fa-solid fa-plus icon-footer"></i>
@@ -76,17 +75,15 @@
   <% } %>
 </div>
 
-
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const links = document.querySelectorAll('.footer a');
-  const currentPath = window.location.pathname;
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll(".footer a");
+    const currentPath = window.location.pathname;
 
-  links.forEach(link => {
-    if (link.getAttribute('href') === currentPath) {
-      link.classList.add('active');
-    }
+    links.forEach((link) => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
   });
-});
-
 </script>

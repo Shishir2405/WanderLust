@@ -13,7 +13,6 @@ const userSchema = new Schema({
       ref: "Listing",
     },
   ],
-  // Add date and month fields
   favoriteListingsDates: [
     {
       listingId: {

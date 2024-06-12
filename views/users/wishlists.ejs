@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/index.css" />
 <style>
-  a{
+  a {
     text-decoration: none;
   }
 </style>
@@ -11,9 +11,9 @@
 > 0) { %>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
   <% currUser.favoriteListings.forEach((listingId) => { %>
-  
-    <a href="/listings/<%=listingId._id%>">
-      <div class="card listing-card">
+
+  <a href="/listings/<%=listingId._id%>">
+    <div class="card listing-card">
       <div class="remove-button-container">
         <form action="/wishlists/remove" method="POST">
           <input type="hidden" name="userId" value="<%= currUser._id %>" />
@@ -49,8 +49,9 @@
           </span>
         </p>
       </div>
-    </div></a>
-  
+    </div></a
+  >
+
   <% }); %>
 </div>
 <% } else { %>
