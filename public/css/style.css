@@ -16,24 +16,23 @@ body {
 */
 
 body {
-  --sb-track-color: #fff3f3;
-  --sb-thumb-color: #fe424d;
+  --sb-track-color: #c2c2c2;
+  --sb-thumb-color: #222222;
   --sb-size: 10px;
 }
 
 body::-webkit-scrollbar {
   width: var(--sb-size);
-  height: 20px;
 }
 
 body::-webkit-scrollbar-track {
   background: var(--sb-track-color);
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
 @supports not selector(::-webkit-scrollbar) {
