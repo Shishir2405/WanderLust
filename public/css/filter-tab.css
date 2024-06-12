@@ -134,11 +134,78 @@
 
 #clear-all {
   padding: 0.5rem 1rem;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 1rem;
   border-radius: 0.5rem;
 }
 
 #clear-all:hover {
   background-color: #d3d3d3;
+}
+
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    height: 90vh;
+    width: 95vw;
+    overflow-x: hidden;
+    padding: 0.25rem;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .btn-container {
+    overflow-x: scroll;
+    width: 100%;
+    padding: 0;
+    width: 100%;
+  }
+  .btn-container button {
+    padding-inline: 1.75rem;
+    margin-inline: 0.5rem;
+    justify-content: flex-start;
+  }
+
+  .btn-container2 button {
+    margin-inline: 0.5rem;
+  }
+
+  .extra {
+    font-size: 0.85rem;
+  }
+
+  .main-nav {
+    font-size: 0.8rem;
+  }
+
+  .btn-container::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .modal-content {
+    --sb-track-color: #d3d3d3;
+    --sb-thumb-color: #858282;
+    --sb-size: 5px;
+  }
+
+  .modal-content::-webkit-scrollbar {
+    width: var(--sb-size);
+  }
+
+  .modal-content::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 3px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 3px;
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    .modal-content {
+      scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+  }
 }

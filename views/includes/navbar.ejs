@@ -80,22 +80,28 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
     </div>
 
     <div class="main">
-      <div class="searchBox">
-        <input
-          class="searchInput"
-          type="text"
-          name=""
-          placeholder="Search Title"
-        />
-        <button class="searchButton" href="#">
-          <lord-icon
-            src="https://cdn.lordicon.com/fkdzyfle.json"
-            trigger="hover"
-            style="width: 1.25rem; height: 1.25rem"
-            colors="primary:#ffffff"
-          >
-          </lord-icon>
-        </button>
+      <div id="search-filter">
+        <div class="searchBox">
+          <input
+            class="searchInput"
+            type="text"
+            name=""
+            placeholder="Search Title"
+          />
+          <button class="searchButton" href="#">
+            <lord-icon
+              src="https://cdn.lordicon.com/fkdzyfle.json"
+              trigger="hover"
+              style="width: 1.25rem; height: 1.25rem"
+              colors="primary:#ffffff"
+            >
+            </lord-icon>
+          </button>
+        </div>
+
+        <div id="filter-near_search">
+          <i class="fa-solid fa-sliders"></i>
+        </div>
       </div>
 
       <div class="navbar-nav nav-side">
@@ -203,4 +209,8 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
 
     loopPlaceholders();
   });
+
+  document.querySelector("#filter-near_search").addEventListener("click",()=>{
+    document.getElementById('modal').style.display = 'block';
+  })
 </script>

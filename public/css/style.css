@@ -278,20 +278,49 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
 }
 
+#filter-near_search {
+  display: none;
+}
+
 @media only screen and (max-width: 700px) {
   footer {
     display: none;
   }
+
   .footer {
     display: flex;
   }
+
   .container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .searchInput {
     width: 100%;
+  }
+
+  #search-filter {
+    display: flex;
+    align-items: center;
+    width: 100% !important;
+  }
+
+  #filter-near_search {
+    display: inline-flex;
+    border: 1px solid #d3d3d3;
+    border-radius: 50%;
+    padding: 0.65rem;
+    margin-inline: 0.25rem;
+    cursor: pointer;
+  }
+  #filter-near_search i {
+    font-weight: 900;
+    font-size: 0.9rem;
+  }
+  #nav {
+    padding: 0 !important;
   }
 }
 
@@ -334,7 +363,7 @@ body::-webkit-scrollbar-thumb {
   #shareImage {
     display: inline;
   }
- #footer {
+  #footer {
     display: none !important;
   }
 }
