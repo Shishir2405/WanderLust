@@ -159,6 +159,7 @@
     padding: 0;
     width: 100%;
   }
+
   .btn-container button {
     padding-inline: 1.75rem;
     margin-inline: 0.5rem;
@@ -167,6 +168,12 @@
 
   .btn-container2 button {
     margin-inline: 0.5rem;
+  }
+
+  .btn-container button:hover,
+  .btn-container2 button:hover {
+    color: white;
+    background-color: #131313;
   }
 
   .extra {
