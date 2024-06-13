@@ -88,7 +88,7 @@ We welcome contributions from the travel community to help improve Wanderlust an
 
 ## Issues 🐛
 
-If you encounter any issues or have suggestions for improvement, please feel free to [report them](https://github.com/your-username/wanderlust/issues).
+If you encounter any issues or have suggestions for improvement, please feel free to [report them](https://github.com/Shishir2405/wanderlust/issues).
 
 ## Tech Stack Used 💻
 
