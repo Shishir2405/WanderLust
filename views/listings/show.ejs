@@ -43,25 +43,27 @@
               Share
             </p>
           </div>
-        <form action="/wishlists/add" method="POST">
-          <input type="hidden" name="userId" value="<%= currentUser._id %>" />
-          <input type="hidden" name="listingId" value="<%= listing._id %>" />
-          <button type="submit" id="submit-btn">
-            <p style="margin-right: 0.5rem; font-weight: 300; color: <%= (currUser && currUser.favoriteListings.includes(listing._id)) ? '#FF385C' : 'rgb(64, 64, 64)' %>">
-              <i class="<%= (currUser && currUser.favoriteListings.includes(listing._id)) ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
-            </p>
-            <p
-              style="
-                text-decoration: underline;
-                font-size: 1rem;
-                font-weight: 600;
-              "
-            >
-              Save
-            </p>
-          </button>
+<% if(currUser) {%>
+  <form action="/wishlists/add" method="POST">
+    <input type="hidden" name="userId" value="<%= currentUser._id %>" />
+    <input type="hidden" name="listingId" value="<%= listing._id %>" />
+    <button type="submit" id="submit-btn">
+      <p style="margin-right: 0.5rem; font-weight: 300; color: <%= (currUser && currUser.favoriteListings.includes(listing._id)) ? '#FF385C' : 'rgb(64, 64, 64)' %>">
+        <i class="<%= (currUser && currUser.favoriteListings.includes(listing._id)) ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+      </p>
+      <p
+        style="
+          text-decoration: underline;
+          font-size: 1rem;
+          font-weight: 600;
+        "
+      >
+        Save
+      </p>
+    </button>
 
-        </form>
+  </form>
+<% } %>
 
          </div>
         </div>
@@ -101,11 +103,11 @@
           <% if (averageRating === 5) { %>
             <div class="guest-favourite">
               <div class="leaf-icon">
-                <img src="/Assets/leaf-left.png" alt="Leaf Icon">
+                <img src="/Assets/left-leaf-show.png" alt="Leaf Icon">
                 <span class="title">
                   Guest favourite
                 </span>
-                  <img src="/Assets/leaf-right.png" alt="Leaf Icon">
+                  <img src="/Assets/right-leaf-show.png" alt="Leaf Icon">
                   
               </div>
               <div class="text-section">
@@ -163,13 +165,21 @@
           <% if(currUser && currUser._id.equals(listing.owner._id)){%>
           <div class="group-btns mt-2">
             <form action="/listings/<%=listing._id%>/edit" method="GET">
-              <button class="btn btn-outline-danger button">Edit</button>
+              <button class="btn edit-button"><span style="color: white;">
+                <lord-icon
+                src="https://cdn.lordicon.com/wuvorxbv.json"
+                trigger="hover"
+                id="edit-icon"
+                stroke="bold"
+                colors="primary:#ffffff,secondary:#ffffff"
+                style="width:1.5rem;height:1.5rem">
+            </lord-icon><span style="margin-left: 0.35rem;">Edit</span></span></button>
             </form>
             <form
               method="POST"
               action="/listings/<%=listing._id%>?_method=DELETE"
             >
-              <button class="btn btn-dark offset-5">Delete</button>
+              <button class="btn btn-outline-dark delete-button offset-5">Delete</button>
             </form>
           </div>
           <% } %>
@@ -248,7 +258,8 @@
           </div>
 
           <br />
-          <button class="btn btn-danger btns">Submit</button>
+          <button class="btn mb-3 outline-button"><span>
+           Submit</span></button>
         </form>
         <hr />
         <% } %> <% if(listing.reviews.length>0) {%>
@@ -324,5 +335,6 @@
 <script src="/JS/map.js"></script>
 <script src="/JS/share.js"></script>
 <script src="/JS/currency.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 

@@ -350,12 +350,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .extra a {
-  color: #fe424d;
+  color: #222;
   text-decoration: none;
 }
 
 .extra a:hover {
-  color: #fe424d;
+  color: #222;
   text-decoration: underline;
 }
 
@@ -383,3 +383,105 @@ input[type="number"]:focus,
 textarea:focus {
   border: 1.5px solid #000000 !important;
 }
+
+.delete-button {
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+}
+
+.edit-button {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  color: white;
+  font-weight: 600;
+  background: linear-gradient(to right, #e82d72 0%, #ee3465 48%, #e03457 100%);
+  overflow: hidden;
+  transition: color 0.5s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #e41d66 0%, #fe346a 48%, #f41b47 100%);
+  z-index: 1;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.edit-button:hover::before {
+  opacity: 1;
+}
+
+.edit-button span {
+  position: relative;
+  z-index: 2;
+  color: white;
+  transition: color 0.5s ease-in-out;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.edit-button:hover span {
+  color: white;
+}
+
+.outline-button {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  color: #e82d72;
+  font-weight: 600;
+  border: 2px solid #e82d72; 
+  transition: color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.outline-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #e41d66 0%, #fe346a 48%, #f41b47 100%);
+  z-index: 1;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  border-radius: 0.25rem;
+}
+
+.outline-button:hover::before {
+  opacity: 1;
+}
+
+.outline-button span {
+  position: relative;
+  z-index: 2;
+  color: #e82d72; 
+  transition: color 0.5s ease-in-out;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.outline-button:hover span {
+  color: white !important;
+}
+
+#form-head{
+  font-size: 1.65rem;
+  font-weight: 700;
+  text-align: center !important;
+}
+

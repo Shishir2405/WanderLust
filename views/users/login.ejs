@@ -2,35 +2,36 @@
 
 <div class="row mt-3" id="login-form">
   <div class="col-12 col-md-6 offset-md-3 mb-4">
-    <h2 class="mb-4">Log In On WanderLust</h2>
+    <h2 class="mb-4 mt-2" id="form-head">Welcome Back</h2>
     <form action="/login" method="POST" novalidate class="needs-validation">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username </label>
+      <div class="form-floating mb-4">
         <input
           type="text"
-          id="username"
           class="form-control"
+          id="floatingPassword"
+          placeholder="Username"
           id="username"
           name="username"
           required
+          required
         />
+        <label for="floatingPassword">Username</label>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password </label>
-        <div id="password-container">
-          <input
-            type="password"
-            id="password"
-            class="form-control"
-            id="password"
-            name="password"
-            required
-          />
-        </div>
+
+      <div class="form-floating mb-4">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          name="password"
+          required
+        />
+        <label for="floatingPassword">Password</label>
         <div class="valid-feedback">Looks Good!</div>
       </div>
-      <div class="extra">
-        <button class="btn btn-danger btns mt-2">Log In</button>
+      <div class="extra mt-4">
+        <button class="btn edit-button"><span>Log In</span></button>
         <a href="/signup"> Don't have an account? Sign Up</a>
       </div>
     </form>

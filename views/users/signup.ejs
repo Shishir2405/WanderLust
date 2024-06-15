@@ -1,59 +1,50 @@
 <% layout("layouts/boilerplate") -%>
 
 <div class="row mt-3">
-   
   <div class="col-12 col-md-6 offset-md-3 mb-4">
-    <h2 class="mb-4">SignUp On WanderLust</h2>
-    <form
-      action="/signup"
-      method="POST"
-      novalidate
-      class="needs-validation"
-    >
-    <div class="mb-3">
-        <label for="username" class="form-label">Username  </label>
+    <h2 class="mb-4" id="form-head">Join WanderLust Today</h2>
+    <form action="/signup" method="POST" novalidate class="needs-validation">
+      <div class="form-floating mb-4">
         <input
           type="text"
-          id="username"
           class="form-control"
+          id="floatingPassword"
+          placeholder="Username"
           id="username"
           name="username"
           required
         />
-        <div class="valid-feedback">Looks Good!</div>
+        <label for="floatingPassword">Username</label>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">E-mail  </label>
+
+      <div class="form-floating mb-4">
         <input
           type="email"
-          id="email"
           class="form-control"
-          id="email"
+          id="floatingPassword"
           name="email"
           placeholder="name@gmail.com"
           required
         />
+        <label for="floatingPassword">E-mail</label>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password  </label>
-        <div id="password-container">
-          <input
-            type="password"
-            id="password"
-            class="form-control"
-            id="password"
-            name="password"
-            required
-          />
-          
-        </div>
+
+      <div class="form-floating mb-4">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          name="password"
+          required
+        />
+        <label for="floatingPassword">Password</label>
         <div class="valid-feedback">Looks Good!</div>
       </div>
       <div class="extra">
-        <button class="btn btn-danger btns mt-2">Login</button>
+        <button class="btn mt-2 edit-button"><span>SignUp</span></button>
         <a href="/login">Already have an account? Log in</a>
       </div>
-      
-</form>
+    </form>
   </div>
 </div>
