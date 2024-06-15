@@ -1,6 +1,21 @@
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/show.css" />
 <link rel="stylesheet" href="/css/index.css" />
+<style>
+  .star {
+  font-size: 1rem;
+}
+
+.star.black {
+  color: black;
+}
+
+.star.gray {
+  color: rgb(133, 132, 132);
+}
+
+</style>
+
 <script>
   const mapToken = "<%=process.env.MAP_TOKEN %>";
   const listing=<%- JSON.stringify(listing) %>;
@@ -266,10 +281,13 @@
                 <h5 class="card-title"><b><%= review.author.username %></b></h5>
               </div>
               <div class="review-content">
-                <p
-                  class="starability-result"
-                  data-rating="<%= review.rating %>"
-                ></p>
+                <% for (let i = 1; i <= 5; i++) { %>
+                  <% if (i <= review.rating) { %>
+                    <span class="star black"><i class="fa-solid fa-star"></i></span>
+                  <% } else { %>
+                    <span class="star gray"><i class="fa-solid fa-star"></i></span>
+                  <% } %>
+                <% } %>
                 <p class="comment"><%= review.comment %></p>
               </div>
               <% if (currUser && currUser._id.equals(review.author._id)) { %>
