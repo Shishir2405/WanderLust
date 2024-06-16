@@ -352,6 +352,7 @@ body::-webkit-scrollbar-thumb {
 .extra a {
   color: #222;
   text-decoration: none;
+  font-weight: 600;
 }
 
 .extra a:hover {

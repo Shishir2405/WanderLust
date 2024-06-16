@@ -154,7 +154,7 @@
 .user-toggle {
   width: 8rem;
   height: 10rem;
-  position: absolute;
+  position: fixed;
   top: 12%;
   right: 1%;
   z-index: 10000;
