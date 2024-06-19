@@ -187,11 +187,10 @@
 
 .searchBox {
   display: flex;
-  max-width: 20rem;
   align-items: center;
   justify-content: space-between;
   position: relative;
-  margin-right: 15rem;
+  margin-right: 19rem;
 }
 
 .searchButton {
@@ -228,6 +227,15 @@
 
 #user-icon {
   margin-left: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    width: 100%;
+  }
+  .searchBox {
+    width: 95% !important;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -268,7 +276,7 @@
 
 @media only screen and (max-width: 1050px) {
   .searchBox {
-    margin-left: auto;
+    margin-right: auto;
   }
   .nav-side {
     margin-right: auto !important;
