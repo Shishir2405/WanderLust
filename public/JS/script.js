@@ -28,4 +28,4 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl);
 });
 
-ScrollReveal().reveal(".listing-card", { interval: 350, reset: true });
+
