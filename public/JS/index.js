@@ -92,3 +92,4 @@ document.getElementById("flexSwitch").addEventListener("click", function () {
     item.style.display = item.style.display === "none" ? "inline" : "none";
   });
 });
+

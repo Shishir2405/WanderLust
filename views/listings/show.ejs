@@ -47,7 +47,7 @@
   <form action="/wishlists/add" method="POST">
     <input type="hidden" name="userId" value="<%= currentUser._id %>" />
     <input type="hidden" name="listingId" value="<%= listing._id %>" />
-    <button type="submit" id="submit-btn">
+    <button type="submit" id="submit-btn" style="margin-right: 2.5rem;">
       <p style="margin-right: 0.5rem; font-weight: 300; color: <%= (currUser && currUser.favoriteListings.includes(listing._id)) ? '#FF385C' : 'rgb(64, 64, 64)' %>">
         <i class="<%= (currUser && currUser.favoriteListings.includes(listing._id)) ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
       </p>

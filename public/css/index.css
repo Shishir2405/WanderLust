@@ -378,6 +378,9 @@ input:checked + .slider:before {
   .tax-toggle {
     display: none;
   }
+  #filter-tab {
+    display: none;
+  }
   #filters {
     height: 5rem;
     width: 100%;
