@@ -63,10 +63,10 @@ module.exports.addToWishlist = async (req, res, next) => {
         user.favoriteListings.push(listingId);
         await user.save();
         req.flash("success", "Listing added to wishlist successfully.");
-        res.redirect("/listings/" + listingId);
+        res.redirect("/wishlists");
       } else {
         req.flash("error", "Listing already exists in wishlist.");
-        res.redirect("/listings/" + listingId);
+        res.redirect("/wishlists");
       }
     } else {
       req.flash("error", "User not found.");

@@ -1,9 +1,10 @@
 .filter {
   text-align: center;
-  margin-right: 2.25rem;
+  margin-inline: 1.2rem;
   margin-top: 0.5rem;
-  opacity: 0.7;
+  opacity: 0.65;
   cursor: pointer;
+  width: 7rem;
 }
 
 #filters {
@@ -16,16 +17,15 @@
 
 .filter:hover {
   opacity: 1;
-  border-bottom: 3px solid rgba(128, 128, 128, 0.548);
 }
 
 .filter p {
   font-size: 0.8rem;
   font-weight: 700;
+  letter-spacing: -0.125px;
 }
 
 .filter.below-nav {
-  border-bottom: 3px solid black;
   opacity: 1;
 }
 
@@ -60,7 +60,7 @@
 
 .filter-img {
   height: 1.65rem;
-  width: 1.65rem;
+  width: 1.55rem;
   margin-bottom: 0.5rem;
 }
 
@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 3px 5px #a6a6a6bb;
+  box-shadow: 0px 1.5px 3.5px #a6a6a6bb;
   width: 100%;
   padding: 0.05rem 1rem;
   box-sizing: border-box;
@@ -81,6 +81,31 @@
   display: none;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.filter {
+  position: relative;
+  display: inline-block;
+}
+
+.filter::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.filter:hover::after {
+  border-bottom-color: gray;
+}
+
+.filter:active::after,
+.filter:focus::after {
+  border-bottom-color: black;
 }
 
 .scroll-button {
@@ -388,4 +413,8 @@ input:checked + .slider:before {
   .user-btn {
     margin-right: 2rem;
   }
+}
+
+.filter.below-nav::after {
+  border-bottom-color: black;
 }

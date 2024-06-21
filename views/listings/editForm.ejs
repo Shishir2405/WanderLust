@@ -1,3 +1,4 @@
+
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/new.css" />
 <body>
@@ -157,7 +158,9 @@
           class="form-control"
         >
         <option value="yes" <%= listing.locked === 'yes' ? 'selected' : '' %>>Yes</option>
-        <option value="no" <%= listing.locked === 'no' ? 'selected' : '' %>>No</option>
+        <option value="no" <%= listing.locked === 'no'
+
+ ? 'selected' : '' %>>No</option>
         </select>
         </div>
 
