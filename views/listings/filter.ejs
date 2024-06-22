@@ -2,6 +2,12 @@
 
 <link rel="stylesheet" href="/css/index.css" />
 
+<style>
+  .container{
+    padding: 0;
+  }
+</style>
+
 <body>
   <% include("../includes/currency.ejs") %> <%-
   include("../includes/filters.ejs") %>
@@ -28,7 +34,7 @@
     </div>
   </div>
 
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-1">
+  <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4">
     <% for(let listing of listings){ %>
     <!-- changed 'listings' to 'listing' -->
     <a href="/listings/<%=listing._id%>" id="listing-link">
@@ -47,7 +53,7 @@
           src="<%=listing.image.url%>"
           class="card-img-top"
           alt="Listing Image"
-          style="height: 20rem"
+          style="height: 18.75rem"
         />
 
         <form action="/wishlists/add" method="POST">

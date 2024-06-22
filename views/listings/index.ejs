@@ -28,8 +28,14 @@
 <%- include("../includes/currency.ejs") %> <%-
 include("../includes/filters.ejs") %>
 
+<style>
+  .container{
+    padding: 0;
+  }
+</style>
+
 <div
-  class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4"
+  class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4"
   id="listing-container"
 >
   <% for(let listing of allListings){ %>
