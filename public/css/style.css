@@ -5,6 +5,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   width: 100vw;
+  overflow-x: hidden;
 }
 
 .container {
@@ -210,13 +211,13 @@ body::-webkit-scrollbar-thumb {
 }
 
 .footer {
-  height: 3.75rem;
+  height: 3.85rem;
   position: fixed;
   bottom: 0;
   z-index: 1000000;
   width: 100%;
   display: none;
-  border-top: 1.5px solid rgba(128, 128, 128, 0.489);
+  border-top: 2px solid rgba(128, 128, 128, 0.489);
   background-color: white;
   justify-content: space-evenly;
   align-items: center;
@@ -307,19 +308,6 @@ body::-webkit-scrollbar-thumb {
     width: 100% !important;
   }
 
-  #filter-near_search {
-    display: inline-flex;
-    border: 1.5px solid rgba(128, 128, 128, 0.507);
-    border-radius: 50%;
-    padding: 0.65rem;
-    margin-inline: 0.25rem;
-    cursor: pointer;
-    color: black;
-  }
-  #filter-near_search i {
-    font-weight: 900;
-    font-size: 0.9rem;
-  }
   #nav {
     padding: 0 !important;
   }
