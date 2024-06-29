@@ -25,6 +25,47 @@ module.exports.renderNewForm = (req, res) => {
   res.render("listings/new.ejs");
 };
 
+// module.exports.showListing = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+
+//     const listing = await Listing.findById(id)
+//       .populate({
+//         path: "reviews",
+//         populate: {
+//           path: "author",
+//         },
+//       })
+//       .populate("owner");
+
+//     if (!listing) {
+//       req.flash("error", "The requested listing does not exist.");
+//       return res.redirect("/listings");
+//     }
+
+//     // Calculate average rating
+//     let averageRating = 0;
+//     if (listing.reviews && listing.reviews.length > 0) {
+//       const totalRating = listing.reviews.reduce(
+//         (acc, review) => acc + review.rating,
+//         0
+//       );
+//       averageRating = totalRating / listing.reviews.length;
+//     }
+
+//     res.render("listings/show.ejs", {
+//       listing,
+//       averageRating,
+//       currentUser: req.user,
+//     });
+//   } catch (error) {
+//     console.error("Error:", error);
+//     req.flash("error", "An error occurred while fetching the listing.");
+//     res.redirect("/listings");
+//   }
+// };
+
+
 module.exports.showListing = async (req, res) => {
   try {
     const { id } = req.params;
@@ -45,17 +86,25 @@ module.exports.showListing = async (req, res) => {
 
     // Calculate average rating
     let averageRating = 0;
+    let ratingCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
     if (listing.reviews && listing.reviews.length > 0) {
-      const totalRating = listing.reviews.reduce(
-        (acc, review) => acc + review.rating,
-        0
-      );
+      const totalRating = listing.reviews.reduce((acc, review) => {
+        ratingCounts[review.rating] += 1;
+        return acc + review.rating;
+      }, 0);
       averageRating = totalRating / listing.reviews.length;
+    }
+
+    // Calculate percentage for each rating
+    const ratingPercentages = {};
+    for (let i = 1; i <= 5; i++) {
+      ratingPercentages[i] = (ratingCounts[i] / listing.reviews.length) * 100;
     }
 
     res.render("listings/show.ejs", {
       listing,
       averageRating,
+      ratingPercentages,
       currentUser: req.user,
     });
   } catch (error) {
@@ -64,6 +113,7 @@ module.exports.showListing = async (req, res) => {
     res.redirect("/listings");
   }
 };
+
 
 module.exports.createListing = async (req, res, next) => {
   let response = await geocodingClient

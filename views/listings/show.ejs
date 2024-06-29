@@ -13,6 +13,40 @@
   .star.gray {
     color: rgb(133, 132, 132);
   }
+
+  .rating-block {
+      width: 100%;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .rating-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .rating-label {
+      font-size: 14px;
+      color:black;
+      font-weight: 500;
+    }
+    .rating-bar {
+      width: 50%;
+      height: 8px;
+      margin: 0 16px;
+      background-color: #e2e8f0;
+      border-radius: 4px;
+      position: relative;
+    }
+    .rating-bar-fill {
+      height: 100%;
+      background-color: #000;
+      border-radius: 4px;
+    }
+    .rating-percentage {
+      font-size: 14px;
+      font-weight: 500;
+      color: black;
+    }
 </style>
 
 <script>
@@ -187,6 +221,44 @@
             <button class="btn mb-3 outline-button"><span>Submit</span></button>
           </form>
           <hr />
+          <div class="rating-block mb-3 offset-md-2">
+            <div class="rating-item">
+              <span class="rating-label">5 star</span>
+              <div class="rating-bar">
+                <div class="rating-bar-fill" style="width: <%= ratingPercentages['5'] %>%;"></div>
+              </div>
+              <span class="rating-percentage"><%= ratingPercentages['5'].toFixed(1) %>%</span>
+            </div>
+            <div class="rating-item">
+              <span class="rating-label">4 star</span>
+              <div class="rating-bar">
+                <div class="rating-bar-fill" style="width: <%= ratingPercentages['4'] %>%;"></div>
+              </div>
+              <span class="rating-percentage"><%= ratingPercentages['4'].toFixed(1) %>%</span>
+            </div>
+            <div class="rating-item">
+              <span class="rating-label">3 star</span>
+              <div class="rating-bar">
+                <div class="rating-bar-fill" style="width: <%= ratingPercentages['3'] %>%;"></div>
+              </div>
+              <span class="rating-percentage"><%= ratingPercentages['3'].toFixed(1) %>%</span>
+            </div>
+            <div class="rating-item">
+              <span class="rating-label">2 star</span>
+              <div class="rating-bar">
+                <div class="rating-bar-fill" style="width: <%= ratingPercentages['2'] %>%;"></div>
+              </div>
+              <span class="rating-percentage"><%= ratingPercentages['2'].toFixed(1) %>%</span>
+            </div>
+            <div class="rating-item">
+              <span class="rating-label">1 star</span>
+              <div class="rating-bar">
+                <div class="rating-bar-fill" style="width: <%= ratingPercentages['1'] %>%;"></div>
+              </div>
+              <span class="rating-percentage"><%= ratingPercentages['1'].toFixed(1) %>%</span>
+            </div>
+          </div>
+
         <% } %>
         <% if (listing.reviews.length > 0) { %>
           <h4>
@@ -238,8 +310,6 @@
           <br>
           <div id="map">
             <div id="marker">
-              <div id="circle"></div>
-              <i class="fa-solid fa-location-dot" id="icon-map"></i>
             </div>
           </div>
           <p class="card-text" id="location-text">
@@ -253,4 +323,4 @@
 
 <script src="/JS/map.js"></script>
 <script src="/JS/share.js"></script>
-<script src="/JS/currency.js"></script>
+<script src="/JS/currency.js"></script>+
