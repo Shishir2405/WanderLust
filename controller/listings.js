@@ -1,8 +1,17 @@
+/**
+ * * Listing Controller
+ * ? This module contains all the controller functions for listing-related routes, including creating, updating, deleting, and displaying listings.
+ */
+
 const Listing = require("../models/listing.js");
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
+/**
+ * * All Listing Route
+ * ? Retrieves and displays all listings with their average ratings.
+ */
 module.exports.index = async (req, res) => {
   const allListings = await Listing.find({}).populate("reviews");
 
@@ -21,51 +30,18 @@ module.exports.index = async (req, res) => {
   res.render("listings/index.ejs", { allListings, includeNavBelow: true });
 };
 
+/**
+ * * Render Form For New Listing
+ * ? Renders the form for creating a new listing.
+ */
 module.exports.renderNewForm = (req, res) => {
   res.render("listings/new.ejs");
 };
 
-// module.exports.showListing = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     const listing = await Listing.findById(id)
-//       .populate({
-//         path: "reviews",
-//         populate: {
-//           path: "author",
-//         },
-//       })
-//       .populate("owner");
-
-//     if (!listing) {
-//       req.flash("error", "The requested listing does not exist.");
-//       return res.redirect("/listings");
-//     }
-
-//     // Calculate average rating
-//     let averageRating = 0;
-//     if (listing.reviews && listing.reviews.length > 0) {
-//       const totalRating = listing.reviews.reduce(
-//         (acc, review) => acc + review.rating,
-//         0
-//       );
-//       averageRating = totalRating / listing.reviews.length;
-//     }
-
-//     res.render("listings/show.ejs", {
-//       listing,
-//       averageRating,
-//       currentUser: req.user,
-//     });
-//   } catch (error) {
-//     console.error("Error:", error);
-//     req.flash("error", "An error occurred while fetching the listing.");
-//     res.redirect("/listings");
-//   }
-// };
-
-
+/**
+ * * Specific Listing Route
+ * ? Retrieves and displays a specific listing, including its reviews and average rating.
+ */
 module.exports.showListing = async (req, res) => {
   try {
     const { id } = req.params;
@@ -114,7 +90,10 @@ module.exports.showListing = async (req, res) => {
   }
 };
 
-
+/**
+ * * Create New Listing
+ * ? Handles the creation of a new listing, including geocoding and saving to the database.
+ */
 module.exports.createListing = async (req, res, next) => {
   let response = await geocodingClient
     .forwardGeocode({
@@ -146,6 +125,10 @@ module.exports.createListing = async (req, res, next) => {
   res.redirect("/listings");
 };
 
+/**
+ * * Render Edit Form
+ * ? Renders the form for editing an existing listing.
+ */
 module.exports.renderEditForm = async (req, res) => {
   let { id } = req.params;
 
@@ -161,6 +144,10 @@ module.exports.renderEditForm = async (req, res) => {
   res.render("listings/editForm.ejs", { listing, originalImageUrl });
 };
 
+/**
+ * * Update Listing Route
+ * ? Handles the update of an existing listing and saves the changes to the database.
+ */
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
 
@@ -182,6 +169,10 @@ module.exports.updateListing = async (req, res) => {
   res.redirect(`/listings/${id}`);
 };
 
+/**
+ * * Delete Listing Route
+ * ? Handles the deletion of an existing listing from the database.
+ */
 module.exports.destroyListing = async (req, res) => {
   let { id } = req.params;
 

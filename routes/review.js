@@ -1,12 +1,13 @@
 /**
- * ! Every Thing Related To Reviews
- * * Requiring Every Dependencies
- * ? Listing model is defined in model folder
- * ? wrapAync Function is defined in util folder
- * ? ExpressError class is defined in util folder
- * ? ListingSchema and ReviewSchema Validation is available in top of folder
- * ? Review Model is defined in model folder
+ * ! Everything Related To Reviews
+ * * Requiring Every Dependency
+ * ? wrapAsync Function is defined in utils folder
+ * ? ExpressError class is defined in utils folder
+ * ? Listing model is defined in models folder
+ * ? Review model is defined in models folder
+ * ? ListingSchema and ReviewSchema Validation are available in schema.js
  */
+
 const wrapAsync = require("../utils/wrapAsyn.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
@@ -18,8 +19,9 @@ const {
   validateReview,
   isReviewAuthor,
 } = require("../middleware.js");
+
 /**
- * * Calling Express For Making App
+ * * Initializing Express Router
  * * Create a new router instance for defining endpoint routes.
  */
 const express = require("express");
@@ -27,7 +29,7 @@ const router = express.Router({ mergeParams: true });
 
 /**
  * * Review Insertion Route
- * ? Insert the reviews with POST
+ * ? POST: Insert a new review for a listing
  */
 router.post(
   "/",
@@ -38,7 +40,7 @@ router.post(
 
 /**
  * * Review Deletion Route
- * ? Review will deleted from reviews collection and listings reviews array
+ * ? DELETE: Delete a review from the reviews collection and from the listing's reviews array
  */
 router.delete(
   "/:reviewId",

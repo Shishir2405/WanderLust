@@ -1,3 +1,8 @@
+/**
+ * * Review Model Schema
+ * ? This module defines the Mongoose schema for reviews, including fields for comment, rating, creation date, and author.
+ */
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 

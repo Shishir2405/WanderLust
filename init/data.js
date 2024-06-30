@@ -1,3 +1,9 @@
+/**
+ * * Sample Data Initialization Script
+ * ? This script initializes sample data when someone clones this project and runs it locally.
+ * TODO: Run this file to initialize sample data.
+ */
+
 const sampleListings = [
   {
     title: "Cozy Beachfront Cottage",

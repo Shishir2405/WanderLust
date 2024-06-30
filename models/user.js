@@ -1,3 +1,9 @@
+/**
+ * * User Model Schema
+ * ? This module defines the Mongoose schema for users, including fields for email, favorite listings, and favorite listings with dates.
+ * ? It also includes a pre-save middleware to update favorite listings dates and integrates passport-local-mongoose for authentication handling.
+ */
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -30,6 +36,10 @@ const userSchema = new Schema({
   ],
 });
 
+/**
+ * * Pre-save Middleware
+ * ? Updates favorite listings dates when favoriteListings is modified.
+ */
 userSchema.pre("save", async function (next) {
   const user = this;
   if (user.isModified("favoriteListings")) {
@@ -41,6 +51,7 @@ userSchema.pre("save", async function (next) {
   }
   next();
 });
+
 // Plugin passportLocalMongoose for handling authentication
 userSchema.plugin(passportLocalMongoose);
 

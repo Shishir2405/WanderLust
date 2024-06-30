@@ -1,6 +1,15 @@
+/**
+ * * Review Controller
+ * ? This module contains all the controller functions for review-related routes, including creating and deleting reviews.
+ */
+
 const Review = require("../models/review.js");
 const Listing = require("../models/listing.js");
 
+/**
+ * * New Review Creation Route
+ * ? Handles the creation of a new review, associates it with a listing, and saves it.
+ */
 module.exports.reviewInsert = async (req, res) => {
   let { id } = req.params;
 
@@ -18,6 +27,10 @@ module.exports.reviewInsert = async (req, res) => {
   res.redirect(`/listings/${id}`);
 };
 
+/**
+ * * Delete Review Route
+ * ? Handles the deletion of a review from a listing and removes it from the database.
+ */
 module.exports.destroyReview = async (req, res) => {
   let { id, reviewId } = req.params;
 

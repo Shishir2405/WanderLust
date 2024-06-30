@@ -1,3 +1,9 @@
+/**
+ * * Listing Model Schema
+ * ? This module defines the Mongoose schema for listings, including fields for title, description, image, price, location, country, reviews, owner, geometry, category, type of place, bedrooms, beds, locked status, and other attributes.
+ * ? It also includes a post middleware to delete associated reviews when a listing is deleted.
+ */
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review.js");
@@ -91,6 +97,10 @@ const listingSchema = Schema({
   },
 });
 
+/**
+ * * Post Middleware
+ * ? Deletes associated reviews when a listing is deleted.
+ */
 listingSchema.post("findOneAndDelete", async (listing) => {
   if (listing) {
     await Review.deleteMany({ _id: { $in: listing.reviews } });
