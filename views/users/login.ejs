@@ -1,5 +1,18 @@
 <% layout("layouts/boilerplate") -%>
 
+<style>
+  @media only screen and (max-width: 400px) {
+    .edit-button {
+      width: 100% !important;
+      padding-block: 0.75rem;
+    }
+
+    .extra a{
+      display: none;
+    }
+  }
+</style>
+
 <div class="row mt-3" id="login-form">
   <div class="col-12 col-md-6 offset-md-3 mb-4">
     <h2 class="mb-4 mt-2" id="form-head">Welcome Back</h2>

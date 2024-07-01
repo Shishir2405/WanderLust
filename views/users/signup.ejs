@@ -1,5 +1,18 @@
 <% layout("layouts/boilerplate") -%>
 
+<style>
+  @media only screen and (max-width: 400px) {
+    .edit-button {
+      width: 100% !important;
+      padding-block: 0.75rem;
+    }
+
+    .extra a {
+      display: none;
+    }
+  }
+</style>
+
 <div class="row mt-3">
   <div class="col-12 col-md-6 offset-md-3 mb-4">
     <h2 class="mb-4" id="form-head">Join WanderLust Today</h2>
@@ -43,7 +56,7 @@
       </div>
       <div class="extra">
         <button class="btn mt-2 edit-button"><span>SignUp</span></button>
-        <a href="/login">Already have an account? Log in</a>
+        <a href="/signup"> Already have an account? Log in</a>
       </div>
     </form>
   </div>
