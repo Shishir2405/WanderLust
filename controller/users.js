@@ -101,8 +101,8 @@ module.exports.addToWishlist = async (req, res, next) => {
         res.redirect("/wishlists");
       }
     } else {
-      req.flash("error", "User not found.");
-      res.redirect("/listings/" + listingId);
+      req.flash("error", "Please log in to create a Wishlist");
+      res.redirect("/login");
     }
   } catch (err) {
     console.error(err);

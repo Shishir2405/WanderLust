@@ -104,7 +104,15 @@ include("../includes/filters.ejs") %>
             <% } %>
           </p>
         </button>
-        <% } %>
+        <% } else{ %> 
+          <button
+          type="submit"
+          id="submit-heart"
+          style="background: none; border: none; padding: 0"
+        >
+        <i class="fa-solid fa-heart" style="color: rgb(64, 64, 64)"></i>
+          </p>
+        </button> <% }%>
       </form>
 
       <div class="card-img-overlay"></div>
