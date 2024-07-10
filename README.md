@@ -41,7 +41,7 @@ Wanderlust is your ultimate travel exploration platform, designed to inspire and
 
 1. Clone the Wanderlust repository to your local machine:
 ```sh
-git clone https://github.com/your-username/wanderlust.git
+git clone https://github.com/Shishir2405/wanderlust.git
 ```
 
 2. Navigate to the Wanderlust directory:
