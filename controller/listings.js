@@ -63,18 +63,19 @@ module.exports.showListing = async (req, res) => {
     // Calculate average rating
     let averageRating = 0;
     let ratingCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    let ratingPercentages = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
     if (listing.reviews && listing.reviews.length > 0) {
       const totalRating = listing.reviews.reduce((acc, review) => {
         ratingCounts[review.rating] += 1;
         return acc + review.rating;
       }, 0);
       averageRating = totalRating / listing.reviews.length;
-    }
 
-    // Calculate percentage for each rating
-    const ratingPercentages = {};
-    for (let i = 1; i <= 5; i++) {
-      ratingPercentages[i] = (ratingCounts[i] / listing.reviews.length) * 100;
+      // Calculate percentage for each rating
+      for (let i = 1; i <= 5; i++) {
+        ratingPercentages[i] = (ratingCounts[i] / listing.reviews.length) * 100;
+      }
     }
 
     res.render("listings/show.ejs", {
@@ -89,6 +90,7 @@ module.exports.showListing = async (req, res) => {
     res.redirect("/listings");
   }
 };
+
 
 /**
  * * Create New Listing

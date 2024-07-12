@@ -33,6 +33,12 @@ include("../includes/filters.ejs") %>
     padding: 0;
   }
 
+  #heart{
+   filter: drop-shadow(5px 5px 8px #ff2850);
+  }
+  .fa-solid {
+    text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 1px white;
+  }
   @media only screen and (max-width: 470px) {
     .container {
       padding-inline: 0.75rem;
@@ -96,10 +102,10 @@ include("../includes/filters.ejs") %>
           <p style="margin-right: 0.5rem; font-weight: 300">
             <% if (currUser && currUser.favoriteListings.includes(listing._id))
             { %>
-            <i class="fa-solid fa-heart" style="color: #ff385c"></i>
+            <i class="fa-solid fa-heart" style="color: #ff385c"  id="heart"></i>
             <!-- Filled heart -->
             <% } else { %>
-            <i class="fa-solid fa-heart" style="color: rgb(64, 64, 64)"></i>
+            <i class="fa-solid fa-heart" style="color: rgba(64, 64, 64, 0.943)"></i>
             <!-- Empty heart -->
             <% } %>
           </p>
