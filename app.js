@@ -41,7 +41,7 @@ const app = express();
  */
 const port = 8080;
 const dbUrl = process.env.ATLASDB_URL;
-//const dbUrl = "mongodb://localhost:27017/wanderlust";
+//const dbUrl = "mongodb://localhost:27017/eanderlust";
 
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
@@ -147,6 +147,12 @@ app.get("/privacy", (req, res) => {
 
 app.get("/terms", (req, res) => {
   res.render("users/terms.ejs");
+});
+
+app.get("/image/fullscreen/:id", async(req, res) => {
+  let { id } = req.params;
+  const listing = await Listing.findById(id);
+  res.render("listings/fullscreenImage.ejs", { listing });
 });
 
 /**

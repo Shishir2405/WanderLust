@@ -1,0 +1,60 @@
+<!-- views/fullscreenImage.ejs -->
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/css/fullscreen.css" />
+
+<style>
+  #nav {
+    display: none !important;
+  }
+
+  #footer{
+    display: none !important;
+  }
+
+  .fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .fullscreen-image {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: cover;
+  }
+
+  .back-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: inherit;
+    height:2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+
+  .back-button:hover{
+    background-color: #5756561e;
+  }
+</style>
+
+<div class="fullscreen-container">
+  <button class="back-button" onclick="history.back()"><i class="fa-solid fa-angle-left"></i></button>
+  <img
+    src="<%=listing.image.url%>"
+    alt="Full Screen Image"
+    class="fullscreen-image"
+  />
+</div>

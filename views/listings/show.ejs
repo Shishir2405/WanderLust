@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="container-img position-relative">
-          <img src="<%= listing.image.url %>" alt="listing-image" class="card-img-top show-img image-contain" />
+          <a href="/image/fullscreen/<%=listing._id%>"><img src="<%= listing.image.url %>" alt="listing-image" class="card-img-top show-img image-contain" /></a>
           <button class="position-absolute top-0 end-0" id="shareImage"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
         </div>
         <div class="card-body">
@@ -299,6 +299,8 @@
   </div>
 </body>
 
+
+
 <script src="/JS/map.js"></script>
 <script src="/JS/share.js"></script>
-<script src="/JS/currency.js"></script>+
+<script src="/JS/currency.js"></script>
