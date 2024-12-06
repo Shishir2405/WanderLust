@@ -40,7 +40,7 @@ const app = express();
  * *Defining port number and mongoUrl
  */
 const port = 8080;
-const dbUrl = process.env.ATLASDB_URL;
+//const dbUrl = process.env.ATLASDB_URL;
 const dbUrl = "mongodb://localhost:27017/eanderlust";
 
 /**
