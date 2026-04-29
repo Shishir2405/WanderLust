@@ -116,6 +116,10 @@ module.exports.createListing = async (req, res, next) => {
   newListing.typeOfPlace = req.body.listing.typeOfPlace;
   newListing.bedrooms = req.body.listing.bedrooms;
   newListing.beds = req.body.listing.beds;
+  newListing.bathrooms = req.body.listing.bathrooms;
+  newListing.maxGuests = req.body.listing.maxGuests;
+  const a = req.body.listing.amenities;
+  newListing.amenities = Array.isArray(a) ? a : a ? [a] : [];
   newListing.locked = req.body.listing.locked;
   newListing.other = req.body.listing.other;
   let savedListing = await newListing.save();
@@ -153,11 +157,11 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
 
-  let listing = await Listing.findByIdAndUpdate(
-    id,
-    { ...req.body.listing },
-    { new: true }
-  );
+  const payload = { ...req.body.listing };
+  const a = payload.amenities;
+  payload.amenities = Array.isArray(a) ? a : a ? [a] : [];
+
+  let listing = await Listing.findByIdAndUpdate(id, payload, { new: true });
 
   if (typeof req.file !== "undefined") {
     let url = req.file.path;

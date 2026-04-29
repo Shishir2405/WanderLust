@@ -93,6 +93,22 @@ const listingSchema = Schema({
     type: Number,
     max: 8,
   },
+  bathrooms: {
+    type: Number,
+    min: 0,
+    max: 8,
+    default: 1,
+  },
+  maxGuests: {
+    type: Number,
+    min: 1,
+    max: 16,
+    default: 2,
+  },
+  amenities: {
+    type: [String],
+    default: [],
+  },
   locked: {
     type: String,
     enum: ["yes", "no"],

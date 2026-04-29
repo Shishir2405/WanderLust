@@ -1,6 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/show.css" />
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/show-pro.css" />
 <style>
   .star {
     font-size: 1rem;
@@ -90,10 +91,7 @@
             <% } %>
           </div>
         </div>
-        <div class="container-img position-relative">
-          <a href="/image/fullscreen/<%=listing._id%>"><img src="<%= listing.image.url %>" alt="listing-image" class="card-img-top show-img image-contain" /></a>
-          <button class="position-absolute top-0 end-0" id="shareImage"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
-        </div>
+        <%- include("../includes/showHero.ejs") %>
         <div class="card-body">
           <div class="location-price">
             <p class="card-text" id="location-text">
@@ -166,10 +164,56 @@
           </div>
 
           <hr>
+
+          <section class="show-pro-section">
+            <h2 class="show-pro-section__head">What this place offers</h2>
+            <div class="show-pro-amenities">
+              <% if (listing.bedrooms) { %>
+                <div class="show-pro-amenity"><span class="show-pro-amenity__icon"><i class="fa-solid fa-door-closed"></i></span><%= listing.bedrooms %> bedroom<%= listing.bedrooms === 1 ? '' : 's' %></div>
+              <% } %>
+              <% if (listing.beds) { %>
+                <div class="show-pro-amenity"><span class="show-pro-amenity__icon"><i class="fa-solid fa-bed"></i></span><%= listing.beds %> bed<%= listing.beds === 1 ? '' : 's' %></div>
+              <% } %>
+              <% if (listing.typeOfPlace) { %>
+                <div class="show-pro-amenity"><span class="show-pro-amenity__icon"><i class="fa-solid fa-house"></i></span><%= listing.typeOfPlace.replace('-', ' ') %></div>
+              <% } %>
+              <% if (listing.locked === 'yes') { %>
+                <div class="show-pro-amenity"><span class="show-pro-amenity__icon"><i class="fa-solid fa-lock"></i></span>Lockable room</div>
+              <% } %>
+              <% if (listing.category) { %>
+                <div class="show-pro-amenity"><span class="show-pro-amenity__icon"><i class="fa-solid fa-tag"></i></span><%= listing.category.replace('-', ' ') %></div>
+              <% } %>
+            </div>
+          </section>
+
           <strong id="about-text">About the place</strong>
           <br />
           <br />
-          <p class="card-text"><%= listing.description %></p>
+          <%
+            const desc = listing.description || '';
+            const isLong = desc.length > 320;
+          %>
+          <p class="show-pro-description<%= isLong ? ' show-pro-description--clamped' : '' %>" id="show-pro-desc"><%= desc %></p>
+          <% if (isLong) { %>
+            <button type="button" class="show-pro-readmore" id="show-pro-readmore">
+              Show more
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <script>
+              (function () {
+                const desc = document.getElementById('show-pro-desc');
+                const btn = document.getElementById('show-pro-readmore');
+                if (!desc || !btn) return;
+                btn.addEventListener('click', () => {
+                  const open = desc.classList.toggle('show-pro-description--clamped');
+                  btn.querySelector('i').className = open
+                    ? 'fa-solid fa-chevron-down'
+                    : 'fa-solid fa-chevron-up';
+                  btn.firstChild.nodeValue = open ? 'Show more ' : 'Show less ';
+                });
+              })();
+            </script>
+          <% } %>
           <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
             <div class="group-btns mt-2">
               <form action="/listings/<%= listing._id %>/edit" method="GET">

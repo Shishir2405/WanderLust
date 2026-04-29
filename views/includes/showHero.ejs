@@ -1,0 +1,29 @@
+<%# Polished photo collage hero for the listing show page. %>
+<%
+  const slides = [listing.image].concat(listing.gallery || []).filter(s => s && s.url);
+  const main = slides[0];
+  const subs = slides.slice(1, 5);
+  while (subs.length < 4) subs.push(main);
+%>
+<% if (main) { %>
+  <div class="show-pro-hero">
+    <div class="show-pro-hero__main">
+      <a href="/image/fullscreen/<%= listing._id %>">
+        <img src="<%= main.url %>" alt="<%= listing.title %>" loading="eager" />
+      </a>
+    </div>
+    <% subs.forEach(function (s, i) { %>
+      <div class="show-pro-hero__sub">
+        <a href="/image/fullscreen/<%= listing._id %>">
+          <img src="<%= s.url %>" alt="<%= listing.title %> photo <%= i + 2 %>" loading="lazy" />
+        </a>
+        <% if (i === subs.length - 1 && slides.length > 1) { %>
+          <a class="show-pro-hero__view-all" href="/image/fullscreen/<%= listing._id %>">
+            <i class="fa-solid fa-images" aria-hidden="true"></i>
+            Show all photos
+          </a>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
