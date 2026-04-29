@@ -78,11 +78,21 @@ module.exports.showListing = async (req, res) => {
       }
     }
 
+    // Fetch up to 6 similar listings (same category, excluding current)
+    let similar = [];
+    if (listing.category) {
+      similar = await Listing.find({
+        category: listing.category,
+        _id: { $ne: listing._id },
+      }).limit(6);
+    }
+
     res.render("listings/show.ejs", {
       listing,
       averageRating,
       ratingPercentages,
       currentUser: req.user,
+      similar,
     });
   } catch (error) {
     console.error("Error:", error);

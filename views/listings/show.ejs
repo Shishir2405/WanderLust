@@ -1,56 +1,17 @@
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/show.css" />
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/show-pro.css" />
 <style>
-  .star {
-    font-size: 1rem;
-  }
-
-  .star.black {
-    color: black;
-  }
-
-  .star.gray {
-    color: rgba(87, 87, 87, 0.799);
-  }
-
-  .rating-block {
-      width: 100%;
-      text-align: center;
-    }
-
-    .rating-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .rating-label {
-      font-size: 14px;
-      color:black;
-      font-weight: 500;
-    }
-
-    .rating-bar {
-      width: 50%;
-      height: 8px;
-      margin: 0 16px;
-      background-color: #e2e8f0;
-      border-radius: 4px;
-      position: relative;
-    }
-
-    .rating-bar-fill {
-      height: 100%;
-      background-color: #000;
-      border-radius: 4px;
-    }
-    
-    .rating-percentage {
-      font-size: 14px;
-      font-weight: 500;
-      color: black;
-    }
+  .star { font-size: 1rem; }
+  .star.black { color: black; }
+  .star.gray { color: rgba(87, 87, 87, 0.799); }
+  .rating-block { width: 100%; text-align: center; }
+  .rating-item { display: flex; align-items: center; margin-bottom: 16px; }
+  .rating-label { font-size: 14px; color: black; font-weight: 500; }
+  .rating-bar { width: 50%; height: 8px; margin: 0 16px; background-color: #e2e8f0; border-radius: 4px; position: relative; }
+  .rating-bar-fill { height: 100%; background-color: #000; border-radius: 4px; }
+  .rating-percentage { font-size: 14px; font-weight: 500; color: black; }
 </style>
 
 <script>
@@ -60,101 +21,125 @@
 
 <body>
   <%- include("../includes/currency.ejs") %>
-  <div class="row">
-    <div>
-      <div class="card show-card col-12 col-md-8 offset-md-2 listing-card">
-        <div class="sahre">
-          <h4><%= listing.title %></h4>
-          <div class="like-share">
-            <div class="buttons" id="shareBtn">
-              <p id="share" style="margin-right: 0.5rem; font-weight: 300; color: rgb(64, 64, 64)">
-                <i class="fa-solid fa-arrow-up-from-bracket"></i>
-              </p>
-              <p style="text-decoration: underline; font-size: 1rem; font-weight: 600;">
-                Share
-              </p>
+
+  <div class="show-pro">
+    <!-- Hero photo grid -->
+    <div class="show-pro-hero">
+      <a href="/image/fullscreen/<%= listing._id %>" class="hero-main">
+        <img src="<%= listing.image.url %>" alt="<%= listing.title %>" class="image-contain" />
+      </a>
+      <div class="hero-thumbs">
+        <%
+          const gallery = (listing.gallery && listing.gallery.length) ? listing.gallery.slice(0, 4) : [];
+          for (let i = 0; i < 4; i++) {
+            const g = gallery[i];
+        %>
+          <% if (g && g.url) { %>
+            <a href="/image/fullscreen/<%= listing._id %>" class="hero-thumb">
+              <img src="<%= g.url %>" alt="<%= listing.title %> photo <%= i + 2 %>" />
+            </a>
+          <% } else { %>
+            <div class="hero-thumb placeholder">
+              <i class="fa-regular fa-image"></i>
             </div>
-            <% if (currUser) { %>
-              <form action="/wishlists/add" method="POST">
-                <input type="hidden" name="userId" value="<%= currentUser._id %>" />
-                <input type="hidden" name="listingId" value="<%= listing._id %>" />
-                <button type="submit" id="submit-btn" style="margin-right: 2.5rem;">
-                  <p style="margin-right: 0.5rem; font-weight: 300; color: <%= (currUser && currUser.favoriteListings.includes(listing._id)) ? '#FF385C' : 'rgb(64, 64, 64)' %>">
-                    <i class="<%= (currUser && currUser.favoriteListings.includes(listing._id)) ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
-                  </p>
-                  <p style="text-decoration: underline; font-size: 1rem; font-weight: 600;">
-                    Save
-                  </p>
-                </button>
-              </form>
-            <% } %>
-          </div>
-        </div>
-        <div class="container-img position-relative">
-          <a href="/image/fullscreen/<%=listing._id%>"><img src="<%= listing.image.url %>" alt="listing-image" class="card-img-top show-img image-contain" /></a>
-          <button class="position-absolute top-0 end-0" id="shareImage"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
-        </div>
-        <div class="card-body">
-          <div class="location-price">
-            <p class="card-text" id="location-text">
-              <b>Room in <%= listing.location %></b>
-            </p>
-            <p class="card-text price-text price-without-gst" data-original-price="<%= listing.price %>">
-              <b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b>
-            </p>
-          </div>
-          <% if (averageRating !== 5) { %>
-            <% if (listing.reviews && listing.reviews.length > 0) { %>
-              <p class="card-text">
-                <b><i class="fa-solid fa-star"></i></b><b style="text-decoration: underline;"> <%= listing.reviews.length %> reviews</b>
-              </p>
-            <% } else { %>
-              <p class="card-text"><b style="text-decoration: underline;">No Reviews</b></p>
-            <% } %>
           <% } %>
+        <% } %>
+      </div>
+    </div>
 
-          <hr />
+    <!-- Title row -->
+    <div class="show-pro-title">
+      <h1><%= listing.title %></h1>
+      <div class="show-pro-meta">
+        <span class="meta-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <%= listing.location %><% if (listing.country) { %>, <%= listing.country %><% } %>
+        </span>
+        <% if (listing.reviews && listing.reviews.length > 0) { %>
+          <span class="meta-item">
+            <i class="fa-solid fa-star"></i>
+            <strong><%= averageRating.toFixed(2) %></strong>
+            <span style="text-decoration: underline;"><%= listing.reviews.length %> reviews</span>
+          </span>
+        <% } else { %>
+          <span class="meta-item">
+            <i class="fa-regular fa-star"></i>
+            <span>No reviews yet</span>
+          </span>
+        <% } %>
 
-          <% if (averageRating === 5) { %>
+        <div class="meta-actions">
+          <div class="buttons" id="shareBtn" style="cursor: pointer;">
+            <p id="share" style="margin: 0 0.4rem 0 0; font-weight: 300; color: rgb(64, 64, 64);">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            </p>
+            <p style="text-decoration: underline; font-size: 0.95rem; font-weight: 600; margin: 0;">
+              Share
+            </p>
+          </div>
+          <% if (currUser) { %>
+            <form action="/wishlists/add" method="POST" style="display: inline;">
+              <input type="hidden" name="userId" value="<%= currentUser._id %>" />
+              <input type="hidden" name="listingId" value="<%= listing._id %>" />
+              <button type="submit" id="submit-btn" style="background: none; border: none; display: inline-flex; align-items: center;">
+                <p style="margin: 0 0.4rem 0 0; font-weight: 300; color: <%= (currUser && currUser.favoriteListings.includes(listing._id)) ? '#FF385C' : 'rgb(64, 64, 64)' %>;">
+                  <i class="<%= (currUser && currUser.favoriteListings.includes(listing._id)) ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+                </p>
+                <p style="text-decoration: underline; font-size: 0.95rem; font-weight: 600; margin: 0;">
+                  Save
+                </p>
+              </button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body grid: left content + right sticky reserve -->
+    <div class="show-pro-body">
+      <div class="show-pro-left">
+        <% if (averageRating === 5) { %>
+          <div class="show-pro-section">
             <div class="guest-favourite">
               <div class="leaf-icon">
                 <img src="/Assets/left-leaf-show.png" alt="Leaf Icon">
-                <span class="title">
-                  Guest favourite
-                </span>
+                <span class="title">Guest favourite</span>
                 <img src="/Assets/right-leaf-show.png" alt="Leaf Icon">
               </div>
               <div class="text-section">
                 <div class="subtitle">One of the most loved homes on Wanderlust, according to guests</div>
               </div>
-              <div class="rating-section">
-                <div class="rating">
-                  <p class="card-text" style="text-align: center;">
-                    <% if (averageRating) { %>
-                      <span><b style="font-size: 1.45rem;"><%= averageRating.toFixed(2) %></b></span>
-                    <% } %>
-                    <b style="text-wrap: nowrap;">
-                      <% for (let i = 1; i <= 5; i++) { %>
-                        <i class="fa-solid fa-star"></i>
-                      <% } %>
-                    </b>
-                  </p>
-                </div>
-                <div class="reviews">
-                  <div class="rating">
-                    <% if (listing.reviews && listing.reviews.length > 0) { %>
-                      <p class="card-text" style="text-align: center;">
-                        <b style="font-size: 1.45rem;"> <%= listing.reviews.length %></b>
-                        <b style="color:black; font-size:0.85rem; font-weight: 500;"><a href="#review-div" style="color: black;">Review</a></b>
-                      </p>
-                    <% } %>
-                  </div>
-                </div>
-              </div>
             </div>
-            <hr>
-          <% } %>
+          </div>
+        <% } %>
 
+        <!-- Description -->
+        <div class="show-pro-section">
+          <h3>About this place</h3>
+          <%
+            const desc = listing.description || "";
+            const isLong = desc.length > 280;
+          %>
+          <p class="read-more-text<% if (isLong) { %> is-clamped<% } %>" data-readmore="<%= isLong ? 'true' : 'false' %>"><%= desc %></p>
+          <% if (isLong) { %>
+            <button type="button" class="read-more-toggle" data-readmore-btn>Show more</button>
+          <% } %>
+        </div>
+
+        <!-- Amenities -->
+        <% if (listing.amenities && listing.amenities.length > 0) { %>
+          <div class="show-pro-section">
+            <h3>What this place offers</h3>
+            <div class="amenity-chips">
+              <% listing.amenities.forEach((a) => { %>
+                <span class="amenity-chip"><i class="fa-solid fa-check"></i><%= a %></span>
+              <% }); %>
+            </div>
+          </div>
+        <% } %>
+
+        <!-- Host card -->
+        <div class="show-pro-section">
           <div class="owner-card">
             <div class="owner-avatar">
               <span class="avatar-circle"><%= listing.owner.username.charAt(0).toUpperCase() %></span>
@@ -164,15 +149,12 @@
               <p class="card-text owner-name"><%= listing.owner.username %></p>
             </div>
           </div>
+        </div>
 
-          <hr>
-          <strong id="about-text">About the place</strong>
-          <br />
-          <br />
-          <p class="card-text"><%= listing.description %></p>
-          <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
+        <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
+          <div class="show-pro-section">
             <div class="group-btns mt-2">
-              <form action="/listings/<%= listing._id %>/edit" method="GET">
+              <form action="/listings/<%= listing._id %>/edit" method="GET" style="display: inline;">
                 <button class="btn edit-button">
                   <span style="color: white;">
                     <lord-icon
@@ -187,45 +169,82 @@
                   </span>
                 </button>
               </form>
-              <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-                <button class="btn btn-outline-dark delete-button offset-5">Delete</button>
+              <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" style="display: inline; margin-left: 1rem;">
+                <button class="btn btn-outline-dark delete-button">Delete</button>
               </form>
             </div>
-          <% } %>
-          <hr />
-        </div>
-
-        <% if (currUser) { %>
-          <h4><b>Leave a review</b></h4>
-          <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
-            <div class="mt-3">
-              <label for="review" class="form-label">Rating</label>
-              <fieldset class="starability-growRotate">
-                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
-                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-                <label for="first-rate1" title="Terrible">1 star</label>
-                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-                <label for="first-rate2" title="Not good">2 stars</label>
-                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-                <label for="first-rate3" title="Average">3 stars</label>
-                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-                <label for="first-rate4" title="Very good">4 stars</label>
-                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-                <label for="first-rate5" title="Amazing">5 stars</label>
-              </fieldset>
-            </div>
-
-            <div class="mb-3">
-              <label for="comment" class="form-label">Comment</label>
-              <textarea name="review[comment]" id="comment" rows="" class="form-control" required style="resize: none;"></textarea>
-              <div class="invalid-feedback">Please Enter Comment</div>
-            </div>
-
-            <br />
-            <button class="btn mb-3 outline-button"><span>Submit</span></button>
-          </form>
-          <hr />
+          </div>
         <% } %>
+      </div>
+
+      <!-- Right: sticky reserve sidebar -->
+      <aside class="show-pro-right">
+        <div class="reserve-card">
+          <div class="price-row">
+            <span class="price price-without-gst" data-original-price="<%= listing.price %>">&#8377;<%= listing.price.toLocaleString("en-IN") %></span>
+            <span class="per-night">night</span>
+          </div>
+
+          <div class="reserve-grid">
+            <div>
+              <label>Check-in</label>
+              <input type="date" id="reserve-checkin" />
+            </div>
+            <div>
+              <label>Check-out</label>
+              <input type="date" id="reserve-checkout" />
+            </div>
+          </div>
+
+          <button type="button" class="reserve-btn" id="reserve-btn">Reserve</button>
+
+          <div class="reserve-totals">
+            <div class="row">
+              <span><span id="reserve-nights">1</span> night<span id="reserve-nights-s"></span></span>
+              <span>&#8377;<span id="reserve-subtotal"><%= listing.price.toLocaleString("en-IN") %></span></span>
+            </div>
+            <div class="row total">
+              <span>Total</span>
+              <span>&#8377;<span id="reserve-total"><%= listing.price.toLocaleString("en-IN") %></span></span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Reviews block (kept) -->
+    <% if (currUser) { %>
+      <div class="show-pro-section">
+        <h3>Leave a review</h3>
+        <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+          <div class="mt-3">
+            <label for="review" class="form-label">Rating</label>
+            <fieldset class="starability-growRotate">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea name="review[comment]" id="comment" rows="" class="form-control" required style="resize: none;"></textarea>
+            <div class="invalid-feedback">Please Enter Comment</div>
+          </div>
+          <button class="btn mb-3 outline-button"><span>Submit</span></button>
+        </form>
+      </div>
+    <% } %>
+
+    <% if (listing.reviews && listing.reviews.length > 0) { %>
+      <div class="show-pro-section">
         <div class="rating-block mb-3">
           <% for (let i = 5; i >= 1; i--) { %>
             <div class="rating-item">
@@ -237,69 +256,126 @@
             </div>
           <% } %>
         </div>
-        <hr>
-        <% if (listing.reviews.length > 0) { %>
-          <h4>
-            <% if (listing.reviews && listing.reviews.length > 0) { %>
-              <p class="card-text">
-                <% if (averageRating) { %>
-                  <span class="average-rating" id="average-text"><b><%= averageRating.toFixed(2) %></b></span>
-                <% } %>
-                <b>
-                  <i class="fa-solid fa-star"></i> <%= listing.reviews.length %> Reviews</b>
-              </p>
+
+        <h4>
+          <p class="card-text">
+            <% if (averageRating) { %>
+              <span class="average-rating" id="average-text"><b><%= averageRating.toFixed(2) %></b></span>
             <% } %>
-          </h4>
-          <br />
-          <div class="row" id="review-div">
-            <% for (let review of listing.reviews) { %>
-              <div class="col-lg-6 col-md-12 mb-3 d-flex">
-                <div class="review-card">
-                  <div class="review-header">
-                    <div class="owner-avatar">
-                      <span class="avatar-circle"><%= review.author.username.charAt(0).toUpperCase() %></span>
-                    </div>
-                    <h5 class="card-title"><b><%= review.author.username %></b></h5>
-                  </div>
-                  <div class="review-content">
-                    <% for (let i = 1; i <= 5; i++) { %>
-                      <% if (i <= review.rating) { %>
-                        <span class="star black"><i class="fa-solid fa-star"></i></span>
-                      <% } else { %>
-                        <span class="star gray"><i class="fa-solid fa-star"></i></span>
-                      <% } %>
-                    <% } %>
-                    <p class="comment"><%= review.comment %></p>
-                  </div>
-                  <% if (currUser && currUser._id.equals(review.author._id)) { %>
-                    <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                      <button class="btn btn-sm btn-outline-dark">Delete</button>
-                    </form>
-                  <% } %>
-                </div>
-              </div>
-              <br />
-            <% } %>
-            <hr />
-          </div>
-        <% } %>
-        <div class="mb-3">
-          <h4><b>Where you'll be</b></h4>
-          <br>
-          <div id="map">
-            <div id="marker">
-            </div>
-          </div>
-          <p class="card-text" id="location-text">
-            <h4><%= listing.location %></h4>
+            <b><i class="fa-solid fa-star"></i> <%= listing.reviews.length %> Reviews</b>
           </p>
+        </h4>
+
+        <div class="row" id="review-div">
+          <% for (let review of listing.reviews) { %>
+            <div class="col-lg-6 col-md-12 mb-3 d-flex">
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="owner-avatar">
+                    <span class="avatar-circle"><%= review.author.username.charAt(0).toUpperCase() %></span>
+                  </div>
+                  <h5 class="card-title"><b><%= review.author.username %></b></h5>
+                </div>
+                <div class="review-content">
+                  <% for (let i = 1; i <= 5; i++) { %>
+                    <% if (i <= review.rating) { %>
+                      <span class="star black"><i class="fa-solid fa-star"></i></span>
+                    <% } else { %>
+                      <span class="star gray"><i class="fa-solid fa-star"></i></span>
+                    <% } %>
+                  <% } %>
+                  <p class="comment"><%= review.comment %></p>
+                </div>
+                <% if (currUser && currUser._id.equals(review.author._id)) { %>
+                  <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                    <button class="btn btn-sm btn-outline-dark">Delete</button>
+                  </form>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
         </div>
       </div>
+    <% } %>
+
+    <!-- Map -->
+    <div class="show-pro-section">
+      <h3>Where you'll be</h3>
+      <div id="map">
+        <div id="marker"></div>
+      </div>
+      <p class="card-text" id="location-text" style="margin-top: 0.75rem;">
+        <strong><%= listing.location %></strong>
+      </p>
     </div>
+
+    <!-- Similar listings -->
+    <% if (typeof similar !== 'undefined' && similar && similar.length > 0) { %>
+      <div class="show-pro-section">
+        <h3>Similar stays</h3>
+        <div class="similar-strip">
+          <% similar.forEach((s) => { %>
+            <a href="/listings/<%= s._id %>" class="similar-card">
+              <div class="similar-img">
+                <% if (s.image && s.image.url) { %>
+                  <img src="<%= s.image.url %>" alt="<%= s.title %>" />
+                <% } %>
+              </div>
+              <div class="similar-meta">
+                <div class="similar-title"><%= s.title %></div>
+                <div class="similar-price">&#8377;<%= (s.price || 0).toLocaleString("en-IN") %> night</div>
+              </div>
+            </a>
+          <% }); %>
+        </div>
+      </div>
+    <% } %>
+
   </div>
 </body>
 
+<script>
+  // Read-more toggle for description
+  (function () {
+    const btn = document.querySelector('[data-readmore-btn]');
+    const txt = document.querySelector('[data-readmore="true"]');
+    if (btn && txt) {
+      btn.addEventListener('click', function () {
+        const clamped = txt.classList.toggle('is-clamped');
+        btn.textContent = clamped ? 'Show more' : 'Show less';
+      });
+    }
+  })();
 
+  // Reserve sidebar: simple nights * price calc
+  (function () {
+    const ci = document.getElementById('reserve-checkin');
+    const co = document.getElementById('reserve-checkout');
+    const nightsEl = document.getElementById('reserve-nights');
+    const nightsS = document.getElementById('reserve-nights-s');
+    const subEl = document.getElementById('reserve-subtotal');
+    const totEl = document.getElementById('reserve-total');
+    const price = Number(<%= listing.price || 0 %>);
+    function fmt(n) { return Number(n || 0).toLocaleString('en-IN'); }
+    function recalc() {
+      let nights = 1;
+      if (ci.value && co.value) {
+        const a = new Date(ci.value);
+        const b = new Date(co.value);
+        const diff = Math.round((b - a) / (1000 * 60 * 60 * 24));
+        if (diff > 0) nights = diff;
+      }
+      nightsEl.textContent = nights;
+      nightsS.textContent = nights === 1 ? '' : 's';
+      subEl.textContent = fmt(price * nights);
+      totEl.textContent = fmt(price * nights);
+    }
+    if (ci && co) {
+      ci.addEventListener('change', recalc);
+      co.addEventListener('change', recalc);
+    }
+  })();
+</script>
 
 <script src="/JS/map.js"></script>
 <script src="/JS/share.js"></script>
