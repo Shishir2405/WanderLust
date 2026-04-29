@@ -1,0 +1,104 @@
+/* illustrations.css — sizing & layout for unDraw-style brand-tinted SVGs */
+/* Layered file: do not edit existing CSS, this overrides as needed. */
+
+.wl-illus {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Empty / message states */
+.wl-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  gap: 1rem;
+  min-height: 50vh;
+}
+
+.wl-empty-state .wl-illus {
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+.wl-empty-state__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #fe424d;
+}
+
+.wl-empty-state__caption {
+  font-size: 1rem;
+  opacity: 0.78;
+  max-width: 36ch;
+  margin: 0;
+}
+
+.wl-empty-state .btn,
+.wl-empty-state .wl-back-btn {
+  margin-top: 0.5rem;
+  background: #fe424d;
+  color: #fff;
+  border: 0;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.wl-empty-state .btn:hover,
+.wl-empty-state .wl-back-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(254, 66, 77, 0.28);
+  color: #fff;
+}
+
+/* 404 page */
+.wl-error-page {
+  min-height: 60vh;
+}
+.wl-error-page .wl-illus {
+  max-width: 460px;
+}
+
+/* Signup two-column with illustration */
+.wl-signup-illus-col {
+  display: none; /* hidden on mobile */
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+.wl-signup-illus-col .wl-illus {
+  max-width: 420px;
+}
+
+@media (min-width: 768px) {
+  .wl-signup-illus-col {
+    display: flex;
+  }
+}
+
+/* Hero illustration */
+.wl-hero-illus {
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+/* Lazy / dimensioned images: prevent CLS via aspect-ratio */
+img.wl-illus {
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Reduced motion: nothing to do here, but keep illustrations static */
+@media (prefers-reduced-motion: reduce) {
+  .wl-illus { transition: none; }
+}
