@@ -26,6 +26,37 @@
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description : </label>
+
+          <div class="ai-gen" data-ai-gen data-ai-target="#description">
+            <div class="ai-gen__head">
+              <p class="ai-gen__title">
+                <span class="ai-gen__sparkle"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span>
+                Generate description with AI
+              </p>
+            </div>
+            <p style="font-size: 0.83rem; color: var(--wl-text-muted, #6b6b6b); margin: 0 0 0.5rem;">
+              Drop in 3–5 quick bullets about the place — we'll turn them into a polished paragraph.
+            </p>
+            <textarea
+              class="ai-gen__bullets form-control"
+              placeholder="• Sea-facing balcony&#10;• 5 min walk from main beach&#10;• Cozy reading nook"
+              rows="3"
+            ></textarea>
+            <div class="ai-gen__actions">
+              <button type="button" class="ai-gen__btn" data-ai-go>
+                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                Generate
+              </button>
+              <button type="button" class="ai-gen__btn ai-gen__btn--ghost" data-ai-clear>
+                Clear
+              </button>
+              <span class="ai-gen__status">
+                <span class="ai-gen__spinner" aria-hidden="true"></span>
+                Generating…
+              </span>
+            </div>
+          </div>
+
           <textarea
             type="text"
             class="form-control"
