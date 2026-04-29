@@ -1,0 +1,28 @@
+/**
+ * Top page-load progress bar (NProgress-style).
+ * Sits fixed at the top of the viewport using the brand red gradient.
+ */
+
+#wl-page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #e82d72, #fe346a, #ff375f, #fe424d);
+  background-size: 200% 100%;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+  box-shadow: 0 0 8px rgba(254, 66, 77, 0.55);
+}
+
+#wl-page-loader.is-active {
+  opacity: 1;
+}
+
+[data-theme="dark"] #wl-page-loader {
+  box-shadow: 0 0 10px rgba(255, 55, 95, 0.7);
+}

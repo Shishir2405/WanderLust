@@ -55,7 +55,21 @@
   <% }); %>
 </div>
 <% } else { %>
-<p>No items in your wishlist.</p>
+<div class="wl-empty-state" aria-live="polite">
+  <img
+    src="/Assets/illustrations/empty-cart.svg"
+    alt="Empty wishlist"
+    class="wl-illus"
+    loading="lazy"
+    width="480"
+    height="360"
+  />
+  <h2 class="wl-empty-state__title">Save listings you love</h2>
+  <p class="wl-empty-state__caption">
+    Tap the heart on any listing to add it here. Your favorites will live in your wishlist.
+  </p>
+  <a href="/listings" class="wl-back-btn">Browse listings</a>
+</div>
 <% } %>
 
 <script src="/JS/index.js"></script>

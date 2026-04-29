@@ -1,9 +1,19 @@
 <% layout("layouts/boilerplate") -%>
 
 <body>
-  <div class="row mt-3">
-    <div class="alert alert-danger col-6 offset-3" role="alert">
-      <p><%= err.message %></p>
-    </div>
+  <div class="wl-empty-state wl-error-page" role="alert" aria-live="polite">
+    <img
+      src="/Assets/illustrations/not-found.svg"
+      alt="Page not found"
+      class="wl-illus"
+      loading="lazy"
+      width="600"
+      height="400"
+    />
+    <h1 class="wl-empty-state__title">We couldn't find that page</h1>
+    <p class="wl-empty-state__caption">
+      <%= (typeof err !== 'undefined' && err && err.message) ? err.message : "The page you're looking for has wandered off." %>
+    </p>
+    <a href="/listings" class="wl-back-btn">Back to listings</a>
   </div>
 </body>

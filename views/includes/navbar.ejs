@@ -143,9 +143,16 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
             </div>
           </label>
           <i id="user-initial">
-            <% if (currUser && currUser.username) { %> <%=
-            currUser.username.charAt(0).toUpperCase() %> <% } else { %>
-            <i class="fa-regular fa-user" id="user-icon"></i>
+            <% if (currUser && currUser.avatar && currUser.avatar.url) { %>
+              <img
+                src="<%= currUser.avatar.url %>"
+                alt="Profile avatar"
+                class="user-avatar"
+              />
+            <% } else if (currUser && currUser.username) { %>
+              <%= currUser.username.charAt(0).toUpperCase() %>
+            <% } else { %>
+              <i class="fa-regular fa-user" id="user-icon"></i>
             <% } %>
           </i>
         </div>
@@ -159,8 +166,11 @@ c201 -48 366 -92 368 -97 2 -5 -78 -50 -177 -99 -166 -82 -182 -89 -203 -76
   <a class="nav-link" href="/signup">Sign Up</a>
   <a class="nav-link" href="/login">Log In</a>
   <%} %> <% if(currUser){%>
-  <a class="nav-link" href="/logout">Log Out</a>
+  <a class="nav-link" href="/me">Profile</a>
   <a class="nav-link" href="/wishlists">Wishlist</a>
+  <a class="nav-link" href="/host/dashboard">Host dashboard</a>
+  <a class="nav-link" href="/collections">Collections</a>
+  <a class="nav-link" href="/logout">Log Out</a>
   <%} %>
 </div>
 

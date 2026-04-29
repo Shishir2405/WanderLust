@@ -1,0 +1,56 @@
+<% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/collections.css" />
+
+<div class="coll-page">
+  <h1 class="coll-page__title">Create a collection</h1>
+  <form class="coll-form mt-4" method="POST" action="/collections" data-validate-form>
+    <div class="mb-3">
+      <label for="coll-name" class="form-label">Name</label>
+      <input
+        id="coll-name"
+        name="collection[name]"
+        type="text"
+        class="form-control"
+        required
+        minlength="1"
+        maxlength="60"
+        placeholder="Goa trip 2026"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="coll-desc" class="form-label">Description (optional)</label>
+      <textarea
+        id="coll-desc"
+        name="collection[description]"
+        class="form-control"
+        maxlength="280"
+        rows="2"
+        placeholder="A short note for yourself or anyone you share this with"
+      ></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label d-block">Cover color</label>
+      <div class="coll-palette">
+        <% palette.forEach(function (color, i) { %>
+          <label class="coll-palette__swatch <%= i === 0 ? 'is-checked' : '' %>" style="background: <%= color %>;">
+            <input type="radio" name="collection[coverColor]" value="<%= color %>" <%= i === 0 ? 'checked' : '' %> />
+          </label>
+        <% }) %>
+      </div>
+    </div>
+
+    <button class="btn edit-button" type="submit"><span>Create collection</span></button>
+    <a href="/collections" class="ms-2">Cancel</a>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll('.coll-palette__swatch input').forEach((input) => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll('.coll-palette__swatch').forEach((s) => s.classList.remove('is-checked'));
+      input.closest('.coll-palette__swatch').classList.add('is-checked');
+    });
+  });
+</script>

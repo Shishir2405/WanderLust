@@ -1,0 +1,32 @@
+/**
+ * Two-font pairing.
+ * Display: Fraunces (variable). Body: Plus Jakarta Sans.
+ * Layered AFTER style.css so we override existing typography without editing it.
+ */
+
+:root {
+  --wl-font-display: "Fraunces", Georgia, serif;
+  --wl-font-body: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+  font-family: var(--wl-font-body);
+  font-feature-settings: "ss01", "cv11", "tnum";
+}
+
+h1,
+h2,
+h3,
+.form-head,
+.coll-page__title,
+.host-page__title {
+  font-family: var(--wl-font-display);
+  font-feature-settings: "ss01", "tnum", "lnum";
+  letter-spacing: -0.01em;
+}
+
+/* Keep brand body font on action buttons. */
+.edit-button,
+.outline-button {
+  font-family: var(--wl-font-body) !important;
+}

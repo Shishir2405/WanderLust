@@ -1,0 +1,37 @@
+<% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/collections.css" />
+
+<div class="coll-page">
+  <div class="coll-page__head">
+    <h1 class="coll-page__title">My collections</h1>
+    <a href="/collections/new" class="btn edit-button"><span>+ New collection</span></a>
+  </div>
+
+  <% if (!collections || collections.length === 0) { %>
+    <div class="coll-empty">
+      <p>You don't have any collections yet.</p>
+      <p>Group listings by trip, vibe, or season — then share a public link with friends.</p>
+    </div>
+  <% } else { %>
+    <div class="coll-grid">
+      <% collections.forEach(function (c) { %>
+        <a class="coll-card" href="/collections/<%= c._id %>">
+          <div class="coll-card__cover <%= (c.listings || []).length === 0 ? 'coll-card__cover--empty' : '' %>" style="--cover: <%= c.coverColor %>; background: <%= c.coverColor %>;">
+            <% const covers = (c.listings || []).slice(0, 4); %>
+            <% if (covers.length === 0) { %>
+              <span><%= (c.name || '?').charAt(0).toUpperCase() %></span>
+            <% } else { %>
+              <% covers.forEach(function (l) { %>
+                <img src="<%= l.image && l.image.url %>" alt="" loading="lazy" />
+              <% }) %>
+            <% } %>
+          </div>
+          <div class="coll-card__body">
+            <p class="coll-card__name"><%= c.name %></p>
+            <p class="coll-card__meta"><%= (c.listings || []).length %> listing<%= (c.listings || []).length === 1 ? '' : 's' %></p>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
