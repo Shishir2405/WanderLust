@@ -16,7 +16,7 @@
 <div class="row mt-3" id="login-form">
   <div class="col-12 col-md-6 offset-md-3 mb-4">
     <h2 class="mb-4 mt-2" id="form-head">Welcome Back</h2>
-    <form action="/login" method="POST" novalidate class="needs-validation">
+    <form action="/login" method="POST" novalidate class="needs-validation" data-validate-form>
       <div class="form-floating mb-4">
         <input
           type="text"
@@ -26,7 +26,8 @@
           id="username"
           name="username"
           required
-          required
+          minlength="3"
+          data-validate-message="Username must be at least 3 characters"
         />
         <label for="floatingPassword">Username</label>
       </div>
@@ -39,6 +40,8 @@
           placeholder="Password"
           name="password"
           required
+          minlength="6"
+          data-validate-message="Password must be at least 6 characters"
         />
         <label for="floatingPassword">Password</label>
         <div class="valid-feedback">Looks Good!</div>
