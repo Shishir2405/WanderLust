@@ -1,0 +1,75 @@
+<% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/collections.css" />
+
+<div class="coll-page">
+  <div class="coll-page__head">
+    <div>
+      <h1 class="coll-page__title" style="color: <%= collection.coverColor %>;"><%= collection.name %></h1>
+      <% if (collection.description) { %>
+        <p style="margin: 0.25rem 0 0; color: var(--wl-text-muted, #6b6b6b);"><%= collection.description %></p>
+      <% } %>
+    </div>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <form method="POST" action="/collections/<%= collection._id %>/share/toggle" style="display: inline;">
+        <button class="btn outline-button" type="submit">
+          <span><%= collection.isPublic ? 'Make private' : 'Share publicly' %></span>
+        </button>
+      </form>
+      <form method="POST" action="/collections/<%= collection._id %>?_method=DELETE" onsubmit="return confirm('Delete this collection?');" style="display: inline;">
+        <button class="btn delete-button" type="submit" style="color: #d12c3a; border: 1.5px solid #d12c3a; background: transparent; border-radius: 0.4rem;">Delete</button>
+      </form>
+    </div>
+  </div>
+
+  <% if (collection.isPublic) { %>
+    <div class="coll-share mb-3">
+      <i class="fa-solid fa-link"></i>
+      <input class="coll-share__url" id="coll-share-url" readonly value="<%= 'https://' + (process.env.SELF_URL ? new URL(process.env.SELF_URL).host : 'wanderlust-1-88ni.onrender.com') + '/c/' + collection.shareToken %>" />
+      <button class="btn outline-button" type="button" id="coll-share-copy" style="padding: 0.3rem 0.75rem;">
+        <span>Copy</span>
+      </button>
+    </div>
+  <% } %>
+
+  <% if (!collection.listings || collection.listings.length === 0) { %>
+    <div class="coll-empty">
+      <p>This collection is empty.</p>
+      <p>Open any listing and click <strong>Save</strong> to add it here.</p>
+      <a class="btn edit-button mt-2" href="/listings"><span>Browse listings</span></a>
+    </div>
+  <% } else { %>
+    <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4">
+      <% collection.listings.forEach(function (l) { %>
+        <div class="card listing-card mt-3" style="border: none;">
+          <a href="/listings/<%= l._id %>" style="text-decoration: none; color: inherit;">
+            <img src="<%= l.image && l.image.url %>" class="card-img-top" alt="" style="height: 16rem; object-fit: cover; border-radius: 1rem;" />
+            <div class="card-body" style="padding: 0.5rem 0.25rem;">
+              <p style="font-weight: 700; margin: 0;"><%= l.title %></p>
+              <p style="color: var(--wl-text-muted, #6b6b6b); margin: 0; font-size: 0.85rem;"><%= l.location %></p>
+              <p style="margin: 0.25rem 0 0;"><b>₹<%= l.price.toLocaleString('en-IN') %></b> / night</p>
+            </div>
+          </a>
+          <form method="POST" action="/collections/<%= collection._id %>/listings/<%= l._id %>/remove" style="margin-top: 0.4rem;">
+            <button type="submit" class="btn outline-button" style="font-size: 0.78rem; padding: 0.25rem 0.6rem;"><span>Remove</span></button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<script>
+  const copyBtn = document.getElementById('coll-share-copy');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const input = document.getElementById('coll-share-url');
+      try {
+        await navigator.clipboard.writeText(input.value);
+        if (window.Toast) window.Toast.show('Share link copied', 'success', 2400);
+      } catch (_) {
+        input.select();
+        document.execCommand('copy');
+      }
+    });
+  }
+</script>

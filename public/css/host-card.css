@@ -1,0 +1,122 @@
+/* host-card.css — "Hosted by X" profile card on show page
+ * Brand: red #fe424d, gradient pinks, Plus Jakarta Sans, 1rem rounded.
+ */
+
+.host-card {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  border: 1px solid #ececec;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin: 0.5rem 0;
+}
+
+.host-card .host-avatar {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fe424d 0%, #ff7a85 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.85rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(254, 66, 77, 0.25);
+}
+
+.host-card .host-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.host-card .host-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.host-card .host-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.15rem;
+  color: #222;
+}
+
+.host-card .host-tagline {
+  font-size: 0.92rem;
+  color: #fe424d;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.host-card .host-bio {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 0.75rem;
+}
+
+.host-card .host-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  font-size: 0.88rem;
+  color: #666;
+}
+
+.host-card .host-meta .meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.host-card .host-meta i {
+  color: #fe424d;
+}
+
+.host-card .host-meta strong {
+  color: #222;
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  .host-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .host-card .host-meta {
+    justify-content: center;
+  }
+}
+
+[data-theme="dark"] .host-card {
+  background: #1f1f1f;
+  border-color: #333;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .host-card .host-name {
+  color: #f5f5f5;
+}
+
+[data-theme="dark"] .host-card .host-bio {
+  color: #cdcdcd;
+}
+
+[data-theme="dark"] .host-card .host-meta {
+  color: #aaa;
+}
+
+[data-theme="dark"] .host-card .host-meta strong {
+  color: #f0f0f0;
+}

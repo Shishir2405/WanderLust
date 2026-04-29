@@ -1,0 +1,21 @@
+<%# Reusable Save-to-collection modal. Triggered by [data-save-to-collection] %>
+<div class="coll-modal" id="coll-modal" aria-hidden="true">
+  <div class="coll-modal__panel" role="dialog" aria-labelledby="coll-modal-title" style="position: relative;">
+    <button type="button" class="coll-modal__close" data-coll-modal-close aria-label="Close">×</button>
+    <p class="coll-modal__title" id="coll-modal-title">Save to a collection</p>
+    <div class="coll-modal__list" id="coll-modal-list">
+      <p style="color: var(--wl-text-muted, #6b6b6b); padding: 0.5rem;">Loading…</p>
+    </div>
+    <form class="coll-modal__create" id="coll-modal-create">
+      <input
+        type="text"
+        name="name"
+        placeholder="New collection name"
+        maxlength="60"
+        required
+      />
+      <button type="submit" class="btn edit-button"><span>Create</span></button>
+    </form>
+  </div>
+</div>
+<script src="/JS/save-to-collection.js"></script>
