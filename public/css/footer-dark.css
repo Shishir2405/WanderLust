@@ -1,0 +1,137 @@
+/**
+ * Dark footer surface and theme-aware shadow elevation.
+ * Layered AFTER style.css and theme.css. No edits to existing CSS files.
+ */
+
+/* ---------- Desktop / large footer (.f-info) — always dark ---------- */
+.f-info {
+  background-color: #0f0f10 !important;
+  color: #ededed;
+}
+
+.f-info .f-info-brand,
+.f-info .f-info-brand * {
+  color: #ededed;
+}
+
+/* Preserve the brand red on the compass/logo icon. */
+.f-info .fa-compass {
+  color: #fe424d !important;
+}
+
+.f-info-links a {
+  color: #ededed !important;
+  transition: color 0.2s ease;
+}
+
+.f-info-links a:hover {
+  color: #a8a8ad !important;
+  text-decoration: none;
+}
+
+.f-info-socials,
+.f-info-socials a,
+.f-info-socials i {
+  color: #ededed !important;
+  transition: color 0.2s ease;
+}
+
+.f-info-socials a:hover i,
+.f-info-socials i:hover {
+  color: #fe424d !important;
+}
+
+/* ---------- Mobile footer (.footer) — dark only in dark theme ---------- */
+[data-theme="dark"] .footer {
+  background-color: #0f0f10;
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .footer a,
+[data-theme="dark"] .footer p,
+[data-theme="dark"] .footer .icon-footer,
+[data-theme="dark"] .footer #icon-footer {
+  color: #a8a8ad;
+}
+
+[data-theme="dark"] .footer a.active,
+[data-theme="dark"] .footer a.active p,
+[data-theme="dark"] .footer a.active .icon-footer,
+[data-theme="dark"] .footer a.active #icon-footer,
+[data-theme="dark"] .footer a.active .material-symbols-outlined {
+  color: #fe424d;
+}
+
+/* ---------- Theme-aware elevated card surface ---------- */
+.wl-elevated,
+.listing-card.wl-elevated,
+.host-stat.wl-elevated,
+.coll-card.wl-elevated,
+.host-section.wl-elevated {
+  box-shadow: 0 6px 22px rgba(34, 34, 34, 0.08),
+    0 1px 3px rgba(34, 34, 34, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.wl-elevated:hover,
+.listing-card.wl-elevated:hover,
+.host-stat.wl-elevated:hover,
+.coll-card.wl-elevated:hover,
+.host-section.wl-elevated:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(34, 34, 34, 0.12),
+    0 2px 6px rgba(34, 34, 34, 0.06);
+}
+
+[data-theme="dark"] .wl-elevated,
+[data-theme="dark"] .listing-card.wl-elevated,
+[data-theme="dark"] .host-stat.wl-elevated,
+[data-theme="dark"] .coll-card.wl-elevated,
+[data-theme="dark"] .host-section.wl-elevated {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55),
+    0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .wl-elevated:hover,
+[data-theme="dark"] .listing-card.wl-elevated:hover,
+[data-theme="dark"] .host-stat.wl-elevated:hover,
+[data-theme="dark"] .coll-card.wl-elevated:hover,
+[data-theme="dark"] .host-section.wl-elevated:hover {
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+/* Apply elevation to existing card classes without editing their files. */
+.listing-card,
+.host-stat,
+.coll-card,
+.host-section {
+  box-shadow: 0 6px 22px rgba(34, 34, 34, 0.08),
+    0 1px 3px rgba(34, 34, 34, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.listing-card:hover,
+.host-stat:hover,
+.coll-card:hover,
+.host-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(34, 34, 34, 0.12),
+    0 2px 6px rgba(34, 34, 34, 0.06);
+}
+
+[data-theme="dark"] .listing-card,
+[data-theme="dark"] .host-stat,
+[data-theme="dark"] .coll-card,
+[data-theme="dark"] .host-section {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55),
+    0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .listing-card:hover,
+[data-theme="dark"] .host-stat:hover,
+[data-theme="dark"] .coll-card:hover,
+[data-theme="dark"] .host-section:hover {
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.45);
+}
