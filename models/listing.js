@@ -101,6 +101,11 @@ const listingSchema = Schema({
     type: String,
     enum: ["no", "me", "family", "other-guests"],
   },
+  views: {
+    type: Number,
+    default: 0,
+    index: true,
+  },
 });
 
 /**

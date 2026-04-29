@@ -60,6 +60,11 @@ module.exports.showListing = async (req, res) => {
       return res.redirect("/listings");
     }
 
+    // Track view count (don't count the owner's own visits)
+    if (!req.user || !req.user._id.equals(listing.owner._id)) {
+      Listing.updateOne({ _id: id }, { $inc: { views: 1 } }).catch(() => {});
+    }
+
     // Calculate average rating
     let averageRating = 0;
     let ratingCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };

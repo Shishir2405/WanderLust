@@ -1,0 +1,87 @@
+<% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/host-dashboard.css" />
+
+<div class="host-page">
+  <h1 class="host-page__title">Host dashboard</h1>
+
+  <% if (totals.listings === 0) { %>
+    <div class="host-empty">
+      <p>You haven't published any listings yet.</p>
+      <a class="btn edit-button" href="/listings/new"><span>Create your first listing</span></a>
+    </div>
+  <% } else { %>
+    <div class="host-stats">
+      <div class="host-stat">
+        <p class="host-stat__label">Listings</p>
+        <p class="host-stat__value"><%= totals.listings %></p>
+      </div>
+      <div class="host-stat host-stat--accent">
+        <p class="host-stat__label">Total views</p>
+        <p class="host-stat__value"><%= totals.views.toLocaleString('en-IN') %></p>
+        <p class="host-stat__hint">Lifetime, excluding your own visits</p>
+      </div>
+      <div class="host-stat">
+        <p class="host-stat__label">Reviews</p>
+        <p class="host-stat__value"><%= totals.reviews %></p>
+        <p class="host-stat__hint">Average <%= totals.avgRating ? totals.avgRating.toFixed(2) : '—' %> ★</p>
+      </div>
+      <div class="host-stat">
+        <p class="host-stat__label">Wishlisted by</p>
+        <p class="host-stat__value"><%= totals.wishlists %></p>
+        <p class="host-stat__hint">Across all your listings</p>
+      </div>
+    </div>
+
+    <% if (totals.reviews > 0) { %>
+      <section class="host-section">
+        <h2 class="host-section__head">Rating distribution</h2>
+        <div class="host-bars">
+          <% [5,4,3,2,1].forEach(function (star) { %>
+            <% const count = starBuckets[star] || 0; %>
+            <% const pct = totals.reviews ? Math.round((count / totals.reviews) * 100) : 0; %>
+            <div class="host-bar">
+              <div class="host-bar__star"><%= star %> ★</div>
+              <div class="host-bar__track">
+                <div class="host-bar__fill" style="width: <%= pct %>%;"></div>
+              </div>
+              <div class="host-bar__count"><%= count %></div>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+    <% } %>
+
+    <section class="host-section">
+      <h2 class="host-section__head">Per-listing breakdown</h2>
+      <table class="host-table">
+        <thead>
+          <tr>
+            <th>Listing</th>
+            <th>Views</th>
+            <th>Reviews</th>
+            <th>Avg ★</th>
+            <th>Wishlisted</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% listings.forEach(function (l) { %>
+            <tr onclick="location.href='/listings/<%= l.id %>'" style="cursor: pointer;">
+              <td>
+                <div class="host-table__thumb">
+                  <img src="<%= l.image %>" alt="" loading="lazy" />
+                  <span class="host-table__title"><%= l.title %></span>
+                </div>
+              </td>
+              <td><%= l.views.toLocaleString('en-IN') %></td>
+              <td><%= l.reviewCount %></td>
+              <td><%= l.avgRating ? l.avgRating.toFixed(2) : '—' %></td>
+              <td><%= l.wishlistCount %></td>
+              <td>₹<%= l.price.toLocaleString('en-IN') %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+  <% } %>
+</div>
