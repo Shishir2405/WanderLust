@@ -1,6 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/skeleton.css" />
 
 <br />
 <div class="tax-toggle toggler">
@@ -82,13 +83,14 @@ include("../includes/filters.ejs") %>
       <div class="favorite-tag">Guest favourite</div>
       <% } %>
 
-      <img
-        src="<%=listing.image.url%>"
-        class="card-img-top"
-        alt="Listing Image"
-        style="height: 18.75rem"
-        loading="lazy"
-      />
+      <div class="card-image-wrap is-loading">
+        <img
+          src="<%=listing.image.url%>"
+          class="card-img-top"
+          alt="Listing Image"
+          loading="lazy"
+        />
+      </div>
 
       <form action="/wishlists/add" method="POST">
         <% if(currUser){ %>
@@ -146,5 +148,6 @@ include("../includes/filters.ejs") %>
   <% } %>
 </div>
 
+<script src="/JS/skeleton.js"></script>
 <script src="/JS/index.js"></script>
 <script src="/JS/currency.js"></script>
