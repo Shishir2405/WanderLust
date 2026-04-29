@@ -1,0 +1,95 @@
+<% layout("layouts/boilerplate") -%>
+
+<link rel="stylesheet" href="/css/landing.css" />
+
+<section class="landing-hero">
+  <div class="landing-hero__inner">
+    <h1 class="landing-hero__title">Stay anywhere. Feel at home.</h1>
+    <p class="landing-hero__sub">
+      Discover stays that match your vibe, your budget and your next plan.
+    </p>
+    <div class="landing-hero__ctas">
+      <a href="/listings" class="landing-cta landing-cta--primary">
+        Find a stay
+      </a>
+      <a href="/listings/new" class="landing-cta landing-cta--secondary">
+        Become a host
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="landing-section landing-featured">
+  <div class="landing-section__head">
+    <h2 class="landing-section__title">Featured stays</h2>
+    <a href="/listings" class="landing-section__more">View all</a>
+  </div>
+  <div class="landing-featured__grid">
+    <% if (featuredListings && featuredListings.length) { %>
+      <% featuredListings.forEach(function (listing) { %>
+        <a href="/listings/<%= listing._id %>" class="landing-card-link">
+          <div class="card listing-card landing-card">
+            <div class="landing-card__media">
+              <% if (listing.image && listing.image.url) { %>
+                <img
+                  src="<%= listing.image.url %>"
+                  alt="<%= listing.title %>"
+                  loading="lazy"
+                />
+              <% } %>
+            </div>
+            <div class="card-body landing-card__body">
+              <p class="card-text landing-card__text">
+                <b><%= listing.title %></b><br />
+                <span>
+                  <b>&#x20B9; <%= listing.price.toLocaleString("en-IN") %></b>
+                  / night
+                </span>
+              </p>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p class="landing-empty">No listings to feature yet — check back soon.</p>
+    <% } %>
+  </div>
+</section>
+
+<section class="landing-section landing-why">
+  <h2 class="landing-section__title">Why WanderLust</h2>
+  <div class="landing-why__grid">
+    <div class="landing-why__item">
+      <div class="landing-why__icon">
+        <i class="fa-solid fa-shield-heart"></i>
+      </div>
+      <h3>Trusted hosts</h3>
+      <p>Verified properties and real guest reviews on every stay.</p>
+    </div>
+    <div class="landing-why__item">
+      <div class="landing-why__icon">
+        <i class="fa-solid fa-tags"></i>
+      </div>
+      <h3>Fair pricing</h3>
+      <p>Transparent nightly rates with optional tax-included totals.</p>
+    </div>
+    <div class="landing-why__item">
+      <div class="landing-why__icon">
+        <i class="fa-solid fa-earth-asia"></i>
+      </div>
+      <h3>Stays everywhere</h3>
+      <p>From mountain cabins to city lofts — discover them all in one place.</p>
+    </div>
+  </div>
+</section>
+
+<section class="landing-banner">
+  <div class="landing-banner__inner">
+    <h2>Ready to plan your next escape?</h2>
+    <p>Browse handpicked stays or list your own place in minutes.</p>
+    <div class="landing-banner__ctas">
+      <a href="/listings" class="landing-cta landing-cta--ghost">Browse stays</a>
+      <a href="/listings/new" class="landing-cta landing-cta--ghost-light">Host with us</a>
+    </div>
+  </div>
+</section>

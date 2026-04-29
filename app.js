@@ -153,6 +153,19 @@ app.use((req, res, next) => {
 });
 
 /**
+ * * Marketing landing page.
+ * ? Authenticated users keep the existing UX (redirect to /listings).
+ * ? Anonymous visitors see the marketing landing view.
+ */
+app.get("/", wrapAsyn(async (req, res) => {
+  if (req.user) {
+    return res.redirect("/listings");
+  }
+  const featuredListings = await Listing.find({}).limit(6);
+  res.render("landing.ejs", { featuredListings });
+}));
+
+/**
  * * Attach the 'listing' router to handle requests at '/listings'.
  * * Attach the 'review' router to handle requests at '/listings/:id/reviews'.
  * * Attach the 'user' router to handle requests at '/'.

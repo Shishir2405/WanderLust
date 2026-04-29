@@ -1,0 +1,340 @@
+/**
+ * Marketing landing page styles. Brand: red #fe424d, gradient pinks
+ * #e82d72 / #fe346a / #ff375f, Plus Jakarta Sans, 1rem rounded cards.
+ * Dark mode is supported via [data-theme="dark"] selectors.
+ */
+
+.landing-hero,
+.landing-section,
+.landing-banner {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* ---------- Hero ---------- */
+.landing-hero {
+  margin: 1.5rem auto 2.5rem;
+  padding: 3.5rem 1.5rem 4rem;
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(254, 66, 77, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(232, 45, 114, 0.15), transparent 55%),
+    linear-gradient(180deg, #fff 0%, #fff5f6 100%);
+  text-align: center;
+}
+
+.landing-hero__inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.landing-hero__title {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.landing-hero__sub {
+  font-size: 1.05rem;
+  color: #545458;
+  margin-bottom: 1.75rem;
+}
+
+.landing-hero__ctas {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- CTA buttons ---------- */
+.landing-cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+  border: 1.5px solid transparent;
+}
+
+.landing-cta--primary {
+  background: #fe424d;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(254, 66, 77, 0.25);
+}
+
+.landing-cta--primary:hover {
+  background: #e82d72;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.landing-cta--secondary {
+  background: #fff;
+  color: #fe424d;
+  border-color: #fe424d;
+}
+
+.landing-cta--secondary:hover {
+  background: #fff5f6;
+  color: #fe424d;
+}
+
+.landing-cta--ghost {
+  background: rgba(255, 255, 255, 0.95);
+  color: #fe424d;
+}
+
+.landing-cta--ghost:hover {
+  background: #fff;
+  color: #e82d72;
+}
+
+.landing-cta--ghost-light {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.landing-cta--ghost-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* ---------- Generic section ---------- */
+.landing-section {
+  margin: 3rem auto;
+  padding: 0 0.25rem;
+}
+
+.landing-section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.landing-section__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.landing-section__more {
+  color: #fe424d;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.landing-section__more:hover {
+  color: #e82d72;
+}
+
+/* ---------- Featured grid ---------- */
+.landing-featured__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.landing-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.landing-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.landing-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.landing-card__media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.landing-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.landing-card__body {
+  padding: 0.85rem 1rem 1rem;
+}
+
+.landing-card__text {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+}
+
+.landing-empty {
+  color: #6b6b6b;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+/* ---------- Why WanderLust ---------- */
+.landing-why__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.landing-why__item {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.landing-why__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fff5f6;
+  color: #fe424d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.landing-why__item h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.4rem;
+}
+
+.landing-why__item p {
+  margin: 0;
+  color: #545458;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ---------- Footer banner ---------- */
+.landing-banner {
+  margin: 3rem auto 4rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #e82d72 0%, #fe346a 50%, #ff375f 100%);
+  color: #fff;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(254, 52, 106, 0.25);
+}
+
+.landing-banner__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.landing-banner h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.landing-banner p {
+  font-size: 1rem;
+  opacity: 0.92;
+  margin-bottom: 1.5rem;
+}
+
+.landing-banner__ctas {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- Dark mode ---------- */
+[data-theme="dark"] .landing-hero {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(254, 66, 77, 0.22), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(232, 45, 114, 0.18), transparent 55%),
+    linear-gradient(180deg, #1c1c1e 0%, #232325 100%);
+}
+
+[data-theme="dark"] .landing-hero__title,
+[data-theme="dark"] .landing-section__title,
+[data-theme="dark"] .landing-why__item h3,
+[data-theme="dark"] .landing-card__text {
+  color: #f5f5f7;
+}
+
+[data-theme="dark"] .landing-hero__sub,
+[data-theme="dark"] .landing-why__item p {
+  color: #b5b5ba;
+}
+
+[data-theme="dark"] .landing-cta--secondary {
+  background: #2a2a2c;
+  color: #fe346a;
+  border-color: #fe346a;
+}
+
+[data-theme="dark"] .landing-cta--secondary:hover {
+  background: #1c1c1e;
+}
+
+[data-theme="dark"] .landing-card {
+  background: #1c1c1e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .landing-card:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .landing-card__media {
+  background: #2a2a2c;
+}
+
+[data-theme="dark"] .landing-why__item {
+  background: #1c1c1e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .landing-why__icon {
+  background: rgba(254, 66, 77, 0.12);
+  color: #fe346a;
+}
+
+[data-theme="dark"] .landing-empty {
+  color: #b5b5ba;
+}
+
+@media (max-width: 540px) {
+  .landing-hero {
+    padding: 2.5rem 1rem 2.75rem;
+  }
+  .landing-section__head {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .landing-banner {
+    padding: 2.25rem 1rem;
+  }
+}
