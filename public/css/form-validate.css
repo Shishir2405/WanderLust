@@ -1,0 +1,47 @@
+/**
+ * Inline form validation feedback.
+ * Lights up only after a field has been blurred or the form has been submitted.
+ */
+
+.wl-field {
+  position: relative;
+}
+
+.wl-field__error {
+  display: none;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #d12c3a;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  line-height: 1.3;
+}
+
+.wl-field.is-touched.is-invalid .wl-field__error {
+  display: block;
+}
+
+.wl-field.is-touched.is-invalid > input,
+.wl-field.is-touched.is-invalid > textarea,
+.wl-field.is-touched.is-invalid > select,
+.wl-field.is-touched.is-invalid .form-control {
+  border-color: #d12c3a !important;
+  box-shadow: 0 0 0 3px rgba(209, 44, 58, 0.12);
+}
+
+.wl-field.is-touched.is-valid > input,
+.wl-field.is-touched.is-valid > textarea,
+.wl-field.is-touched.is-valid > select,
+.wl-field.is-touched.is-valid .form-control {
+  border-color: #1f9d55 !important;
+}
+
+[data-theme="dark"] .wl-field__error {
+  color: #ff7a85;
+}
+
+[data-theme="dark"] .wl-field.is-touched.is-invalid > input,
+[data-theme="dark"] .wl-field.is-touched.is-invalid .form-control {
+  border-color: #ff7a85 !important;
+  box-shadow: 0 0 0 3px rgba(255, 122, 133, 0.16);
+}
