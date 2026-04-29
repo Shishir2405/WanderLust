@@ -39,9 +39,35 @@ const app = express();
 /**
  * *Defining port number and mongoUrl
  */
-const port = 8080;
+const port = process.env.PORT || 8080;
 const dbUrl = process.env.ATLASDB_URL;
 //const dbUrl = "mongodb://localhost:27017/eanderlust";
+
+if (!dbUrl) {
+  console.error(
+    "FATAL: ATLASDB_URL is not set. Configure it in your Render environment variables."
+  );
+  process.exit(1);
+}
+
+/**
+ * * Self-ping (keep-alive) so Render's free instance does not sleep.
+ * ? Pings SELF_URL every 3 minutes when running in production.
+ */
+const SELF_URL =
+  process.env.SELF_URL || "https://wanderlust-1-88ni.onrender.com";
+if (process.env.NODE_ENV === "production") {
+  setInterval(() => {
+    const https = require("https");
+    https
+      .get(SELF_URL, (res) => {
+        console.log(`[keep-alive] ${SELF_URL} -> ${res.statusCode}`);
+      })
+      .on("error", (err) => {
+        console.log(`[keep-alive] error: ${err.message}`);
+      });
+  }, 3 * 60 * 1000);
+}
 
 /**
  * * Set up view engine, directory for views, static files, body parsing, and method override middleware
@@ -138,7 +164,14 @@ app.use("/filter", filterRouter);
  * * Starting Express Server
  */
 app.listen(port, () => {
-  console.log("Started Listening!!!");
+  console.log(`Started Listening on port ${port}!!!`);
+});
+
+/**
+ * * Health-check endpoint used by the self-ping keep-alive and Render health checks.
+ */
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", uptime: process.uptime() });
 });
 
 app.get("/privacy", (req, res) => {
