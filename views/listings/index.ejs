@@ -93,8 +93,10 @@ include("../includes/filters.ejs") %>
             <div class="card-carousel__slide">
               <div class="card-image-wrap is-loading" style="border-radius:0;">
                 <img
-                  src="<%= slide.url %>"
+                  src="<%= imgUrl(slide.url, { w: 600, h: 300, c: 'fill' }) %>"
                   alt="Listing image <%= i + 1 %>"
+                  width="600"
+                  height="300"
                   loading="<%= i === 0 ? 'eager' : 'lazy' %>"
                 />
               </div>

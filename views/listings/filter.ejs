@@ -103,9 +103,11 @@
         data-type="<%= listing.typeOfPlace %>"
       >
         <img
-          src="<%=listing.image.url%>"
+          src="<%= imgUrl(listing.image.url, { w: 600, h: 300, c: 'fill' }) %>"
           class="card-img-top"
           alt="Listing Image"
+          width="600"
+          height="300"
           style="height: 18.75rem"
         />
 

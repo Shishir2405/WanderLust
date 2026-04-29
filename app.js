@@ -152,6 +152,15 @@ app.use((req, res, next) => {
 });
 
 /**
+ * * Expose imgUrl helper to all EJS templates for Cloudinary
+ * * auto-format/quality and explicit width/height transforms.
+ */
+app.use((req, res, next) => {
+  res.locals.imgUrl = require("./utils/imgUrl.js");
+  next();
+});
+
+/**
  * * Attach the 'listing' router to handle requests at '/listings'.
  * * Attach the 'review' router to handle requests at '/listings/:id/reviews'.
  * * Attach the 'user' router to handle requests at '/'.

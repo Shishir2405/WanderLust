@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="container-img position-relative">
-          <a href="/image/fullscreen/<%=listing._id%>"><img src="<%= listing.image.url %>" alt="listing-image" class="card-img-top show-img image-contain" /></a>
+          <a href="/image/fullscreen/<%=listing._id%>"><img src="<%= imgUrl(listing.image.url, { w: 1200, h: 600, c: 'fill' }) %>" alt="listing-image" class="card-img-top show-img image-contain" width="1200" height="600" /></a>
           <button class="position-absolute top-0 end-0" id="shareImage"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
         </div>
         <div class="card-body">
