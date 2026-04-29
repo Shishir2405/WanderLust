@@ -87,6 +87,19 @@
                   </p>
                 </button>
               </form>
+              <button
+                type="button"
+                data-save-to-collection="<%= listing._id %>"
+                style="background: none; border: none; padding: 0; display: flex; align-items: center; cursor: pointer; margin-right: 2.5rem;"
+                title="Save to a collection"
+              >
+                <p style="margin-right: 0.5rem; font-weight: 300; color: rgb(64, 64, 64);">
+                  <i class="fa-regular fa-bookmark"></i>
+                </p>
+                <p style="text-decoration: underline; font-size: 1rem; font-weight: 600;">
+                  Collection
+                </p>
+              </button>
             <% } %>
           </div>
         </div>
@@ -304,3 +317,5 @@
 <script src="/JS/map.js"></script>
 <script src="/JS/share.js"></script>
 <script src="/JS/currency.js"></script>
+
+<%- include("../includes/saveToCollection.ejs") %>
