@@ -78,11 +78,20 @@ module.exports.showListing = async (req, res) => {
       }
     }
 
+    // Count of listings owned by this host (for host profile card)
+    let ownerListingsCount = 0;
+    if (listing.owner && listing.owner._id) {
+      ownerListingsCount = await Listing.countDocuments({
+        owner: listing.owner._id,
+      });
+    }
+
     res.render("listings/show.ejs", {
       listing,
       averageRating,
       ratingPercentages,
       currentUser: req.user,
+      ownerListingsCount,
     });
   } catch (error) {
     console.error("Error:", error);
