@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Travel journey illustration">
+  <defs>
+    <linearGradient id="j-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff0f1"/>
+      <stop offset="100%" stop-color="#ffe1e3"/>
+    </linearGradient>
+    <linearGradient id="j-red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fe424d"/>
+      <stop offset="100%" stop-color="#ff7b88"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#j-sky)"/>
+  <ellipse cx="300" cy="370" rx="240" ry="18" fill="#fe424d" opacity="0.08"/>
+  <!-- mountains -->
+  <path d="M0 320 L120 200 L210 280 L320 160 L450 290 L600 220 L600 400 L0 400 Z"
+        fill="#fe424d" opacity="0.18"/>
+  <path d="M0 340 L90 260 L170 320 L280 230 L400 320 L520 270 L600 310 L600 400 L0 400 Z"
+        fill="#fe424d" opacity="0.32"/>
+  <!-- sun -->
+  <circle cx="470" cy="120" r="42" fill="url(#j-red)"/>
+  <!-- airplane -->
+  <g transform="translate(150 110) rotate(-15)" fill="#fe424d">
+    <path d="M0 20 L80 4 L100 0 L84 18 L120 24 L84 32 L100 50 L80 46 L0 30 Z"/>
+  </g>
+  <!-- dotted path -->
+  <g stroke="#fe424d" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" fill="none">
+    <path d="M180 140 Q280 220 360 180 T540 200"/>
+  </g>
+  <!-- pin -->
+  <g transform="translate(528 168)">
+    <path d="M0 0 a14 14 0 1 1 0.01 0 z M-14 0 c0 16 14 32 14 32 s14 -16 14 -32"
+          fill="url(#j-red)"/>
+    <circle cx="0" cy="0" r="5" fill="#fff"/>
+  </g>
+</svg>

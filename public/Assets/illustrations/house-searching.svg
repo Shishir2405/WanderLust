@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="No results found illustration">
+  <defs>
+    <linearGradient id="hs-red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fe424d"/>
+      <stop offset="100%" stop-color="#ff7b88"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="240" cy="320" rx="170" ry="14" fill="#fe424d" opacity="0.12"/>
+  <!-- house -->
+  <g transform="translate(140 110)">
+    <path d="M0 80 L100 0 L200 80 L200 200 L0 200 Z" fill="url(#hs-red)" opacity="0.92"/>
+    <rect x="40" y="120" width="50" height="80" fill="#fff" opacity="0.85"/>
+    <rect x="120" y="100" width="50" height="40" fill="#fff" opacity="0.85"/>
+    <path d="M0 80 L100 0 L200 80" fill="none" stroke="#fff" stroke-width="3" opacity="0.6"/>
+  </g>
+  <!-- magnifier -->
+  <g transform="translate(290 200)">
+    <circle cx="0" cy="0" r="48" fill="none" stroke="#fe424d" stroke-width="8"/>
+    <circle cx="0" cy="0" r="38" fill="#fff" opacity="0.55"/>
+    <line x1="34" y1="34" x2="78" y2="78" stroke="#fe424d" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g fill="#fe424d" opacity="0.5">
+    <circle cx="60" cy="80" r="3"/>
+    <circle cx="420" cy="60" r="4"/>
+    <circle cx="420" cy="240" r="3"/>
+  </g>
+</svg>
