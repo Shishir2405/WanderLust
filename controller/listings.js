@@ -67,6 +67,11 @@ module.exports.showListing = async (req, res) => {
       return res.redirect("/listings");
     }
 
+    // Track view count (don't count the owner's own visits)
+    if (!req.user || !req.user._id.equals(listing.owner._id)) {
+      Listing.updateOne({ _id: id }, { $inc: { views: 1 } }).catch(() => {});
+    }
+
     // Calculate average rating
     let averageRating = 0;
     let ratingCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
@@ -88,12 +93,21 @@ module.exports.showListing = async (req, res) => {
     const { tagListing } = require("../utils/priceStats.js");
     const priceTier = await tagListing(listing);
 
+    // Count of listings owned by this host (for host profile card)
+    let ownerListingsCount = 0;
+    if (listing.owner && listing.owner._id) {
+      ownerListingsCount = await Listing.countDocuments({
+        owner: listing.owner._id,
+      });
+    }
+
     res.render("listings/show.ejs", {
       listing,
       averageRating,
       ratingPercentages,
       priceTier,
       currentUser: req.user,
+      ownerListingsCount,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -127,6 +141,20 @@ module.exports.createListing = async (req, res, next) => {
   newListing.typeOfPlace = req.body.listing.typeOfPlace;
   newListing.bedrooms = req.body.listing.bedrooms;
   newListing.beds = req.body.listing.beds;
+  newListing.bathrooms = req.body.listing.bathrooms;
+  newListing.maxGuests = req.body.listing.maxGuests;
+
+  // Normalize amenities (array of strings, trim, drop empties)
+  let amenitiesInput = req.body.listing.amenities;
+  if (typeof amenitiesInput === "string") {
+    amenitiesInput = amenitiesInput
+      ? amenitiesInput.split(",").map((s) => s.trim())
+      : [];
+  }
+  newListing.amenities = Array.isArray(amenitiesInput)
+    ? amenitiesInput.map((a) => String(a).trim()).filter(Boolean)
+    : [];
+
   newListing.locked = req.body.listing.locked;
   newListing.other = req.body.listing.other;
   let savedListing = await newListing.save();
@@ -164,11 +192,19 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
 
-  let listing = await Listing.findByIdAndUpdate(
-    id,
-    { ...req.body.listing },
-    { new: true }
-  );
+  // Normalize amenities (array of strings, trim, drop empties)
+  let payload = { ...req.body.listing };
+  let amenitiesInput = payload.amenities;
+  if (typeof amenitiesInput === "string") {
+    amenitiesInput = amenitiesInput
+      ? amenitiesInput.split(",").map((s) => s.trim())
+      : [];
+  }
+  payload.amenities = Array.isArray(amenitiesInput)
+    ? amenitiesInput.map((a) => String(a).trim()).filter(Boolean)
+    : [];
+
+  let listing = await Listing.findByIdAndUpdate(id, payload, { new: true });
 
   if (typeof req.file !== "undefined") {
     let url = req.file.path;

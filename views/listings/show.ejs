@@ -1,6 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 <link rel="stylesheet" href="/css/show.css" />
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/host-card.css" />
 <style>
   .star {
     font-size: 1rem;
@@ -87,6 +88,19 @@
                   </p>
                 </button>
               </form>
+              <button
+                type="button"
+                data-save-to-collection="<%= listing._id %>"
+                style="background: none; border: none; padding: 0; display: flex; align-items: center; cursor: pointer; margin-right: 2.5rem;"
+                title="Save to a collection"
+              >
+                <p style="margin-right: 0.5rem; font-weight: 300; color: rgb(64, 64, 64);">
+                  <i class="fa-regular fa-bookmark"></i>
+                </p>
+                <p style="text-decoration: underline; font-size: 1rem; font-weight: 600;">
+                  Collection
+                </p>
+              </button>
             <% } %>
           </div>
         </div>
@@ -166,13 +180,47 @@
             <hr>
           <% } %>
 
-          <div class="owner-card">
-            <div class="owner-avatar">
-              <span class="avatar-circle"><%= listing.owner.username.charAt(0).toUpperCase() %></span>
+          <%
+            const _hostOwner = listing.owner || {};
+            const _hostDisplayName = _hostOwner.displayName || _hostOwner.username || "Host";
+            const _hostBio = _hostOwner.bio && String(_hostOwner.bio).trim()
+              ? _hostOwner.bio
+              : "Host on WanderLust";
+            const _hostAvatarUrl = (_hostOwner.avatar && _hostOwner.avatar.url) ? _hostOwner.avatar.url : null;
+            const _hostInitial = (_hostDisplayName || "H").charAt(0).toUpperCase();
+            let _memberSince = "";
+            try {
+              if (_hostOwner._id && typeof _hostOwner._id.getTimestamp === "function") {
+                _memberSince = new Date(_hostOwner._id.getTimestamp())
+                  .toLocaleDateString("en-IN", { month: "long", year: "numeric" });
+              }
+            } catch (e) { _memberSince = ""; }
+            const _ownerListingsCount = (typeof ownerListingsCount !== "undefined") ? ownerListingsCount : 0;
+          %>
+          <div class="host-card" aria-label="Host profile">
+            <div class="host-avatar">
+              <% if (_hostAvatarUrl) { %>
+                <img src="<%= _hostAvatarUrl %>" alt="<%= _hostDisplayName %>" />
+              <% } else { %>
+                <span class="avatar-circle"><%= _hostInitial %></span>
+              <% } %>
             </div>
-            <div class="owner-info">
-              <p class="card-text"><strong>Hosted and owned by:</strong></p>
-              <p class="card-text owner-name"><%= listing.owner.username %></p>
+            <div class="host-body">
+              <p class="host-tagline">Hosted by</p>
+              <h4 class="host-name"><%= _hostDisplayName %></h4>
+              <p class="host-bio"><%= _hostBio %></p>
+              <div class="host-meta">
+                <% if (_memberSince) { %>
+                  <span class="meta-item">
+                    <i class="fa-regular fa-calendar"></i>
+                    Member since <strong><%= _memberSince %></strong>
+                  </span>
+                <% } %>
+                <span class="meta-item">
+                  <i class="fa-solid fa-house"></i>
+                  <strong><%= _ownerListingsCount %></strong> listing<%= _ownerListingsCount === 1 ? '' : 's' %>
+                </span>
+              </div>
             </div>
           </div>
 
@@ -315,3 +363,5 @@
 <script src="/JS/map.js"></script>
 <script src="/JS/share.js"></script>
 <script src="/JS/currency.js"></script>
+
+<%- include("../includes/saveToCollection.ejs") %>
