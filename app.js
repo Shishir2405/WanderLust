@@ -29,6 +29,9 @@ const userRouter = require("./routes/user.js");
 const filterRouter = require("./routes/filter.js");
 const apiRouter = require("./routes/api.js");
 const profileRouter = require("./routes/profile.js");
+const aiRouter = require("./routes/ai.js");
+const hostRouter = require("./routes/host.js");
+const collectionRouter = require("./routes/collection.js");
 const User = require("./models/user.js");
 const wrapAsyn = require("./utils/wrapAsyn.js");
 const Listing = require("./models/listing.js");
@@ -153,6 +156,19 @@ app.use((req, res, next) => {
 });
 
 /**
+ * * Marketing landing page.
+ * ? Authenticated users keep the existing UX (redirect to /listings).
+ * ? Anonymous visitors see the marketing landing view.
+ */
+app.get("/", wrapAsyn(async (req, res) => {
+  if (req.user) {
+    return res.redirect("/listings");
+  }
+  const featuredListings = await Listing.find({}).limit(6);
+  res.render("landing.ejs", { featuredListings });
+}));
+
+/**
  * * Attach the 'listing' router to handle requests at '/listings'.
  * * Attach the 'review' router to handle requests at '/listings/:id/reviews'.
  * * Attach the 'user' router to handle requests at '/'.
@@ -163,6 +179,10 @@ app.use("/", userRouter);
 app.use("/", profileRouter);
 app.use("/filter", filterRouter);
 app.use("/api", apiRouter);
+app.use("/api/ai", aiRouter);
+app.use("/host", hostRouter);
+app.use("/collections", collectionRouter);
+app.get("/c/:token", require("./utils/wrapAsyn.js")(require("./controller/collections.js").publicView));
 
 /**
  * * Starting Express Server

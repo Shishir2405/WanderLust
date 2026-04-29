@@ -150,7 +150,18 @@ include("../includes/filters.ejs") %>
       <div class="card-img-overlay"></div>
       <div class="card-body">
         <p class="card-text" style="margin-left: 0.25rem">
-          <b><%=listing.title %></b> <br />
+          <b><%=listing.title %></b>
+          <% const tier = (typeof priceTiers !== 'undefined' && priceTiers) ? priceTiers[String(listing._id)] : null; %>
+          <% if (tier && tier.tier !== 'fair') { %>
+            <span class="price-badge price-badge--<%= tier.tier %> price-badge--card">
+              <% if (tier.tier === 'great-deal') { %>
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i> <%= tier.delta %>% below avg
+              <% } else { %>
+                <i class="fa-solid fa-crown" aria-hidden="true"></i> Premium
+              <% } %>
+            </span>
+          <% } %>
+          <br />
           <span
             class="price-without-gst"
             data-original-price="<%=listing.price%>"

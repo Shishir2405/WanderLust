@@ -31,12 +31,16 @@ const categories = [
 ];
 
 // Create a route for each category
+const { tagListings } = require("../utils/priceStats.js");
+
 categories.forEach((category) => {
   router.get(`/${category}`, async (req, res) => {
     try {
       let listings = await Listing.find({ category: category });
+      const priceTiers = await tagListings(listings);
       res.render("listings/filter.ejs", {
         listings,
+        priceTiers,
         category,
         includeNavBelow: true,
       });
