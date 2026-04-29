@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet" href="/css/skeleton.css" />
+<link rel="stylesheet" href="/css/card-carousel.css" />
 
 <br />
 <div class="tax-toggle toggler">
@@ -83,13 +84,36 @@ include("../includes/filters.ejs") %>
       <div class="favorite-tag">Guest favourite</div>
       <% } %>
 
-      <div class="card-image-wrap is-loading">
-        <img
-          src="<%=listing.image.url%>"
-          class="card-img-top"
-          alt="Listing Image"
-          loading="lazy"
-        />
+      <%
+        const slides = [listing.image].concat(listing.gallery || []).filter(s => s && s.url);
+      %>
+      <div class="card-carousel <%= slides.length <= 1 ? 'card-carousel--single' : '' %>">
+        <div class="card-carousel__track">
+          <% slides.forEach(function (slide, i) { %>
+            <div class="card-carousel__slide">
+              <div class="card-image-wrap is-loading" style="border-radius:0;">
+                <img
+                  src="<%= slide.url %>"
+                  alt="Listing image <%= i + 1 %>"
+                  loading="<%= i === 0 ? 'eager' : 'lazy' %>"
+                />
+              </div>
+            </div>
+          <% }) %>
+        </div>
+        <% if (slides.length > 1) { %>
+          <button type="button" class="card-carousel__btn card-carousel__btn--prev" aria-label="Previous photo">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="card-carousel__btn card-carousel__btn--next" aria-label="Next photo">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+          <div class="card-carousel__dots" aria-hidden="true">
+            <% slides.forEach(function (_, i) { %>
+              <button type="button" class="card-carousel__dot <%= i === 0 ? 'is-active' : '' %>" tabindex="-1"></button>
+            <% }) %>
+          </div>
+        <% } %>
       </div>
 
       <form action="/wishlists/add" method="POST">
@@ -149,5 +173,6 @@ include("../includes/filters.ejs") %>
 </div>
 
 <script src="/JS/skeleton.js"></script>
+<script src="/JS/card-carousel.js"></script>
 <script src="/JS/index.js"></script>
 <script src="/JS/currency.js"></script>
