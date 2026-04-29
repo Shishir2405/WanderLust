@@ -18,6 +18,11 @@ module.exports.listingSchema = Joi.object({
     typeOfPlace: Joi.string().required(),
     bedrooms: Joi.number().required().max(8),
     beds: Joi.number().required().max(8),
+    bathrooms: Joi.number().max(8).optional().allow("", null),
+    maxGuests: Joi.number().max(16).optional().allow("", null),
+    amenities: Joi.alternatives()
+      .try(Joi.array().items(Joi.string().allow("")), Joi.string().allow(""))
+      .optional(),
     locked: Joi.string().required(),
     other: Joi.string().required(),
   }).required(),

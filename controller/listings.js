@@ -116,6 +116,20 @@ module.exports.createListing = async (req, res, next) => {
   newListing.typeOfPlace = req.body.listing.typeOfPlace;
   newListing.bedrooms = req.body.listing.bedrooms;
   newListing.beds = req.body.listing.beds;
+  newListing.bathrooms = req.body.listing.bathrooms;
+  newListing.maxGuests = req.body.listing.maxGuests;
+
+  // Normalize amenities (array of strings, trim, drop empties)
+  let amenitiesInput = req.body.listing.amenities;
+  if (typeof amenitiesInput === "string") {
+    amenitiesInput = amenitiesInput
+      ? amenitiesInput.split(",").map((s) => s.trim())
+      : [];
+  }
+  newListing.amenities = Array.isArray(amenitiesInput)
+    ? amenitiesInput.map((a) => String(a).trim()).filter(Boolean)
+    : [];
+
   newListing.locked = req.body.listing.locked;
   newListing.other = req.body.listing.other;
   let savedListing = await newListing.save();
@@ -153,11 +167,19 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateListing = async (req, res) => {
   let { id } = req.params;
 
-  let listing = await Listing.findByIdAndUpdate(
-    id,
-    { ...req.body.listing },
-    { new: true }
-  );
+  // Normalize amenities (array of strings, trim, drop empties)
+  let payload = { ...req.body.listing };
+  let amenitiesInput = payload.amenities;
+  if (typeof amenitiesInput === "string") {
+    amenitiesInput = amenitiesInput
+      ? amenitiesInput.split(",").map((s) => s.trim())
+      : [];
+  }
+  payload.amenities = Array.isArray(amenitiesInput)
+    ? amenitiesInput.map((a) => String(a).trim()).filter(Boolean)
+    : [];
+
+  let listing = await Listing.findByIdAndUpdate(id, payload, { new: true });
 
   if (typeof req.file !== "undefined") {
     let url = req.file.path;
