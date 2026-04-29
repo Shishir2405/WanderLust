@@ -16,7 +16,7 @@
 <div class="row mt-3">
   <div class="col-12 col-md-6 offset-md-3 mb-4">
     <h2 class="mb-4" id="form-head">Join WanderLust Today</h2>
-    <form action="/signup" method="POST" novalidate class="needs-validation">
+    <form action="/signup" method="POST" novalidate class="needs-validation" data-validate-form>
       <div class="form-floating mb-4">
         <input
           type="text"
@@ -26,6 +26,8 @@
           id="username"
           name="username"
           required
+          minlength="3"
+          data-validate-message="Username must be at least 3 characters"
         />
         <label for="floatingPassword">Username</label>
       </div>
@@ -38,6 +40,7 @@
           name="email"
           placeholder="name@gmail.com"
           required
+          data-validate-message="Enter a valid email address"
         />
         <label for="floatingPassword">E-mail</label>
       </div>
@@ -50,6 +53,8 @@
           placeholder="Password"
           name="password"
           required
+          minlength="6"
+          data-validate-message="Password must be at least 6 characters"
         />
         <label for="floatingPassword">Password</label>
         <div class="valid-feedback">Looks Good!</div>
