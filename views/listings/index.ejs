@@ -1,6 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/skeleton.css" />
 <link rel="stylesheet" href="/css/card-carousel.css" />
 
 <br />
@@ -90,11 +91,13 @@ include("../includes/filters.ejs") %>
         <div class="card-carousel__track">
           <% slides.forEach(function (slide, i) { %>
             <div class="card-carousel__slide">
-              <img
-                src="<%= slide.url %>"
-                alt="Listing image <%= i + 1 %>"
-                loading="<%= i === 0 ? 'eager' : 'lazy' %>"
-              />
+              <div class="card-image-wrap is-loading" style="border-radius:0;">
+                <img
+                  src="<%= slide.url %>"
+                  alt="Listing image <%= i + 1 %>"
+                  loading="<%= i === 0 ? 'eager' : 'lazy' %>"
+                />
+              </div>
             </div>
           <% }) %>
         </div>
@@ -169,6 +172,7 @@ include("../includes/filters.ejs") %>
   <% } %>
 </div>
 
+<script src="/JS/skeleton.js"></script>
 <script src="/JS/card-carousel.js"></script>
 <script src="/JS/index.js"></script>
 <script src="/JS/currency.js"></script>

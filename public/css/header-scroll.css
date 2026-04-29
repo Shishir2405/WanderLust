@@ -1,0 +1,51 @@
+/**
+ * Sticky compact header — when the page is scrolled past 80px, the navbar
+ * shrinks (less padding, smaller logo) and gains a subtle elevation shadow.
+ * Toggling is done by header-scroll.js setting body[data-nav-scrolled].
+ */
+
+.navbar#nav {
+  transition: height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease, background-color 0.28s ease;
+  will-change: height, padding;
+}
+
+body[data-nav-scrolled="true"] .navbar#nav {
+  height: 3.75rem !important;
+  padding-inline: 1rem !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+  backdrop-filter: saturate(180%) blur(8px);
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="dark"] body[data-nav-scrolled="true"] .navbar#nav,
+body[data-nav-scrolled="true"][data-theme="dark"] .navbar#nav {
+  background-color: rgba(28, 28, 30, 0.92);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+body[data-nav-scrolled="true"] .svg-icon#logo {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  transition: width 0.28s ease, height 0.28s ease;
+}
+
+body[data-nav-scrolled="true"] #explore,
+body[data-nav-scrolled="true"] #new-airbnb {
+  font-size: 0.85rem;
+}
+
+body[data-nav-scrolled="true"] .searchBox {
+  transform: scale(0.92);
+  transform-origin: right center;
+  transition: transform 0.28s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar#nav,
+  body[data-nav-scrolled="true"] .svg-icon#logo,
+  body[data-nav-scrolled="true"] .searchBox {
+    transition: none;
+  }
+}

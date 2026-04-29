@@ -1,0 +1,209 @@
+/**
+ * Dark theme overrides.
+ * Activated by setting [data-theme="dark"] on <html>.
+ * Brand colors are preserved — only neutrals shift.
+ */
+
+:root {
+  --wl-bg: #ffffff;
+  --wl-surface: #ffffff;
+  --wl-surface-2: #f7f7f7;
+  --wl-text: #222222;
+  --wl-text-muted: #6b6b6b;
+  --wl-border: rgba(0, 0, 0, 0.08);
+  --wl-elevated-shadow: 0 8px 28px rgba(34, 34, 34, 0.12);
+  --wl-brand: #fe424d;
+}
+
+[data-theme="dark"] {
+  --wl-bg: #121214;
+  --wl-surface: #1c1c1e;
+  --wl-surface-2: #232326;
+  --wl-text: #ededed;
+  --wl-text-muted: #a8a8ad;
+  --wl-border: rgba(255, 255, 255, 0.08);
+  --wl-elevated-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body {
+  background-color: var(--wl-bg);
+  color: var(--wl-text);
+}
+
+[data-theme="dark"] .navbar,
+[data-theme="dark"] #navbarNav {
+  background-color: var(--wl-surface) !important;
+  border-bottom-color: var(--wl-border) !important;
+}
+
+[data-theme="dark"] .nav-link {
+  color: var(--wl-text) !important;
+}
+
+[data-theme="dark"] #new-airbnb:hover,
+[data-theme="dark"] #explore:hover,
+[data-theme="dark"] #globe:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .f-info {
+  background-color: var(--wl-surface-2);
+}
+
+[data-theme="dark"] .f-info-links a,
+[data-theme="dark"] .extra a,
+[data-theme="dark"] .extra a:hover {
+  color: var(--wl-text);
+}
+
+[data-theme="dark"] .footer {
+  background-color: var(--wl-surface);
+  border-top-color: var(--wl-border);
+}
+
+[data-theme="dark"] .footer a,
+[data-theme="dark"] #icon-footer,
+[data-theme="dark"] .icon-footer {
+  color: var(--wl-text-muted);
+}
+
+[data-theme="dark"] .listing-card,
+[data-theme="dark"] .card {
+  background-color: var(--wl-surface);
+  color: var(--wl-text);
+}
+
+[data-theme="dark"] .card-body p,
+[data-theme="dark"] .card-body .card-text {
+  color: var(--wl-text);
+}
+
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--wl-surface-2) !important;
+  color: var(--wl-text) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: var(--wl-text-muted);
+}
+
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="password"]:focus,
+[data-theme="dark"] input[type="email"]:focus,
+[data-theme="dark"] input[type="number"]:focus,
+[data-theme="dark"] textarea:focus {
+  border-color: var(--wl-brand) !important;
+}
+
+[data-theme="dark"] body::-webkit-scrollbar-track {
+  background: #2a2a2d;
+}
+
+[data-theme="dark"] body::-webkit-scrollbar-thumb {
+  background: #5a5a5e;
+}
+
+[data-theme="dark"] .toast-item {
+  background: var(--wl-surface);
+  color: var(--wl-text);
+  border-color: var(--wl-border);
+  box-shadow: var(--wl-elevated-shadow);
+}
+
+[data-theme="dark"] .toast-item__close {
+  color: var(--wl-text-muted);
+}
+
+[data-theme="dark"] .toast-item__close:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--wl-text);
+}
+
+[data-theme="dark"] .alert {
+  background-color: var(--wl-surface-2);
+  color: var(--wl-text);
+  border-color: var(--wl-border);
+}
+
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .dropdown-menu,
+[data-theme="dark"] .offcanvas {
+  background-color: var(--wl-surface);
+  color: var(--wl-text);
+  border-color: var(--wl-border);
+}
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  background-color: var(--wl-surface-2);
+  color: var(--wl-text);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="dark"] hr {
+  border-color: var(--wl-border);
+}
+
+/**
+ * Theme toggle button — visible in both light and dark.
+ */
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid transparent;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  color: #222;
+  font-size: 1rem;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.theme-toggle:hover {
+  background-color: rgba(207, 207, 207, 0.461);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #fe424d;
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .theme-toggle {
+  color: #f3c969;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-toggle__sun,
+.theme-toggle__moon {
+  transition: opacity 0.2s ease, transform 0.4s ease;
+}
+
+.theme-toggle__sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle__sun {
+  display: inline-block;
+}
+
+[data-theme="dark"] .theme-toggle__moon {
+  display: none;
+}
