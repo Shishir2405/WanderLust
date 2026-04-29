@@ -1,0 +1,111 @@
+/**
+ * Image-load skeleton + page-load skeleton stack for the listings index.
+ * Matches existing card sizing (18.75rem image, 1rem rounded corners).
+ */
+
+@keyframes wl-shimmer {
+  0% {
+    background-position: -120% 0;
+  }
+  100% {
+    background-position: 120% 0;
+  }
+}
+
+.skeleton-base,
+.card-image-wrap.is-loading::before {
+  background: linear-gradient(
+    90deg,
+    #ececec 0%,
+    #f6f6f6 50%,
+    #ececec 100%
+  );
+  background-size: 240% 100%;
+  animation: wl-shimmer 1.4s ease-in-out infinite;
+}
+
+[data-theme="dark"] .skeleton-base,
+[data-theme="dark"] .card-image-wrap.is-loading::before {
+  background: linear-gradient(
+    90deg,
+    #1f1f22 0%,
+    #2a2a2d 50%,
+    #1f1f22 100%
+  );
+  background-size: 240% 100%;
+}
+
+.card-image-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.card-image-wrap.is-loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+.card-image-wrap > img {
+  display: block;
+  width: 100%;
+  height: 18.75rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+  position: relative;
+  z-index: 2;
+}
+
+.card-image-wrap.is-loaded > img {
+  opacity: 1;
+}
+
+/**
+ * Pre-paint skeleton stack — used for cards that haven't rendered yet
+ * (e.g. when AJAX-fetched in later iterations of the search feature).
+ */
+.skeleton-card {
+  display: block;
+  padding: 0.5rem;
+}
+
+.skeleton-card__image {
+  width: 100%;
+  height: 18.75rem;
+  border-radius: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.skeleton-card__title {
+  height: 1rem;
+  width: 70%;
+  border-radius: 0.35rem;
+  margin-bottom: 0.55rem;
+}
+
+.skeleton-card__price {
+  height: 0.85rem;
+  width: 45%;
+  border-radius: 0.35rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-base,
+  .card-image-wrap.is-loading::before {
+    animation: none;
+    background: #ececec;
+  }
+  [data-theme="dark"] .skeleton-base,
+  [data-theme="dark"] .card-image-wrap.is-loading::before {
+    background: #232326;
+  }
+  .card-image-wrap > img {
+    transition: none;
+  }
+}

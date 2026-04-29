@@ -1,40 +1,16 @@
-<% if(successMsg && successMsg.length){ %>
-<div
-  class="alert alert-success mt-1 alert-dismissible fade show col-lg-6 col-12 offset-lg-3"
-  role="alert"
->
-  <%= successMsg %>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="Close"
-  ></button>
-</div>
-<% } %> <% if(errorMsg && errorMsg.length){ %>
-<div
-  class="alert alert-danger mt-1 alert-dismissible fade show col-lg-6 col-12 offset-lg-3"
-  role="alert"
->
-  <%= errorMsg %>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="Close"
-  ></button>
-</div>
-<% } %> <% if(updateMsg && updateMsg.length){ %>
-<div
-  class="alert alert-primary mt-1 alert-dismissible fade show col-lg-6 col-12 offset-lg-3"
-  role="alert"
->
-  <%= updateMsg %>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="Close"
-  ></button>
-</div>
+<%# Flash messages are seeded as data nodes and hydrated into toasts by toast.js %>
+<% if (successMsg && successMsg.length) { %>
+  <% successMsg.forEach(function (msg) { %>
+    <span data-toast data-toast-type="success" data-toast-message="<%= msg %>" hidden></span>
+  <% }) %>
+<% } %>
+<% if (errorMsg && errorMsg.length) { %>
+  <% errorMsg.forEach(function (msg) { %>
+    <span data-toast data-toast-type="error" data-toast-message="<%= msg %>" hidden></span>
+  <% }) %>
+<% } %>
+<% if (updateMsg && updateMsg.length) { %>
+  <% updateMsg.forEach(function (msg) { %>
+    <span data-toast data-toast-type="info" data-toast-message="<%= msg %>" hidden></span>
+  <% }) %>
 <% } %>
