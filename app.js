@@ -156,7 +156,6 @@ app.use((req, res, next) => {
 });
 
 /**
-<<<<<<< HEAD
  * * Expose imgUrl helper to all EJS templates for Cloudinary
  * * auto-format/quality and explicit width/height transforms.
  */
@@ -164,7 +163,8 @@ app.use((req, res, next) => {
   res.locals.imgUrl = require("./utils/imgUrl.js");
   next();
 });
-=======
+
+/**
  * * Marketing landing page.
  * ? Authenticated users keep the existing UX (redirect to /listings).
  * ? Anonymous visitors see the marketing landing view.
@@ -176,7 +176,6 @@ app.get("/", wrapAsyn(async (req, res) => {
   const featuredListings = await Listing.find({}).limit(6);
   res.render("landing.ejs", { featuredListings });
 }));
->>>>>>> origin/main
 
 /**
  * * Attach the 'listing' router to handle requests at '/listings'.
