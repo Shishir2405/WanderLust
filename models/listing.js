@@ -20,6 +20,12 @@ const listingSchema = Schema({
     url: String,
     filename: String,
   },
+  gallery: [
+    {
+      url: String,
+      filename: String,
+    },
+  ],
   price: {
     type: Number,
     min: 0,

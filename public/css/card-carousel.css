@@ -1,0 +1,122 @@
+/**
+ * Listing-card image carousel.
+ * Pure CSS chrome + tiny JS. Hidden when only one slide exists.
+ */
+
+.card-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+[data-theme="dark"] .card-carousel {
+  background: #232326;
+}
+
+.card-carousel__track {
+  display: flex;
+  width: 100%;
+  height: 18.75rem;
+  transform: translateX(0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.card-carousel__slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+
+.card-carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+
+.card-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #222;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  z-index: 3;
+}
+
+.card-carousel__btn:hover {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.06);
+}
+
+.card-carousel__btn--prev {
+  left: 0.6rem;
+}
+
+.card-carousel__btn--next {
+  right: 0.6rem;
+}
+
+.card-carousel:hover .card-carousel__btn,
+.card-carousel:focus-within .card-carousel__btn {
+  opacity: 1;
+}
+
+.card-carousel__btn[disabled] {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.card-carousel__dots {
+  position: absolute;
+  bottom: 0.65rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  gap: 0.32rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.18);
+  z-index: 3;
+}
+
+.card-carousel__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.card-carousel__dot.is-active {
+  background: #ffffff;
+  transform: scale(1.25);
+}
+
+.card-carousel--single .card-carousel__btn,
+.card-carousel--single .card-carousel__dots {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-carousel__track {
+    transition: none;
+  }
+}
