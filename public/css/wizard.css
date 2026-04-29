@@ -1,0 +1,240 @@
+/* Wizard styles for 5-step listing form */
+.wizard {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.wizard-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1.75rem;
+}
+
+.wizard-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: #e6e6e6;
+  border: 2px solid transparent;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.wizard-dot.is-active {
+  background: #fe424d;
+  transform: scale(1.25);
+}
+
+.wizard-dot.is-complete {
+  background: #fe424d;
+  opacity: 0.55;
+}
+
+.wizard-step-counter {
+  text-align: center;
+  font-weight: 600;
+  color: #6b6b6b;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.wizard-step {
+  display: none;
+  animation: wl-fade 0.28s ease both;
+  background: var(--card-bg, #fff);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
+}
+
+.wizard-step[data-active] {
+  display: block;
+}
+
+@keyframes wl-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wizard-step h4 {
+  margin: 0 0 0.35rem;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.wizard-step .wizard-hint {
+  color: #777;
+  margin-bottom: 1.1rem;
+  font-size: 0.95rem;
+}
+
+.wizard-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.75rem;
+}
+
+.wizard-btn {
+  border-radius: 999px;
+  padding: 0.65rem 1.4rem;
+  font-weight: 600;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.2s ease, background 0.2s;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.wizard-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.wizard-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.wizard-btn-primary {
+  background: linear-gradient(135deg, #fe424d 0%, #ff7a85 100%);
+  color: #fff;
+  border: none;
+}
+
+.wizard-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e63946 0%, #ff6373 100%);
+}
+
+/* Amenities grid */
+.amenity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.65rem;
+}
+
+.amenity-item {
+  position: relative;
+  display: block;
+}
+
+.amenity-item input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.amenity-item .amenity-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid #e2e2e2;
+  border-radius: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  font-weight: 500;
+  font-size: 0.92rem;
+  background: var(--input-bg, #fff);
+  color: var(--text, #222);
+}
+
+.amenity-item input[type="checkbox"]:checked + .amenity-tile {
+  border-color: #fe424d;
+  background: rgba(254, 66, 77, 0.07);
+  color: #fe424d;
+}
+
+.amenity-item .amenity-tile:hover {
+  transform: translateY(-1px);
+}
+
+/* Generic step grid */
+.wizard-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .wizard-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wizard-step .form-control,
+.wizard-step .form-select {
+  border-radius: 0.6rem;
+}
+
+[data-theme="dark"] .wizard-step {
+  background: #1f1f1f;
+}
+
+[data-theme="dark"] .wizard-btn {
+  background: #2a2a2a;
+  color: #f0f0f0;
+  border-color: #3a3a3a;
+}
+
+[data-theme="dark"] .amenity-item .amenity-tile {
+  background: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #f0f0f0;
+}
+
+[data-theme="dark"] .amenity-item input[type="checkbox"]:checked + .amenity-tile {
+  background: rgba(254, 66, 77, 0.15);
+  color: #ff7a85;
+  border-color: #fe424d;
+}
+
+[data-theme="dark"] .wizard-dot {
+  background: #444;
+}
+
+.upload-zone {
+  border: 2px dashed #d8d8d8;
+  border-radius: 1rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.upload-zone:hover {
+  border-color: #fe424d;
+  background: rgba(254, 66, 77, 0.04);
+}
+
+.upload-zone.has-file {
+  border-color: #4bb543;
+  background: rgba(75, 181, 67, 0.05);
+}
+
+.upload-zone input[type="file"] {
+  display: none;
+}
+
+.upload-zone .upload-text {
+  font-weight: 600;
+  color: #555;
+}
+
+[data-theme="dark"] .upload-zone {
+  border-color: #444;
+}
+
+[data-theme="dark"] .upload-zone .upload-text {
+  color: #ccc;
+}

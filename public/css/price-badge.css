@@ -1,0 +1,65 @@
+/**
+ * Compact price-tier badge for listing cards and the show page.
+ */
+
+.price-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 0.85rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: rgba(31, 157, 85, 0.12);
+  color: #1a7a42;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.price-badge--great-deal {
+  background: rgba(31, 157, 85, 0.14);
+  color: #1a7a42;
+}
+
+.price-badge--fair {
+  background: rgba(0, 0, 0, 0.06);
+  color: #444;
+}
+
+.price-badge--premium {
+  background: rgba(254, 66, 77, 0.12);
+  color: #c92434;
+}
+
+[data-theme="dark"] .price-badge--great-deal {
+  background: rgba(31, 157, 85, 0.22);
+  color: #6fdba0;
+}
+
+[data-theme="dark"] .price-badge--fair {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d4d4d4;
+}
+
+[data-theme="dark"] .price-badge--premium {
+  background: rgba(254, 66, 77, 0.22);
+  color: #ff8a92;
+}
+
+.price-badge i {
+  font-size: 0.78rem;
+}
+
+.price-badge--card {
+  margin-left: 0.4rem;
+  vertical-align: baseline;
+}
+
+.price-badge--show {
+  margin-left: 0.65rem;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.7rem;
+}
