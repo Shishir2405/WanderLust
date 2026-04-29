@@ -1,0 +1,126 @@
+.ai-gen {
+  margin: 0.4rem 0 0.8rem;
+  background: linear-gradient(
+    135deg,
+    rgba(254, 66, 77, 0.06) 0%,
+    rgba(232, 45, 114, 0.06) 100%
+  );
+  border: 1px dashed rgba(254, 66, 77, 0.4);
+  border-radius: 0.7rem;
+  padding: 0.85rem 0.95rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+[data-theme="dark"] .ai-gen {
+  background: linear-gradient(
+    135deg,
+    rgba(254, 66, 77, 0.1) 0%,
+    rgba(232, 45, 114, 0.1) 100%
+  );
+  border-color: rgba(254, 66, 77, 0.5);
+}
+
+.ai-gen__head {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.5rem;
+}
+
+.ai-gen__title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.ai-gen__sparkle {
+  background: linear-gradient(to right, #e82d72, #fe424d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1rem;
+}
+
+.ai-gen__bullets {
+  width: 100%;
+  resize: vertical;
+  min-height: 4.5rem;
+  border-radius: 0.5rem !important;
+  padding: 0.55rem 0.65rem !important;
+  font-size: 0.9rem !important;
+}
+
+.ai-gen__actions {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.ai-gen__btn {
+  padding: 0.4rem 0.85rem;
+  border-radius: 1.2rem;
+  border: none;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  background: linear-gradient(to right, #e82d72 0%, #fe346a 48%, #ff375f 100%);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.ai-gen__btn:hover {
+  transform: translateY(-1px);
+}
+
+.ai-gen__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ai-gen__btn--ghost {
+  background: transparent;
+  color: var(--wl-text, #222);
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .ai-gen__btn--ghost {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ededed;
+}
+
+.ai-gen__status {
+  font-size: 0.82rem;
+  color: var(--wl-text-muted, #6b6b6b);
+  display: none;
+  margin-top: 0.45rem;
+}
+
+.ai-gen.is-loading .ai-gen__status {
+  display: inline-block;
+}
+
+.ai-gen__spinner {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ai-spin 0.7s linear infinite;
+  vertical-align: -0.18em;
+  margin-right: 0.45rem;
+}
+
+@keyframes ai-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

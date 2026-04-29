@@ -1,0 +1,35 @@
+<% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/collections.css" />
+
+<div class="coll-page">
+  <div class="coll-page__head">
+    <div>
+      <p style="color: var(--wl-text-muted, #6b6b6b); margin: 0; font-size: 0.85rem;">
+        Shared by <strong><%= (collection.owner && collection.owner.username) || 'someone' %></strong>
+      </p>
+      <h1 class="coll-page__title" style="color: <%= collection.coverColor %>;"><%= collection.name %></h1>
+      <% if (collection.description) { %>
+        <p style="margin: 0.25rem 0 0; color: var(--wl-text-muted, #6b6b6b);"><%= collection.description %></p>
+      <% } %>
+    </div>
+  </div>
+
+  <% if (!collection.listings || collection.listings.length === 0) { %>
+    <div class="coll-empty">This collection is empty.</div>
+  <% } else { %>
+    <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4">
+      <% collection.listings.forEach(function (l) { %>
+        <a href="/listings/<%= l._id %>" style="text-decoration: none; color: inherit;">
+          <div class="card listing-card mt-3" style="border: none;">
+            <img src="<%= l.image && l.image.url %>" class="card-img-top" alt="" style="height: 16rem; object-fit: cover; border-radius: 1rem;" />
+            <div class="card-body" style="padding: 0.5rem 0.25rem;">
+              <p style="font-weight: 700; margin: 0;"><%= l.title %></p>
+              <p style="color: var(--wl-text-muted, #6b6b6b); margin: 0; font-size: 0.85rem;"><%= l.location %></p>
+              <p style="margin: 0.25rem 0 0;"><b>₹<%= l.price.toLocaleString('en-IN') %></b> / night</p>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  <% } %>
+</div>

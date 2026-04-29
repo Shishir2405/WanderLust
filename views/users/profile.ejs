@@ -1,0 +1,131 @@
+<% layout("layouts/boilerplate") -%>
+
+<link rel="stylesheet" href="/css/profile.css" />
+
+<div class="profile-wrap">
+  <div class="profile-card">
+    <h2 class="profile-card__title">Edit your profile</h2>
+    <p class="profile-card__sub">
+      Update how other travellers see you on WanderLust.
+    </p>
+
+    <form
+      action="/me?_method=PUT"
+      method="POST"
+      enctype="multipart/form-data"
+      novalidate
+      class="needs-validation profile-form"
+      data-validate-form
+    >
+      <div class="profile-avatar-row">
+        <div class="profile-avatar-preview" id="avatarPreviewWrap">
+          <% if (profileUser.avatar && profileUser.avatar.url) { %>
+            <img
+              src="<%= profileUser.avatar.url %>"
+              alt="Current avatar"
+              id="avatarPreview"
+            />
+          <% } else { %>
+            <div class="profile-avatar-fallback" id="avatarFallback">
+              <%= (profileUser.displayName && profileUser.displayName.charAt(0).toUpperCase()) || (profileUser.username && profileUser.username.charAt(0).toUpperCase()) || "?" %>
+            </div>
+            <img
+              src=""
+              alt="Avatar preview"
+              id="avatarPreview"
+              style="display: none"
+            />
+          <% } %>
+        </div>
+        <div class="profile-avatar-actions">
+          <label for="avatarInput" class="profile-avatar-label">
+            Profile photo
+          </label>
+          <input
+            type="file"
+            name="avatar"
+            id="avatarInput"
+            accept="image/png,image/jpeg,image/jpg"
+            class="form-control"
+          />
+          <small class="profile-hint">PNG or JPG, square works best.</small>
+        </div>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="profileEmail"
+          value="<%= profileUser.email || '' %>"
+          readonly
+        />
+        <label for="profileEmail">E-mail</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="profileDisplayName"
+          name="displayName"
+          placeholder="Display name"
+          maxlength="60"
+          value="<%= profileUser.displayName || '' %>"
+          data-validate-message="Display name can be up to 60 characters"
+        />
+        <label for="profileDisplayName">Display name</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <textarea
+          class="form-control profile-bio"
+          id="profileBio"
+          name="bio"
+          placeholder="Tell other guests about yourself"
+          maxlength="280"
+          data-validate-message="Bio must be 280 characters or fewer"
+        ><%= profileUser.bio || '' %></textarea>
+        <label for="profileBio">Bio (max 280 characters)</label>
+        <div class="profile-bio-counter">
+          <span id="bioCount"><%= (profileUser.bio || '').length %></span>/280
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <button class="btn edit-button" type="submit"><span>Save changes</span></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var input = document.getElementById("avatarInput");
+    var preview = document.getElementById("avatarPreview");
+    var fallback = document.getElementById("avatarFallback");
+    if (input) {
+      input.addEventListener("change", function (e) {
+        var file = e.target.files && e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (ev) {
+          if (preview) {
+            preview.src = ev.target.result;
+            preview.style.display = "block";
+          }
+          if (fallback) fallback.style.display = "none";
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    var bio = document.getElementById("profileBio");
+    var counter = document.getElementById("bioCount");
+    if (bio && counter) {
+      bio.addEventListener("input", function () {
+        counter.textContent = bio.value.length;
+      });
+    }
+  })();
+</script>
