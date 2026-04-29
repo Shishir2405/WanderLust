@@ -101,6 +101,17 @@
             </p>
             <p class="card-text price-text price-without-gst" data-original-price="<%= listing.price %>">
               <b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b>
+              <% if (typeof priceTier !== 'undefined' && priceTier) { %>
+                <span class="price-badge price-badge--<%= priceTier.tier %> price-badge--show" title="Average for similar listings: ₹<%= Math.round(priceTier.avg).toLocaleString('en-IN') %>">
+                  <% if (priceTier.tier === 'great-deal') { %>
+                    <i class="fa-solid fa-bolt" aria-hidden="true"></i> <%= priceTier.delta %>% below avg
+                  <% } else if (priceTier.tier === 'premium') { %>
+                    <i class="fa-solid fa-crown" aria-hidden="true"></i> Premium pick
+                  <% } else { %>
+                    <i class="fa-solid fa-check" aria-hidden="true"></i> Fair price
+                  <% } %>
+                </span>
+              <% } %>
             </p>
           </div>
           <% if (averageRating !== 5) { %>

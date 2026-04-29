@@ -27,7 +27,14 @@ module.exports.index = async (req, res) => {
     }
   });
 
-  res.render("listings/index.ejs", { allListings, includeNavBelow: true });
+  const { tagListings } = require("../utils/priceStats.js");
+  const priceTiers = await tagListings(allListings);
+
+  res.render("listings/index.ejs", {
+    allListings,
+    priceTiers,
+    includeNavBelow: true,
+  });
 };
 
 /**
@@ -78,10 +85,14 @@ module.exports.showListing = async (req, res) => {
       }
     }
 
+    const { tagListing } = require("../utils/priceStats.js");
+    const priceTier = await tagListing(listing);
+
     res.render("listings/show.ejs", {
       listing,
       averageRating,
       ratingPercentages,
+      priceTier,
       currentUser: req.user,
     });
   } catch (error) {
