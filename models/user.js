@@ -13,6 +13,17 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  displayName: {
+    type: String,
+  },
+  bio: {
+    type: String,
+    maxlength: 280,
+  },
+  avatar: {
+    url: { type: String },
+    filename: { type: String },
+  },
   favoriteListings: [
     {
       type: Schema.Types.ObjectId,

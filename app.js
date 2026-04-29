@@ -28,6 +28,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const filterRouter = require("./routes/filter.js");
 const apiRouter = require("./routes/api.js");
+const profileRouter = require("./routes/profile.js");
 const aiRouter = require("./routes/ai.js");
 const hostRouter = require("./routes/host.js");
 const collectionRouter = require("./routes/collection.js");
@@ -175,6 +176,7 @@ app.get("/", wrapAsyn(async (req, res) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
+app.use("/", profileRouter);
 app.use("/filter", filterRouter);
 app.use("/api", apiRouter);
 app.use("/api/ai", aiRouter);
