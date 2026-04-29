@@ -1,0 +1,87 @@
+<% layout("layouts/boilerplate") -%>
+<link rel="stylesheet" href="/css/booking.css" />
+
+<%
+  function fmt(d) {
+    if (!d) return "";
+    try {
+      return new Date(d).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    } catch (e) {
+      return new Date(d).toDateString();
+    }
+  }
+  function nights(start, end) {
+    const ms = new Date(end).getTime() - new Date(start).getTime();
+    return Math.max(1, Math.round(ms / (1000 * 60 * 60 * 24)));
+  }
+%>
+
+<section class="trips-page">
+  <h2 class="trips-page__title">My trips</h2>
+
+  <% if (!trips || trips.length === 0) { %>
+    <div class="trips-empty">
+      <p>You haven't booked anything yet.</p>
+      <a href="/listings" class="booking-panel__cta" style="margin-top: 0.75rem;">
+        Browse listings
+      </a>
+    </div>
+  <% } else { %>
+    <% trips.forEach(function(trip) { %>
+      <% const l = trip.listing; %>
+      <article class="trip-card">
+        <% if (l && l.image && l.image.url) { %>
+          <a href="/listings/<%= l._id %>">
+            <img
+              src="<%= l.image.url %>"
+              alt="<%= l.title %>"
+              class="trip-card__thumb"
+            />
+          </a>
+        <% } else { %>
+          <div class="trip-card__thumb" style="background: rgba(0,0,0,0.06);"></div>
+        <% } %>
+
+        <div>
+          <h3 class="trip-card__title">
+            <% if (l) { %>
+              <a href="/listings/<%= l._id %>" style="color: inherit; text-decoration: none;">
+                <%= l.title %>
+              </a>
+            <% } else { %>
+              Listing unavailable
+            <% } %>
+          </h3>
+          <p class="trip-card__meta">
+            <% if (l && l.location) { %><%= l.location %> &middot; <% } %>
+            <%= fmt(trip.startDate) %> &rarr; <%= fmt(trip.endDate) %>
+            (<%= nights(trip.startDate, trip.endDate) %> night<%= nights(trip.startDate, trip.endDate) === 1 ? "" : "s" %>)
+          </p>
+          <p class="trip-card__meta">
+            <%= trip.guests %> guest<%= trip.guests === 1 ? "" : "s" %>
+          </p>
+          <p class="trip-card__total">
+            Total: &#8377;<%= (trip.totalPrice || 0).toLocaleString("en-IN") %>
+          </p>
+          <span class="trip-card__status trip-card__status--<%= trip.status %>">
+            <%= trip.status %>
+          </span>
+        </div>
+
+        <% if (trip.status === "confirmed") { %>
+          <form action="/bookings/<%= trip._id %>/cancel" method="POST">
+            <button type="submit" class="trip-card__cancel">
+              Cancel
+            </button>
+          </form>
+        <% } else { %>
+          <span></span>
+        <% } %>
+      </article>
+    <% }); %>
+  <% } %>
+</section>

@@ -1,0 +1,293 @@
+/* ! Booking panel + trips page styles
+ * * Uses brand red #fe424d and gradient pinks #e82d72 -> #fe346a -> #ff375f.
+ * * Card radius matches existing 1rem rounded cards.
+ */
+
+.booking-panel {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+}
+
+[data-theme="dark"] .booking-panel {
+  background: #1f1f23;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f3f3f3;
+}
+
+.booking-panel__header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.booking-panel__price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fe424d;
+}
+
+[data-theme="dark"] .booking-panel__price {
+  color: #ff6b73;
+}
+
+.booking-panel__per {
+  font-size: 0.95rem;
+  color: rgba(0, 0, 0, 0.55);
+  font-weight: 500;
+}
+
+[data-theme="dark"] .booking-panel__per {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.booking-panel__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.booking-panel__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.booking-panel__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.booking-panel__field--full {
+  width: 100%;
+}
+
+.booking-panel__field span {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .booking-panel__field span {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.booking-panel__field input,
+.booking-panel__field select {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #fff;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-theme="dark"] .booking-panel__field input,
+[data-theme="dark"] .booking-panel__field select {
+  background: #2a2a2f;
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f3f3f3;
+}
+
+.booking-panel__field input:focus,
+.booking-panel__field select:focus {
+  outline: none;
+  border-color: #fe346a;
+  box-shadow: 0 0 0 3px rgba(254, 52, 106, 0.18);
+}
+
+.booking-panel__preview {
+  background: rgba(254, 66, 77, 0.08);
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c4253a;
+}
+
+[data-theme="dark"] .booking-panel__preview {
+  background: rgba(254, 52, 106, 0.18);
+  color: #ff8a99;
+}
+
+.booking-panel__cta {
+  background: linear-gradient(90deg, #e82d72, #fe346a, #ff375f);
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.booking-panel__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(254, 52, 106, 0.28);
+}
+
+.booking-panel__cta:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.booking-panel__cta--link {
+  background: #fe424d;
+}
+
+.booking-panel__note {
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+[data-theme="dark"] .booking-panel__note {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* * Trips page */
+.trips-page {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+.trips-page__title {
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  font-size: 1.7rem;
+}
+
+.trips-empty {
+  border: 1px dashed rgba(0, 0, 0, 0.18);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .trips-empty {
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.trip-card {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: #fff;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] .trip-card {
+  background: #1f1f23;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.trip-card__thumb {
+  width: 140px;
+  height: 100px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.trip-card__title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 0.25rem;
+}
+
+.trip-card__meta {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="dark"] .trip-card__meta {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.trip-card__total {
+  font-weight: 700;
+  color: #fe424d;
+  margin-top: 0.25rem;
+}
+
+.trip-card__status {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.trip-card__status--confirmed {
+  background: rgba(254, 66, 77, 0.12);
+  color: #c4253a;
+}
+
+.trip-card__status--cancelled {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.55);
+  text-decoration: line-through;
+}
+
+[data-theme="dark"] .trip-card__status--cancelled {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.trip-card__cancel {
+  background: transparent;
+  border: 1px solid #fe424d;
+  color: #fe424d;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.trip-card__cancel:hover {
+  background: #fe424d;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .trip-card {
+    grid-template-columns: 1fr;
+  }
+  .trip-card__thumb {
+    width: 100%;
+    height: 180px;
+  }
+}

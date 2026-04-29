@@ -28,6 +28,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const filterRouter = require("./routes/filter.js");
 const apiRouter = require("./routes/api.js");
+const bookingRouter = require("./routes/booking.js");
 const User = require("./models/user.js");
 const wrapAsyn = require("./utils/wrapAsyn.js");
 const Listing = require("./models/listing.js");
@@ -161,6 +162,7 @@ app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 app.use("/filter", filterRouter);
 app.use("/api", apiRouter);
+app.use("/", bookingRouter);
 
 /**
  * * Starting Express Server

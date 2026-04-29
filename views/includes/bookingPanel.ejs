@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/css/booking.css" />
+<%
+  const today = new Date();
+  const todayStr = today.toISOString().slice(0, 10);
+  const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+  const tomorrowStr = tomorrow.toISOString().slice(0, 10);
+%>
+<aside class="booking-panel" data-booking-panel data-listing-id="<%= listing._id %>" data-price="<%= listing.price %>">
+  <div class="booking-panel__header">
+    <span class="booking-panel__price">
+      &#8377;<%= listing.price.toLocaleString("en-IN") %>
+    </span>
+    <span class="booking-panel__per">/ night</span>
+  </div>
+
+  <% if (currUser) { %>
+    <form
+      action="/listings/<%= listing._id %>/bookings"
+      method="POST"
+      class="booking-panel__form"
+      data-booking-form
+      novalidate
+    >
+      <div class="booking-panel__row">
+        <label class="booking-panel__field">
+          <span>Check-in</span>
+          <input
+            type="date"
+            name="startDate"
+            min="<%= todayStr %>"
+            required
+            data-booking-start
+          />
+        </label>
+        <label class="booking-panel__field">
+          <span>Check-out</span>
+          <input
+            type="date"
+            name="endDate"
+            min="<%= tomorrowStr %>"
+            required
+            data-booking-end
+          />
+        </label>
+      </div>
+      <label class="booking-panel__field booking-panel__field--full">
+        <span>Guests</span>
+        <select name="guests" data-booking-guests>
+          <% for (let g = 1; g <= 8; g++) { %>
+            <option value="<%= g %>"><%= g %> guest<%= g === 1 ? '' : 's' %></option>
+          <% } %>
+        </select>
+      </label>
+
+      <div class="booking-panel__preview" data-booking-preview hidden>
+        <span data-booking-preview-text></span>
+      </div>
+
+      <button type="submit" class="booking-panel__cta">Reserve</button>
+      <p class="booking-panel__note">You won't be charged yet.</p>
+    </form>
+  <% } else { %>
+    <a class="booking-panel__cta booking-panel__cta--link" href="/login">
+      Log in to reserve
+    </a>
+  <% } %>
+</aside>
+<script src="/JS/booking.js"></script>
