@@ -28,6 +28,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const filterRouter = require("./routes/filter.js");
 const apiRouter = require("./routes/api.js");
+const hostRouter = require("./routes/host.js");
 const collectionRouter = require("./routes/collection.js");
 const User = require("./models/user.js");
 const wrapAsyn = require("./utils/wrapAsyn.js");
@@ -175,6 +176,7 @@ app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 app.use("/filter", filterRouter);
 app.use("/api", apiRouter);
+app.use("/host", hostRouter);
 app.use("/collections", collectionRouter);
 app.get("/c/:token", require("./utils/wrapAsyn.js")(require("./controller/collections.js").publicView));
 
