@@ -1,6 +1,7 @@
 <% layout("layouts/boilerplate") -%>
 
 <link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/filter-split.css" />
 
 <style>
   .container {
@@ -57,13 +58,43 @@
     </div>
   </div>
 
-  <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4">
-    <% for(let listing of listings){ %>
-    <!-- changed 'listings' to 'listing' -->
+  <div class="split-view-toolbar">
+    <button
+      type="button"
+      class="split-view-toolbar__toggle"
+      data-split-view-toggle
+      aria-pressed="false"
+    >
+      <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+      <span>Show map</span>
+    </button>
+  </div>
+
+  <%
+    const mappableListings = (listings || []).filter(function (l) {
+      return l && l.geometry && Array.isArray(l.geometry.coordinates) && l.geometry.coordinates.length === 2;
+    });
+    const splitPayload = {
+      mapToken: process.env.MAP_TOKEN || "",
+      listings: mappableListings.map(function (l) {
+        return {
+          id: String(l._id),
+          title: l.title,
+          price: l.price,
+          coordinates: l.geometry.coordinates,
+        };
+      })
+    };
+  %>
+  <script id="filter-split-data" type="application/json"><%- JSON.stringify(splitPayload) %></script>
+
+  <%
+    function renderCard(listing, extraClass) {
+      extraClass = extraClass || "";
+  %>
     <a href="/listings/<%=listing._id%>" id="listing-link">
-      <!-- changed 'listings' to 'listing' -->
       <div
-        class="card listing-card mt-3"
+        class="card listing-card mt-3 <%= extraClass %>"
         data-title="<%=listing.title.toLowerCase()%>"
         data-listing-id="<%=listing._id%>"
         data-bedrooms="<%= listing.bedrooms %>"
@@ -71,7 +102,6 @@
         data-accessibility="<%= listing.locked %>"
         data-type="<%= listing.typeOfPlace %>"
       >
-        <!-- Removed form tags as they are not necessary here -->
         <img
           src="<%=listing.image.url%>"
           class="card-img-top"
@@ -92,10 +122,8 @@
               <% if (currUser &&
               currUser.favoriteListings.includes(listing._id)) { %>
               <i class="fa-solid fa-heart" style="color: #ff385c"></i>
-              <!-- Filled heart -->
               <% } else { %>
               <i class="fa-solid fa-heart" style="color: rgb(64, 64, 64)"></i>
-              <!-- Empty heart -->
               <% } %>
             </p>
           </button>
@@ -125,9 +153,22 @@
         </div>
       </div>
     </a>
-    <% } %>
+  <% } %>
+
+  <div class="filter-grid row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mb-4">
+    <% for (let listing of listings) { renderCard(listing); } %>
+  </div>
+
+  <div class="filter-split" aria-hidden="true">
+    <div class="filter-split__list row row-cols-xl-2 row-cols-lg-1 row-cols-md-1 row-cols-sm-1">
+      <% for (let listing of listings) { renderCard(listing, "filter-split__card"); } %>
+    </div>
+    <div class="filter-split__map-wrap">
+      <div class="filter-split__map" aria-label="Listings map"></div>
+    </div>
   </div>
 </body>
 
 <script src="/JS/index.js"></script>
 <script src="/JS/currency.js"></script>
+<script src="/JS/filter-split.js"></script>
